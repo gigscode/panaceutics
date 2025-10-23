@@ -44,7 +44,7 @@ export function Hero() {
               <span className="text-base font-medium text-white">Nature Meets Science</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl uppercase font-bold text-white text-balance leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl capitalize font-bold text-white text-balance leading-tight">
               Nature Cures,{" "}
               <span className="bg-secondary bg-clip-text text-transparent">
                 & Science has Proof

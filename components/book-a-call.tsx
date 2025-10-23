@@ -24,7 +24,7 @@ export function BookCall() {
             {/* Content */}
             <div className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-3xl md:text-5xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl font-medium text-foreground">
                   Need More Details About Panaceutics?
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">

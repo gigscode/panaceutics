@@ -14,7 +14,7 @@ export function Cta() {
 
             <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="text-center md:w-2/3 lg:w-1/2 xl:w-1/2 md:text-left">
-                    <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+                    <h2 className="text-5xl font-medium leading-tight text-white sm:text-4xl lg:text-5xl">
                         Discover the Future of Plant-Based Medicine
                     </h2>
                     <p className="mt-4 text-base text-gray-200">
