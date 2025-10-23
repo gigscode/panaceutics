@@ -5,6 +5,9 @@ import { Newsletter } from "@/components/newsletter"
 import { BookCall } from "@/components/book-a-call"
 import { MetricsWithIcons } from "@/components/metrics-card"
 import { ResearchApproach } from "@/components/ResearchDevelopment"
+import Explore from "../components/explore"
+import { AboutUs } from "@/components/about-us"
+import { Cta } from "@/components/cta-comp"
 
 
 
@@ -18,17 +21,10 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <div className="">
-      <MetricsWithIcons metrics={customMetrics} />
-      </div>
-      
-     
-      <FeaturedProducts />
-       <ResearchApproach />
-
-       <MissionSection />
+      <AboutUs />
+      <Explore />
+      <Cta />   
       <BookCall />
-
       <Newsletter />
     </main>
   )

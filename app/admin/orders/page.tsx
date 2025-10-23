@@ -6,7 +6,15 @@ import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Eye, Download, Plus, X } from "lucide-react"
-import type { Order } from "@/lib/types"
+interface Order {
+  _id: string
+  customerEmail: string
+  customerName?: string
+  createdAt: string
+  items: any[]
+  total: number
+  status: "Processing" | "Shipped" | "Delivered"
+}
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])

@@ -9,11 +9,11 @@ import { ChevronDown } from "lucide-react"
 import type { StorePreferences } from "@/lib/types"
 import type { Product } from "@/lib/types"
 
-interface ProductsClientProps {
-  storePreferences: StorePreferences
-}
+// interface ProductsClientProps {
+//   storePreferences: StorePreferences
+// }
 
-export default function ProductsClient({  }: ProductsClientProps) {
+export default function ProductsClient() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [sortBy, setSortBy] = useState("featured")
   const [showCategoryFilter, setShowCategoryFilter] = useState(false)
@@ -90,7 +90,7 @@ export default function ProductsClient({  }: ProductsClientProps) {
             </button>
             {showCategoryFilter && (
               <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-10 min-w-48">
-                {categories.map((cat) => (
+                {["All", ...(products.map(p => p.category).filter((v, i, a) => a.indexOf(v) === i))].map((cat: string) => (
                   <button
                     key={cat}
                     onClick={() => {

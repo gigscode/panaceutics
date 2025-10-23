@@ -28,9 +28,9 @@ export function MetricsWithIcons({ metrics }: MetricsProps) {
   }))
 
   return (
-    <section className="py-20 md:py-28 -mt-48 z-48">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <section className="py-10 z-48">
+      <div className="container mx-auto p-4 md:px-0">
+        <div className="flex  justify-between items-center gap-12">
           {metricsWithIcons.map((metric, index) => (
             <MetricCard key={index} metric={metric} />
           ))}
@@ -78,23 +78,23 @@ function MetricCard({ metric }: { metric: MetricItem }) {
   }, [metric.value, hasStarted])
 
   return (
-    <div ref={ref} className="text-center p-6 rounded-lg bg-white border border-border/50">
-      <div className="flex justify-center mb-4">
-        <div className="p-3 rounded-full bg-primary/10 text-primary">
+    <div ref={ref} className="text-center">
+      <div className="flex justify-center mb-2 md:mb-4">
+        <div className="p-2 md:p-3 rounded-full bg-primary/10 text-primary">
           {metric.icon}
         </div>
       </div>
-      <div className="flex items-baseline justify-center gap-1 mb-2">
-        <span className="text-3xl md:text-4xl font-bold text-primary">
+      <div className="flex items-baseline justify-center gap-1 mb-1 md:mb-2">
+        <span className="text-2xl md:text-4xl font-bold text-primary">
           {count.toLocaleString()}
         </span>
         {metric.suffix && (
-          <span className="text-2xl md:text-3xl font-bold text-primary">
+          <span className="text-xl md:text-3xl font-bold text-primary">
             {metric.suffix}
           </span>
         )}
       </div>
-      <p className="text-sm text-muted-foreground font-medium">
+      <p className="text-xs md:text-sm text-muted-foreground font-medium">
         {metric.label}
       </p>
     </div>

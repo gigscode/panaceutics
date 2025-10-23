@@ -49,7 +49,10 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+
+
+
+          {/* <div>
             <h4 className="font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
@@ -68,7 +71,7 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm opacity-80">
           <p>&copy; 2025 Panaceutics. All rights reserved.</p>

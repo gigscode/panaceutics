@@ -45,26 +45,26 @@ export function Hero() {
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl uppercase font-bold text-white text-balance leading-tight">
-              Nature's Cure,{" "}
+              Nature Cures,{" "}
               <span className="bg-secondary bg-clip-text text-transparent">
-                Science's Proof
+                & Science has Proof
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 text-balance leading-relaxed max-w-2xl mx-auto">
-              Harnessing plant-based solutions backed by rigorous scientific research
+              Providing plant based solutions informed by cutting-edge biopharmaceutical research
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <Link href="/products">
+              <Link href="/explore">
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-8 text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
-                  Explore Products
+                  Explore Panaceutics
                 </Button>
               </Link>
-              <Link href="/about">
+              {/* <Link href="/about">
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -72,7 +72,7 @@ export function Hero() {
                 >
                   Learn More
                 </Button>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Scroll indicator */}

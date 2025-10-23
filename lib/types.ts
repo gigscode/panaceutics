@@ -1,4 +1,5 @@
 export interface Product {
+  stock: number
   image: string
   _id: string
   name: string
@@ -19,6 +20,7 @@ export interface Product {
 }
 
 export interface Category {
+  productCount: number
   _id: string
   name: string
   slug: string
@@ -28,6 +30,11 @@ export interface Category {
 }
 
 export interface StorePreferences {
+  email: string
+  phone: string
+  address: string
+  currency: string
+  taxRate: string
   storeName: string
   storeLogo: string
   showStoreLogo: boolean

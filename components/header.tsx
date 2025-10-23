@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button"
 import { useCart } from "@/app/providers"
 import Image from "next/image"
 
-
-
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { cartCount } = useCart()
@@ -16,6 +14,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/WhatsApp_Image_2025-10-19_at_09.30.15-removebg-preview.png"
@@ -25,13 +24,12 @@ export function Header() {
             className="w-auto h-8 md:h-10"
             priority
           />
-          {/* <span className="font-semibold text-lg hidden sm:inline">Panaceutics</span> */}
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/products" className="text-sm font-medium hover:text-primary transition-colors">
-            Products
+            Explore Panaceutics
           </Link>
           <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
             About
@@ -39,10 +37,23 @@ export function Header() {
           <Link href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
             Contact
           </Link>
+          {/* NEW Chat with Us */}
+          <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
+            Chat with Us
+          </Link>
         </nav>
 
+        {/* Right Section */}
         <div className="flex items-center gap-4">
-          <Link href="/cart">
+          {/* Book Appointment Button (Visible on Desktop) */}
+          <Link href="/book-appointment" className="hidden md:block">
+            <Button variant="default" className="bg-primary p-6 text-white hover:bg-primary/90">
+              Book an Appointment
+            </Button>
+          </Link>
+
+          {/* Cart Button */}
+          {/* <Link href="/cart">
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="w-5 h-5" />
               {cartCount > 0 && (
@@ -51,9 +62,9 @@ export function Header() {
                 </span>
               )}
             </Button>
-          </Link>
+          </Link> */}
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -73,14 +84,14 @@ export function Header() {
             <Link href="/contact" className="text-xl uppercase font-medium hover:text-primary transition-colors">
               Contact
             </Link>
-            <a
-              href="https://wa.me/1234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl uppercase bg-primary text-primary-foreground p-6 rounded-xl text-center font-medium hover:text-primary transition-colors"
-            >
-              Message on WhatsApp
-            </a>
+            <Link href="/chat" className="text-xl uppercase font-medium hover:text-primary transition-colors">
+              Chat with Us
+            </Link>
+
+            {/* Book Appointment Button (Visible on Mobile) */}
+            <Link href="/book-appointment" className="text-xl uppercase bg-primary text-primary-foreground p-6 rounded-xl text-center font-medium hover:bg-primary/90 transition-colors">
+              Book an Appointment
+            </Link>
           </div>
         </nav>
       )}
