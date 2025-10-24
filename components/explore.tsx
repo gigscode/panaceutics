@@ -141,26 +141,26 @@ export default function Explore() {
             {/* Hero & Filter sections unchanged, omitted here for brevity (use your existing JSX) */}
 
             {/* Research Cards Auto-Scroll Section */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <section id="explore" className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    {/* Responsive title: full width on small screens, 1/2 on large */}
-                    <h2 className="text-3xl sm:text-4xl w-full lg:w-1/2 font-medium text-foreground mb-4 sm:mb-6">
-                        Explore Our Latest Research, Discoveries & Solutions
-                    </h2>
+                    <div className="flex flex-col items-center justify-center text-center w-full mx-auto py-8">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+                            Explore Our Latest Research,<br />
+                            Discoveries & Solutions
+                        </h2>
+                        <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-10 max-w-2xl">
+                            Discover how nature’s most potent botanicals are transforming modern wellness.
+                        </p>
+                    </div>
 
-                    {/* Responsive paragraph: constrained width on larger screens */}
-                    <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-10 max-w-3xl">
-                        Discover how nature’s most potent botanicals are transforming modern wellness.
-                    </p>
-
-                    {/* Responsive filter buttons: wrap on small screens, horizontal scroll on very narrow */}
-                    <div className="mb-6 sm:mb-8 flex flex-wrap items-center gap-2 sm:gap-3">
+                    {/* Responsive filter buttons: centered across devices */}
+                    <div className="mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3 w-full">
                         <button
                             onClick={() => setSelectedCategory(null)}
                             className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${selectedCategory === null
                                     ? "bg-primary text-white"
                                     : "bg-muted text-muted-foreground hover:bg-primary/10"
-                                }`}
+                                } hover:scale-105 hover:shadow-md`}
                         >
                             All
                         </button>
@@ -171,7 +171,7 @@ export default function Explore() {
                                 className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${selectedCategory === category
                                         ? "bg-primary text-white"
                                         : "bg-muted text-muted-foreground hover:bg-primary/10"
-                                    }`}
+                                    } hover:scale-105 hover:shadow-md`}
                             >
                                 {category}
                             </button>

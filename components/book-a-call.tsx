@@ -3,7 +3,7 @@ import { MessageCircle, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
 export function BookCall() {
-  const whatsappNumber = "+1234567890"
+  const whatsappNumber = "+2348070943256"
   const message = "Hi, I'd like to learn more about your products and solutions."
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 
@@ -15,7 +15,7 @@ export function BookCall() {
             {/* Image */}
             <div>
               <img
-                src="/herbone.jpg"
+                src="/herbthree.jpg"
                 alt="Product consultation"
                 className="w-full h-[500px] object-cover rounded-2xl shadow-md"
               />

@@ -43,8 +43,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:opacity-100 transition-opacity">
-                  Privacy
+                <Link href="/privacy-policy" className="hover:opacity-100 transition-opacity">
+                  Privacy Policy
                 </Link>
               </li>
             </ul>

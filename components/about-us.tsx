@@ -1,6 +1,7 @@
 "use client"
 
 import { CheckCircle2 } from "lucide-react"
+import Link from "next/link"
 import { MetricsWithIcons } from "./metrics-card"
 
 export function AboutUs() {
@@ -32,9 +33,11 @@ export function AboutUs() {
                             </div>
 
                             <div className="pt-4">
-                                <button className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors">
-                                    Learn More
-                                </button>
+                                <Link href="/about" passHref legacyBehavior>
+                                        <a className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors hover:scale-105 hover:shadow-md">
+                                        Learn More
+                                    </a>
+                                </Link>
                             </div>
 
                             <MetricsWithIcons metrics={customMetrics} />

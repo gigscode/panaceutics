@@ -65,7 +65,7 @@ export function Header() {
           </Link> */}
 
           {/* Mobile Menu Toggle */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <button className="md:hidden hover:scale-105 hover:shadow-md" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>

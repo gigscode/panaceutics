@@ -1,7 +1,13 @@
 
 import React from 'react';
+import Link from 'next/link';
 
 export function Cta() {
+
+    const whatsappNumber = "+2348070943256"
+  const message = "Hi, I'd like to learn more about your products and solutions."
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
     return (
         <section className="relative py-10 overflow-hidden bg-black sm:py-16 lg:py-24 xl:py-32">
             <div className="absolute inset-0">
@@ -42,9 +48,14 @@ export function Cta() {
                                 </div>
                             </div> */}
 
-                            <button type="submit" className="inline-flex items-center justify-center flex-shrink-0 w-auto px-4 py-4 mt-4 font-semibold text-white transition-all duration-200 bg-primary border border-transparent rounded-md sm:mt-0 none sm:w-auto">
-                                Get instant access
-                            </button>
+                            <a 
+                                href={whatsappUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center flex-shrink-0 w-auto px-4 py-4 mt-4 font-semibold text-white transition-all duration-200 bg-primary border border-transparent rounded-md sm:mt-0 none sm:w-auto hover:scale-105 hover:shadow-md"
+                            >
+                                Chat with Us
+                            </a>
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,8 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { MetricsWithIcons } from "@/components/metrics-card"
+import { useCallback } from "react"
 
 export function Hero() {
   const heroMetrics = [
@@ -9,6 +11,16 @@ export function Hero() {
     { value: 100, suffix: '+', label: 'Research Studies', duration: 2500 },
     { value: 25, suffix: '+', label: 'Countries Served', duration: 2000 },
   ]
+
+  const scrollToExplore = useCallback(() => {
+    const el = document.getElementById("explore")
+    if (!el) return
+    // adjust this offset to match your header height if needed
+    const headerOffset = 96
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY
+    const offsetPosition = elementPosition - headerOffset
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" })
+  }, [])
 
   return (
     <div className="relative">
@@ -61,14 +73,13 @@ export function Hero() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <Link href="/explore">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-8 text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                >
-                  Explore Panaceutics
-                </Button>
-              </Link>
+              <Button
+                onClick={scrollToExplore}
+                size="lg"
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-8 text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                Explore Panaceutics
+              </Button>
             </div>
 
             <div className="pt-16">

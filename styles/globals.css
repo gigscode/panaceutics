@@ -123,3 +123,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Enable smooth scrolling for in-page anchors */
+html {
+  scroll-behavior: smooth;
+}
