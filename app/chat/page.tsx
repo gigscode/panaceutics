@@ -141,7 +141,7 @@ export default function ChatPage() {
             {
               title: "Ongoing Support",
               description: "Regular follow-ups to ensure your treatment is working effectively.",
-              image: "/images/chat/"
+              image: "/images/chat/follow_up.jpg"
             }
           ].map((feature, index) => (
             <motion.div
