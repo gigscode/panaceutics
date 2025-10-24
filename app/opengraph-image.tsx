@@ -1,22 +1,13 @@
 import { ImageResponse } from 'next/og'
- 
-// Route segment config
+
 export const runtime = 'edge'
- 
-// Image metadata
 export const alt = 'Panaceutics - Phytotherapeutic Solutions'
-export const size = {
-    width: 1200,
-    height: 630,
-}
- 
+export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
- 
-// Image generation
+
 export default async function Image() {
     return new ImageResponse(
         (
-            // ImageResponse JSX element
             <div
                 style={{
                     background: '#042f2e',
@@ -27,28 +18,25 @@ export default async function Image() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: '#f0fdfa',
-                    padding: 48,
+                    padding: '48px',
                 }}
             >
                 <div style={{
-                    fontSize: 64,
+                    fontSize: '64px',
                     fontWeight: 'bold',
-                    marginBottom: 24,
+                    marginBottom: '24px',
                 }}>
                     Panaceutics
                 </div>
                 <div style={{
-                    fontSize: 36,
+                    fontSize: '36px',
                     textAlign: 'center',
-                    maxWidth: 800,
+                    maxWidth: '800px',
                 }}>
                     Where the cure is natural, but the proof is scientific.
                 </div>
             </div>
         ),
-        // ImageResponse options
-        {
-            ...size,
-        }
+        { ...size }
     )
 }
