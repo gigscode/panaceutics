@@ -10,8 +10,7 @@ interface Research {
     category: string
     description: string
     image: string
-    date: string
-    readTime: string
+   
 }
 
 // ... (Research interface and researches array unchanged) ...
@@ -22,9 +21,8 @@ const researches: Research[] = [
         category: "Botanical Research",
         description:
             "Comprehensive study on the bioactive compounds found in ginger and their therapeutic potential in inflammation management.",
-        image: "/ginger-root-botanical-research.jpg",
-        date: "2024-01-15",
-        readTime: "8 min read",
+        image: "/ginger.jpg",
+        
     },
     {
         id: "2",
@@ -32,9 +30,8 @@ const researches: Research[] = [
         category: "Clinical Trials",
         description:
             "Evidence-based research demonstrating the effectiveness of curcumin in supporting joint health and cognitive function.",
-        image: "/turmeric-curcumin-clinical-research.jpg",
-        date: "2024-01-10",
-        readTime: "10 min read",
+        image: "/herbthree.jpg",
+       
     },
     {
         id: "3",
@@ -42,9 +39,8 @@ const researches: Research[] = [
         category: "Adaptogenic Research",
         description:
             "In-depth analysis of how ashwagandha interacts with the body's stress response system and cortisol regulation.",
-        image: "/ashwagandha-stress-research.jpg",
-        date: "2024-01-05",
-        readTime: "9 min read",
+        image: "/physioresearch.jpg",
+        
     },
     {
         id: "4",
@@ -52,9 +48,8 @@ const researches: Research[] = [
         category: "Quality Assurance",
         description:
             "Methodology for ensuring consistent bioavailability and potency in standardized herbal extract formulations.",
-        image: "/herbal-extract-quality-assurance.jpg",
-        date: "2023-12-28",
-        readTime: "7 min read",
+        image: "/herbal-extract.jpg",
+        
     },
     {
         id: "5",
@@ -62,9 +57,8 @@ const researches: Research[] = [
         category: "Formulation Science",
         description:
             "Research on how combining multiple botanicals creates enhanced therapeutic effects through complementary mechanisms.",
-        image: "/herbal-combination-synergy.jpg",
-        date: "2023-12-20",
-        readTime: "11 min read",
+        image: "/herbal_conbo.jpg",
+        
     },
 ]
 
@@ -215,16 +209,7 @@ export default function Explore() {
                                     </h3>
                                     <p className="text-base text-gray-300 mb-5 line-clamp-3">{research.description}</p>
                                     <div className="flex items-center justify-between text-sm text-gray-400">
-                                        <div className="flex flex-col gap-1">
-                                            <span>
-                                                {new Date(research.date).toLocaleDateString("en-US", {
-                                                    month: "short",
-                                                    day: "numeric",
-                                                    year: "numeric",
-                                                })}
-                                            </span>
-                                            <span>{research.readTime}</span>
-                                        </div>
+                                        
                                         <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
