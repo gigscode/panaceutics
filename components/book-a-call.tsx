@@ -52,7 +52,7 @@ export function BookCall() {
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-white py-6 text-lg font-semibold transition-all duration-300"
                 >
-                  Book a Product Call
+                  Book an Appointment
                 </Button>
               </Link>
             </div>
