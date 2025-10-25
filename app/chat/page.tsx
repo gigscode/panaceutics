@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
 
 export default function ChatPage() {
-  const whatsappNumber = "+23480709432568" 
+  const whatsappNumber = "+2348070943256" 
   const whatsappLink = `https://wa.me/${whatsappNumber}`
 
   const fadeInUp = {

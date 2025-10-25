@@ -72,7 +72,7 @@ export default function ContactPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <p className="mt-6 text-lg font-medium leading-relaxed text-gray-900">123 Healing Street, Ado-Ekiti, Ekiti, Nigeria</p>
+                        <p className="mt-6 text-lg font-medium leading-relaxed text-gray-900">House 9, Mols&Sims Complex, Zone-4, Irekanmi Quarters, Off Ilawe Road, Ado-Ekiti Ekiti State, Nigeria</p>
                     </div>
                 </div>
             </div>
