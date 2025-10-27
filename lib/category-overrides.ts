@@ -18,12 +18,46 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
   },
   "oncology": {
     title: "Oncology Support Solutions",
-    description: "Advanced herbal formulations developed to complement conventional cancer treatments and support patient wellbeing.",
+    description: "Advanced herbal formulations developed to complement conventional cancer treatments and support patient wellbeing. Our research focuses on synergistic anticancer effects and reducing chemotherapy-induced toxicity.",
     customLayout: true,
-    heroImage: "/images/oncology.png",
+    heroImage: "/oncology.jpg",
     downloadLink: "/research/oncology"
+  },
+  "neurology": {
+    title: "Neurological Support Solutions",
+    description: "Comprehensive research on herbal interactions with central nervous system drugs and their effects on neurological health. Our formulations focus on safe co-administration and neuroprotective benefits.",
+    customLayout: true,
+    heroImage: "/neurology.jpg",
+    downloadLink: "/research/neurology"
+  },
+  "nephrology": {
+    title: "Kidney Health Solutions",
+    description: "Specialized herbal combinations designed to protect kidney function and prevent disease progression. Our nephroprotective formulations target oxidative stress and inflammation in renal tissues.",
+    customLayout: true,
+    heroImage: "/nephrology.jpg",
+    downloadLink: "/research/nephrology"
+  },
+  "hematology": {
+    title: "Blood Health Solutions",
+    description: "Research-based insights on herbal interactions with anticoagulant medications and blood clotting mechanisms. Our advisory content ensures safe therapeutic combinations under physician oversight.",
+    customLayout: true,
+    heroImage: "/hematology.jpg",
+    downloadLink: "/research/hematology"
+  },
+  "infectiology": {
+    title: "Infection Control Solutions",
+    description: "Innovative herbal combinations with enhanced therapeutic effects against infections through complementary mechanisms. Our research explores synergistic antibacterial and antiviral properties.",
+    customLayout: true,
+    heroImage: "/infectiology.jpg",
+    downloadLink: "/research/infectiology"
+  },
+  "retinology": {
+    title: "Retinal Health Solutions",
+    description: "Targeted nutraceutical blends to support retinal function and vision health. Our studies focus on the benefits and risks of herbal supplements on retinal health and visual acuity.",
+    customLayout: true,
+    heroImage: "/retinology.jpg",
+    downloadLink: "/research/retinology"
   }
-  // Add more category overrides as needed
 }
 
 export function getCategoryOverride(slug: string): CategoryOverride | undefined {
