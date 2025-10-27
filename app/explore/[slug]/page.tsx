@@ -1,5 +1,5 @@
 import { researches, getCategories } from "@/lib/researches"
-import { ProductCard } from "@/components/product-card"
+import { ShopProductCard } from "@/components/shop-product-card"
 import { getCategoryOverride } from "@/lib/category-overrides"
 import Image from "next/image"
 import Link from "next/link"
@@ -74,7 +74,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {productsToShow.map((research) => (
-                  <ProductCard key={research.id} research={research} forceCurrency={'NGN'} />
+                  <ShopProductCard key={research.id} research={research} forceCurrency={'NGN'} />
                 ))}
               </div>
 
@@ -101,7 +101,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {items.map((research) => (
-                  <ProductCard key={research.id} research={research} forceCurrency={'NGN'} />
+                  <ShopProductCard key={research.id} research={research} forceCurrency={'NGN'} />
                 ))}
               </div>
             </section>
