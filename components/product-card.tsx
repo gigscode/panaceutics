@@ -7,37 +7,45 @@ import { Price } from "@/components/ui/price"
 
 export function ProductCard({ research, forceCurrency }: { research: Research; forceCurrency?: 'NGN' | 'USD' }) {
   return (
-    <article className="bg-card rounded-2xl overflow-hidden shadow-md">
-      <div className="relative h-44 w-full">
-        <Image src={research.image} alt={research.title} fill className="object-cover" />
+    <article className="bg-white rounded-2xl overflow-hidden shadow-sm border border-transparent hover:shadow-md transition-shadow duration-150">
+      <div className="relative bg-white">
+        <div className="relative h-44 w-full bg-white">
+          <Image src={research.image} alt={research.title} fill className="object-contain p-6" />
+        </div>
+        {research.rating ? (
+          <div className="absolute top-3 right-3 bg-white/90 rounded-full px-2 py-1 text-xs flex items-center gap-1 shadow">
+            <span className="text-yellow-500">★</span>
+            <span className="text-sm font-medium">{research.rating.toFixed(1)}</span>
+          </div>
+        ) : null}
       </div>
 
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="text-lg font-semibold text-foreground max-w-[65%]">{research.title}</h3>
-          <div className="text-right">
+      <div className="p-5 bg-white">
+        <h3 className="text-base font-semibold text-foreground mb-2">{research.title}</h3>
+        <p className="text-sm text-muted-foreground mb-3 line-clamp-3">{research.description}</p>
+
+        <div className="flex items-end justify-between gap-4">
+          <div>
             {research.price ? (
-              <div className="text-emerald-800 font-bold">
-                <Price value={research.price} className="text-emerald-800 font-bold" forceCurrency={forceCurrency} />
+              <div className="flex items-center gap-3">
+                <div className="text-emerald-800 font-extrabold text-lg">
+                  <Price value={research.price} className="text-emerald-800" forceCurrency={forceCurrency} />
+                </div>
+                {research.comparePrice ? (
+                  <div className="text-sm text-muted-foreground line-through">{research.comparePrice ? (
+                    <Price value={research.comparePrice} className="text-muted-foreground text-sm line-through" forceCurrency={forceCurrency} />
+                  ) : null}</div>
+                ) : null}
               </div>
             ) : null}
           </div>
-        </div>
 
-        <p className="text-sm text-muted-foreground mt-3 line-clamp-3">{research.description}</p>
-
-        {research.details ? (
-          <div className="mt-3 text-sm text-muted-foreground">
-            <button className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span aria-hidden>▸</span>
-              <span>More details</span>
-            </button>
+          <div>
+            <Link href="#" className="inline-flex items-center gap-2 rounded-md border border-muted px-4 py-2 text-sm text-foreground bg-surface hover:bg-surface/90">
+              View Details
+              <span aria-hidden>→</span>
+            </Link>
           </div>
-        ) : null}
-
-        <div className="mt-4 flex items-center gap-4">
-          <Link href="/contact" className="inline-block rounded-full bg-emerald-800 px-4 py-2 text-sm text-white">Enquire</Link>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Request brochure</a>
         </div>
       </div>
     </article>
