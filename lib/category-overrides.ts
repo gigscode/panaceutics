@@ -3,13 +3,18 @@ export interface CategoryOverride {
   description?: string;
   customLayout?: boolean;
   heroImage?: string;
+  downloadLink?: string;
+  publicationsLink?: string;
 }
 
 export const categoryOverrides: Record<string, CategoryOverride> = {
   "metabolic-syndrome": {
     title: "Metabolic Syndrome Solutions",
     description: "Discover our comprehensive range of herbal formulations designed to support metabolic health and wellness.",
-    customLayout: false
+    customLayout: true,
+    heroImage: "/ginger.jpg",
+    downloadLink: "/downloads/metabolic-syndrome-research.pdf",
+    publicationsLink: "https://example.org/publications"
   },
   "oncology": {
     title: "Oncology Support Solutions",
