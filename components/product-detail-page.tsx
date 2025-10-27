@@ -9,7 +9,9 @@ import { getAllProducts } from "@/lib/categories"
 import { getProductDescription } from "@/lib/product-descriptions"
 import { ProductDescription } from "./product-description"
 import { ShopProductCard } from "./shop-product-card"
+import { useCart } from "@/app/providers"
 import { ArrowLeft, Minus, Plus, ShoppingCart } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface ProductDetailPageProps {
   product: Research
@@ -17,6 +19,9 @@ interface ProductDetailPageProps {
 
 export function ProductDetailPage({ product }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1)
+  const [isAdding, setIsAdding] = useState(false)
+  const { addItem } = useCart()
+  const router = useRouter()
 
   // Get detailed product description
   const productDescription = getProductDescription(product.id)
@@ -31,9 +36,27 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
     setQuantity(Math.max(1, quantity + change))
   }
 
-  const handleAddToCart = () => {
-    // TODO: Implement add to cart functionality
-    console.log(`Adding ${quantity} of ${product.title} to cart`)
+  const handleAddToCart = async () => {
+    if (!product.price) return
+    
+    setIsAdding(true)
+    
+    // Add item to cart
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      category: product.category
+    }, quantity)
+
+    // Show loading state briefly
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    setIsAdding(false)
+    
+    // Redirect to payment page
+    router.push('/payment')
   }
 
   return (
@@ -163,10 +186,20 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="w-full bg-emerald-800 text-white py-4 px-6 rounded-lg font-medium hover:bg-emerald-900 transition-colors flex items-center justify-center space-x-2"
+              disabled={isAdding || !product.price}
+              className="w-full bg-emerald-800 text-white py-4 px-6 rounded-lg font-medium hover:bg-emerald-900 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ShoppingCart className="w-5 h-5" />
-              <span>Add to Cart</span>
+              {isAdding ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Adding to Cart...</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-5 h-5" />
+                  <span>Add to Cart</span>
+                </>
+              )}
             </button>
           </div>
         </div>
