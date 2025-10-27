@@ -10,9 +10,23 @@ export function useIsMobile() {
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
     }
-    mql.addEventListener('change', onChange)
+
+    // Some older browsers (and older Android WebViews) implement
+    // MediaQueryList.addListener instead of addEventListener.
+    if (typeof mql.addEventListener === 'function') {
+      mql.addEventListener('change', onChange)
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+      return () => mql.removeEventListener('change', onChange)
+    }
+
+    if (typeof (mql as any).addListener === 'function') {
+      ;(mql as any).addListener(onChange)
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+      return () => (mql as any).removeListener(onChange)
+    }
+
+    // Fallback: just set once
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener('change', onChange)
   }, [])
 
   return !!isMobile

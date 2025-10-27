@@ -38,16 +38,20 @@ export default function OrderConfirmationPage() {
   const [order, setOrder] = useState<Order | null>(null)
 
   useEffect(() => {
-    const savedOrder = localStorage.getItem("lastOrder")
-    if (savedOrder) {
-      try {
-        const parsedOrder = JSON.parse(savedOrder)
-        if (parsedOrder.id === orderId) {
-          setOrder(parsedOrder)
+    try {
+      const savedOrder = typeof window !== 'undefined' ? localStorage.getItem("lastOrder") : null
+      if (savedOrder) {
+        try {
+          const parsedOrder = JSON.parse(savedOrder)
+          if (parsedOrder.id === orderId) {
+            setOrder(parsedOrder)
+          }
+        } catch (error) {
+          console.error("Failed to parse saved order:", error)
         }
-      } catch (error) {
-        console.error("Failed to load order:", error)
       }
+    } catch (error) {
+      console.error("Failed to access localStorage for lastOrder:", error)
     }
   }, [orderId])
 

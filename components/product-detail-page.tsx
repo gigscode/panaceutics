@@ -6,6 +6,8 @@ import { useState } from "react"
 import { Research } from "@/lib/researches"
 import { Price } from "@/components/ui/price"
 import { getAllProducts } from "@/lib/categories"
+import { getProductDescription } from "@/lib/product-descriptions"
+import { ProductDescription } from "./product-description"
 import { ShopProductCard } from "./shop-product-card"
 import { ArrowLeft, Minus, Plus, ShoppingCart } from "lucide-react"
 
@@ -15,6 +17,9 @@ interface ProductDetailPageProps {
 
 export function ProductDetailPage({ product }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1)
+
+  // Get detailed product description
+  const productDescription = getProductDescription(product.id)
 
   // Get related products from the same category
   const allProducts = getAllProducts()
@@ -113,17 +118,23 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
 
             {/* Description */}
             <div className="prose prose-gray max-w-none">
-              <p className="text-gray-700 leading-relaxed">
-                {product.description}
-              </p>
-              {product.details && (
-                <div className="mt-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Additional Details
-                  </h3>
+              {productDescription ? (
+                <ProductDescription description={productDescription} />
+              ) : (
+                <div>
                   <p className="text-gray-700 leading-relaxed">
-                    {product.details}
+                    {product.description}
                   </p>
+                  {product.details && (
+                    <div className="mt-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        Additional Details
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        {product.details}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

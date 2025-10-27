@@ -28,21 +28,33 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart")
-    if (savedCart) {
-      try {
-        setItems(JSON.parse(savedCart))
-      } catch (error) {
-        console.error("Failed to load cart from localStorage:", error)
+    try {
+      // localStorage access can throw in some environments (e.g., private mode, blocked storage)
+      const savedCart = typeof window !== 'undefined' ? localStorage.getItem("cart") : null
+      if (savedCart) {
+        try {
+          setItems(JSON.parse(savedCart))
+        } catch (error) {
+          console.error("Failed to parse cart from localStorage:", error)
+        }
       }
+    } catch (error) {
+      console.error("Failed to access localStorage for cart:", error)
+    } finally {
+      setIsHydrated(true)
     }
-    setIsHydrated(true)
   }, [])
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (isHydrated) {
-      localStorage.setItem("cart", JSON.stringify(items))
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("cart", JSON.stringify(items))
+        }
+      } catch (error) {
+        console.error("Failed to save cart to localStorage:", error)
+      }
     }
   }, [items, isHydrated])
 
