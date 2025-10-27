@@ -13,7 +13,7 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
     description: "Metabolic Syndrome (MS) is a complex cluster of interrelated metabolic and physiological abnormalities. These disorders, when clustered, substantially increase an individual's lifetime risk for developing chronic conditions, including Type 2 Diabetes Mellitus (T2DM) and premature Cardiovascular Disease (CVD), notably ischemic heart disease. ",
     customLayout: true,
     heroImage: "/images/metabolicsyndrome.png",
-    downloadLink: "/products",
+    downloadLink: "/research/metabolic-syndrome",
     //publicationsLink: "https://example.org/publications"
   },
   "oncology": {
