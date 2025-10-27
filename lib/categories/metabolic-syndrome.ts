@@ -1,12 +1,13 @@
 import { Research } from '../researches'
 
 export const metabolicSyndromeProducts: Research[] = [
+ 
   {
     id: "1",
     title: "Nubeta",
     category: "Metabolic syndrome",
     description:
-      "Research on Sphenolax®, BPVomin®, and Nu-beta®, a series of innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity, key components of metabolic syndrome.",
+      "A poly-herbal formulation for weight management, promoting beige fat formation.",
     image: "/images/nubeta.jpg",
     price: { amount: 25500, currency: 'NGN' },
   },
@@ -15,7 +16,7 @@ export const metabolicSyndromeProducts: Research[] = [
     title: "Sphenolax®",
     category: "Metabolic syndrome",
     description:
-      "Research on Sphenolax®, BPVomin®, and Nu-beta®, a series of innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity, key components of metabolic syndrome.",
+      "A penta-herbal formulation for diabetes management and pancreatic repair.",
     image: "/images/sphenolax.png",
     price: { amount: 25500, currency: 'NGN' },
    
@@ -25,7 +26,7 @@ export const metabolicSyndromeProducts: Research[] = [
     title: "BPVomin®",
     category: "Metabolic syndrome",
     description:
-      "Research on Sphenolax®, BPVomin®, and Nu-beta®, a series of innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity, key components of metabolic syndrome.",
+      "A bi-herbal formulation for RAAS modulation and blood pressure control.",
     image: "/images/bpvomin.jpg",
     price: { amount: 25500, currency: 'NGN' },
    
@@ -35,7 +36,7 @@ export const metabolicSyndromeProducts: Research[] = [
     title: "Exigencin®",
     category: "Metabolic syndrome",
     description:
-      "Research on Sphenolax®, BPVomin®, and Nu-beta®, a series of innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity, key components of metabolic syndrome.",
+      "Exigencin is a tri-mechanistic herbal agent for tissue repair and neurogenesis.",
     image: "/images/exigencin.png",
     price: { amount: 25500, currency: 'NGN' },
    

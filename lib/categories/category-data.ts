@@ -22,7 +22,7 @@ export const categoryDataList: CategoryData[] = [
     name: "Metabolic syndrome",
     slug: "metabolic-syndrome",
     description: "Research on innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity.",
-    categoryImage: "/ginger.jpg",
+    categoryImage: "/images/metabolicsyndrome.png",
   },
   {
     name: "Oncology",

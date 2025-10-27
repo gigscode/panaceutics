@@ -49,7 +49,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
 
                   <div className="mt-6 flex items-center gap-4">
                     {override.downloadLink ? (
-                      <Link href={override.downloadLink} className="inline-block rounded-md bg-primary px-5 py-3 text-sm font-medium text-white">Download Research</Link>
+                      <Link href={override.downloadLink} className="inline-block rounded-md bg-primary px-5 py-3 text-sm font-medium text-white">More on Research</Link>
                     ) : null}
 
                     {override.publicationsLink ? (
@@ -57,7 +57,8 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                     ) : null}
                   </div>
 
-                  <div className="mt-6 text-sm text-muted-foreground">{items.length ? items[0].description : `We are developing targeted solutions for ${title.toLowerCase()}.`}</div>
+                 {/*} <div className="mt-6 text-sm text-muted-foreground">{items.length ? items[0].description : `We are developing targeted solutions for ${title.toLowerCase()}.`}</div>
+                 Research on Sphenolax®, BPVomin®, and Nu-beta®, a series of innovative herbal formulations designed to manage hyperglycemia, hypertension, and obesity, key components of metabolic syndrome.*/}
                 </div>
               </div>
             </section>
