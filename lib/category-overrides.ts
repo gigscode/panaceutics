@@ -19,7 +19,9 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
   "oncology": {
     title: "Oncology Support Solutions",
     description: "Advanced herbal formulations developed to complement conventional cancer treatments and support patient wellbeing.",
-    customLayout: false
+    customLayout: true,
+    heroImage: "/images/oncology.png",
+    downloadLink: "/research/oncology"
   }
   // Add more category overrides as needed
 }

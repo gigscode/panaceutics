@@ -7,9 +7,10 @@ import { ArrowLeft } from "lucide-react"
 interface ResearchPageProps {
   title: string
   content: string
+  citations?: 'metabolic-syndrome' | 'oncology' | 'default'
 }
 
-export function ResearchPage({ title, content }: ResearchPageProps) {
+export function ResearchPage({ title, content, citations = 'default' }: ResearchPageProps) {
   // Parse the markdown content into sections
   const parseContent = (text: string) => {
     const sections = text.split('\n\n').filter(section => section.trim())
@@ -183,14 +184,113 @@ export function ResearchPage({ title, content }: ResearchPageProps) {
 
           {/* References Section */}
           <div className="mt-12 pt-8 border-t border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">References</h3>
-            <div className="text-sm text-gray-600 space-y-2">
-              <p>1. American Heart Association - Circulation Journal</p>
-              <p>2. National Center for Biotechnology Information</p>
-              <p>3. Frontiers in Pharmacology</p>
-              <p>4. Pan African Medical Journal</p>
-              <p>5. South African Family Practice Journal</p>
-              <p>6. Various peer-reviewed medical journals and research publications</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Works Cited</h3>
+            <div className="text-sm text-gray-600 space-y-3">
+              <p>
+                1. <a href="https://www.ahajournals.org/doi/10.1161/circulationaha.105.169405" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metabolic syndrome: a comprehensive perspective based on interactions between obesity, diabetes, and inflammation - American Heart Association
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                2. <a href="https://www.ncbi.nlm.nih.gov/books/NBK459248/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metabolic Syndrome - StatPearls - NCBI Bookshelf
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                3. <a href="https://pubmed.ncbi.nlm.nih.gov/38410415/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metabolic syndrome and cardiovascular disease: mechanisms and therapeutic approaches - PubMed
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                4. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3263198/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  The metabolic syndrome: an overview and proposed mechanisms - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                5. <a href="https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2024.1364881/full" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Pharmacological interventions for metabolic syndrome: current evidence and future directions - Frontiers in Pharmacology
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                6. <a href="https://www.mdpi.com/2227-9067/10/3/473" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metabolic Syndrome in Children and Adolescents: Diagnostic Criteria and Prevention - MDPI
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                7. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3064018/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Waist circumference cut-off points for the identification of abdominal obesity among adults in Africa - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                8. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11981207/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Optimal waist circumference cut-off points for metabolic syndrome in African populations - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                9. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10374159/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Prevalence of metabolic syndrome in Africa: a systematic review and meta-analysis - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                10. <a href="https://www.panafrican-med-journal.com/content/article/23/19/full/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metabolic syndrome among adults in Nigeria: a systematic review - Pan African Medical Journal
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                11. <a href="https://safpj.co.za/index.php/safpj/article/view/5959/9047" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Prevalence and components of metabolic syndrome in North-Western Nigeria - South African Family Practice
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                12. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3304358/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Incretin-based therapies for type 2 diabetes mellitus - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                13. <a href="https://www.mdpi.com/2673-4540/5/3/23" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Pharmacological Management of Metabolic Syndrome: A Comprehensive Review - MDPI Diabetology
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                14. <a href="https://www.scirp.org/journal/paperinformation?paperid=138153" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Antihypertensive medications in metabolic syndrome management - Scientific Research Publishing
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                15. <a href="https://www.researchgate.net/publication/343345780_An_updated_review_of_pharmacokinetic_drug_interactions_and_pharmacogenetics_of_statins" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  An updated review of pharmacokinetic drug interactions and pharmacogenetics of statins - ResearchGate
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                16. <a href="https://www.researchgate.net/publication/384545922_Determination_of_Pharmacokinetic_and_Toxicological_Parameters_of_Some_Commonly_Used_Statin_Group_Drugs" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Determination of Pharmacokinetic and Toxicological Parameters of Some Commonly Used Statin Group Drugs - ResearchGate
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                17. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10236989/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metformin: mechanisms of action and clinical applications - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                18. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5397288/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Metformin-associated lactic acidosis and vitamin B12 deficiency - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                19. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11818918/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  GLP-1 receptor agonists: efficacy and safety profile in metabolic disorders - PMC
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                20. <a href="https://www.mdpi.com/2673-4540/5/5/35" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Alternative and Complementary Medicine in Metabolic Syndrome Management - MDPI Diabetology
+                </a>, accessed October 26, 2025
+              </p>
+              <p>
+                21. <a href="https://doi.org/10.3390/diabetology5050035" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline">
+                  Traditional African Medicine and Modern Healthcare Integration - Diabetology
+                </a>, accessed October 26, 2025
+              </p>
             </div>
           </div>
 
