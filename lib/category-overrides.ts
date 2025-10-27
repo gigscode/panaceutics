@@ -10,11 +10,11 @@ export interface CategoryOverride {
 export const categoryOverrides: Record<string, CategoryOverride> = {
   "metabolic-syndrome": {
     title: "Metabolic Syndrome Solutions",
-    description: "Discover our comprehensive range of herbal formulations designed to support metabolic health and wellness.",
+    description: "Metabolic Syndrome (MS) is a complex cluster of interrelated metabolic and physiological abnormalities. These disorders, when clustered, substantially increase an individual's lifetime risk for developing chronic conditions, including Type 2 Diabetes Mellitus (T2DM) and premature Cardiovascular Disease (CVD), notably ischemic heart disease. ",
     customLayout: true,
-    heroImage: "/ginger.jpg",
-    downloadLink: "/downloads/metabolic-syndrome-research.pdf",
-    publicationsLink: "https://example.org/publications"
+    heroImage: "/images/metabolicsyndrome.png",
+    downloadLink: "/public/downloads/metabolicsyndrome.pdf",
+    //publicationsLink: "https://example.org/publications"
   },
   "oncology": {
     title: "Oncology Support Solutions",

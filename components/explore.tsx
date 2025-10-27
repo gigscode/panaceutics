@@ -1,23 +1,21 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import Link from "next/link"
-import { ArrowRight, Beaker } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
-import { getAllCategories, getAllProducts } from "@/lib/categories"
-
-function slugify(s: string) {
-    return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
-}
+import { getAllCategoryData } from "@/lib/categories/category-data"
+import { CategoryCard } from "@/components/category-card"
 
 export default function Explore() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
     const scrollRef = useRef<HTMLDivElement | null>(null)
 
-    // Get all categories and products from independent category files
-    const categories = getAllCategories()
-    const allProducts = getAllProducts()
-    const filteredResearches = selectedCategory ? allProducts.filter((r) => r.category === selectedCategory) : allProducts
+    // Get all categories for display (NOT products)
+    // This ensures editing product data does NOT affect the homepage
+    const categories = getAllCategoryData()
+    const filteredCategories = selectedCategory
+        ? categories.filter((c) => c.name === selectedCategory)
+        : categories
 
     // Refs to control animation and user interaction
     const rafIdRef = useRef<number | null>(null)
@@ -116,14 +114,14 @@ export default function Explore() {
                         </button>
                         {categories.map((category) => (
                             <button
-                                key={category}
-                                onClick={() => setSelectedCategory(category)}
-                                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${selectedCategory === category
+                                key={category.slug}
+                                onClick={() => setSelectedCategory(category.name)}
+                                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${selectedCategory === category.name
                                         ? "bg-primary text-white"
                                         : "bg-muted text-muted-foreground hover:bg-primary/10"
                                     } hover:scale-105 hover:shadow-md`}
                             >
-                                {category}
+                                {category.name}
                             </button>
                         ))}
                     </div>
@@ -136,34 +134,12 @@ export default function Explore() {
                         // helpful style to make touch interactions feel natural
                         style={{ WebkitOverflowScrolling: "touch" }}
                     >
-                        {filteredResearches.map((research) => (
-                            <Link
-                                key={research.id}
-                                href={`/explore/${slugify(research.category)}`}
-                                className="group relative flex-shrink-0 w-96 h-[28rem] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 snap-center"
-                            >
-                                <img
-                                    src={research.image || "/placeholder.svg"}
-                                    alt={research.title}
-                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors duration-300" />
-                                <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-sm font-semibold uppercase tracking-wide text-white">
-                                            {research.category}
-                                        </span>
-                                    </div>
-                                    <h3 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                                        {research.title}
-                                    </h3>
-                                    <p className="text-base text-gray-300 mb-5 line-clamp-3">{research.description}</p>
-                                    <div className="flex items-center justify-between text-sm text-gray-400">
-                                        
-                                        <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
-                                    </div>
-                                </div>
-                            </Link>
+                        {filteredCategories.map((category) => (
+                            <CategoryCard
+                                key={category.slug}
+                                category={category}
+                                variant="carousel"
+                            />
                         ))}
                     </div>
                 </div>

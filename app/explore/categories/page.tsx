@@ -1,10 +1,5 @@
-import Link from "next/link"
-import Image from "next/image"
-import { getAllCategories, getCategoryProducts } from "@/lib/categories"
-
-function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
-}
+import { getAllCategoryData } from "@/lib/categories/category-data"
+import { CategoryCard } from "@/components/category-card"
 
 export const metadata = {
   title: "Explore Categories | Panaceutics",
@@ -12,7 +7,9 @@ export const metadata = {
 }
 
 export default function CategoriesPage() {
-  const categories = getAllCategories()
+  // Get category data (NOT product data)
+  // This ensures editing product data does NOT affect this page
+  const categories = getAllCategoryData()
 
   return (
     <main className="min-h-screen bg-background py-12">
@@ -23,30 +20,13 @@ export default function CategoriesPage() {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((cat) => {
-            // pick representative image from this category's independent products
-            const categoryProducts = getCategoryProducts(cat)
-            const repr = categoryProducts[0]
-            return (
-              <Link
-                key={cat}
-                href={`/explore/${slugify(cat)}`}
-                className="group block rounded-2xl overflow-hidden shadow-lg bg-card"
-              >
-                <div className="relative h-44 w-full">
-                  {repr?.image ? (
-                    <Image src={repr.image} alt={cat} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    <div className="h-full w-full bg-muted" />
-                  )}
-                </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold text-foreground">{cat}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{repr?.description ?? "Explore research and solutions in this category."}</p>
-                </div>
-              </Link>
-            )
-          })}
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.slug}
+              category={category}
+              variant="grid"
+            />
+          ))}
         </div>
       </div>
     </main>
