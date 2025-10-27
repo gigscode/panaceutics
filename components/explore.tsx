@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Beaker } from "lucide-react"
 
-import { researches } from "@/lib/researches"
+import { getAllCategories, getAllProducts } from "@/lib/categories"
 
 function slugify(s: string) {
     return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
@@ -14,8 +14,10 @@ export default function Explore() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
     const scrollRef = useRef<HTMLDivElement | null>(null)
 
-    const categories = Array.from(new Set(researches.map((r) => r.category)))
-    const filteredResearches = selectedCategory ? researches.filter((r) => r.category === selectedCategory) : researches
+    // Get all categories and products from independent category files
+    const categories = getAllCategories()
+    const allProducts = getAllProducts()
+    const filteredResearches = selectedCategory ? allProducts.filter((r) => r.category === selectedCategory) : allProducts
 
     // Refs to control animation and user interaction
     const rafIdRef = useRef<number | null>(null)

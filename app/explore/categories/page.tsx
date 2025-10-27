@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { researches, getCategories } from "@/lib/researches"
+import { getAllCategories, getCategoryProducts } from "@/lib/categories"
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
@@ -12,7 +12,7 @@ export const metadata = {
 }
 
 export default function CategoriesPage() {
-  const categories = getCategories()
+  const categories = getAllCategories()
 
   return (
     <main className="min-h-screen bg-background py-12">
@@ -24,8 +24,9 @@ export default function CategoriesPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat) => {
-            // pick representative image if available
-            const repr = researches.find((r) => r.category === cat)
+            // pick representative image from this category's independent products
+            const categoryProducts = getCategoryProducts(cat)
+            const repr = categoryProducts[0]
             return (
               <Link
                 key={cat}
