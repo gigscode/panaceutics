@@ -26,7 +26,7 @@ export function ProductCard({ research, forceCurrency }: { research: Research; f
           ) : null}
 
           <div className="mt-4">
-            <Link href="#" className="block w-full text-center rounded-md bg-emerald-800 text-white py-2 text-sm font-medium hover:bg-emerald-900">
+            <Link href={`/product/${research.id}`} className="block w-full text-center rounded-md bg-emerald-800 text-white py-2 text-sm font-medium hover:bg-emerald-900">
               Buy Now
             </Link>
           </div>

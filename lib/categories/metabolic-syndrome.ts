@@ -1,7 +1,7 @@
 import { Research } from '../researches'
 
 export const metabolicSyndromeProducts: Research[] = [
- 
+
   {
     id: "1",
     title: "Nubeta",
@@ -19,7 +19,7 @@ export const metabolicSyndromeProducts: Research[] = [
       "A penta-herbal formulation for diabetes management and pancreatic repair.",
     image: "/images/sphenolax.png",
     price: { amount: 25500, currency: 'NGN' },
-   
+
   },
   {
     id: "3",
@@ -29,7 +29,7 @@ export const metabolicSyndromeProducts: Research[] = [
       "A bi-herbal formulation for RAAS modulation and blood pressure control.",
     image: "/images/bpvomin.jpg",
     price: { amount: 25500, currency: 'NGN' },
-   
+
   },
   {
     id: "4",
@@ -39,7 +39,7 @@ export const metabolicSyndromeProducts: Research[] = [
       "Exigencin is a tri-mechanistic herbal agent for tissue repair and neurogenesis.",
     image: "/images/exigencin.png",
     price: { amount: 25500, currency: 'NGN' },
-   
+
   },
 ]
 

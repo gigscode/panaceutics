@@ -47,3 +47,15 @@ export function findProductById(id: string): Research | undefined {
   return getAllProducts().find((p) => p.id === id)
 }
 
+/**
+ * Get products from the same category as the given product
+ */
+export function getRelatedProducts(productId: string, limit: number = 4): Research[] {
+  const product = findProductById(productId)
+  if (!product) return []
+  
+  return getAllProducts()
+    .filter((p) => p.category === product.category && p.id !== productId)
+    .slice(0, limit)
+}
+
