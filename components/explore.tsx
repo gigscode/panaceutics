@@ -4,63 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Beaker } from "lucide-react"
 
-interface Research {
-    id: string
-    title: string
-    category: string
-    description: string
-    image: string
-   
-}
-
-// ... (Research interface and researches array unchanged) ...
-const researches: Research[] = [
-    {
-        id: "1",
-        title: "Phytochemical Analysis of Ginger Root",
-        category: "Botanical Research",
-        description:
-            "Comprehensive study on the bioactive compounds found in ginger and their therapeutic potential in inflammation management.",
-        image: "/ginger.jpg",
-        
-    },
-    {
-        id: "2",
-        title: "Turmeric Curcumin: Clinical Efficacy Studies",
-        category: "Clinical Trials",
-        description:
-            "Evidence-based research demonstrating the effectiveness of curcumin in supporting joint health and cognitive function.",
-        image: "/herbthree.jpg",
-       
-    },
-    {
-        id: "3",
-        title: "Ashwagandha and Stress Response Mechanisms",
-        category: "Adaptogenic Research",
-        description:
-            "In-depth analysis of how ashwagandha interacts with the body's stress response system and cortisol regulation.",
-        image: "/physioresearch.jpg",
-        
-    },
-    {
-        id: "4",
-        title: "Standardized Herbal Extracts: Quality & Potency",
-        category: "Quality Assurance",
-        description:
-            "Methodology for ensuring consistent bioavailability and potency in standardized herbal extract formulations.",
-        image: "/herbal-extract.jpg",
-        
-    },
-    {
-        id: "5",
-        title: "Synergistic Effects of Herbal Combinations",
-        category: "Formulation Science",
-        description:
-            "Research on how combining multiple botanicals creates enhanced therapeutic effects through complementary mechanisms.",
-        image: "/herbal_conbo.jpg",
-        
-    },
-]
+import { researches } from "@/lib/researches"
 
 export default function Explore() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -200,7 +144,7 @@ export default function Explore() {
                                 <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors duration-300" />
                                 <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
                                     <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+                                        <span className="text-sm font-semibold uppercase tracking-wide text-white">
                                             {research.category}
                                         </span>
                                     </div>

@@ -4,59 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Beaker } from "lucide-react"
 
-// ... (Research interface and researches array unchanged) ...
-const researches: Research[] = [
-  {
-    id: "1",
-    title: "Phytochemical Analysis of Ginger Root",
-    category: "Botanical Research",
-    description:
-      "Comprehensive study on the bioactive compounds found in ginger and their therapeutic potential in inflammation management.",
-    image: "/ginger-root-botanical-research.jpg",
-    date: "2024-01-15",
-    readTime: "8 min read",
-  },
-  {
-    id: "2",
-    title: "Turmeric Curcumin: Clinical Efficacy Studies",
-    category: "Clinical Trials",
-    description:
-      "Evidence-based research demonstrating the effectiveness of curcumin in supporting joint health and cognitive function.",
-    image: "/turmeric-curcumin-clinical-research.jpg",
-    date: "2024-01-10",
-    readTime: "10 min read",
-  },
-  {
-    id: "3",
-    title: "Ashwagandha and Stress Response Mechanisms",
-    category: "Adaptogenic Research",
-    description:
-      "In-depth analysis of how ashwagandha interacts with the body's stress response system and cortisol regulation.",
-    image: "/ashwagandha-stress-research.jpg",
-    date: "2024-01-05",
-    readTime: "9 min read",
-  },
-  {
-    id: "4",
-    title: "Standardized Herbal Extracts: Quality & Potency",
-    category: "Quality Assurance",
-    description:
-      "Methodology for ensuring consistent bioavailability and potency in standardized herbal extract formulations.",
-    image: "/herbal-extract-quality-assurance.jpg",
-    date: "2023-12-28",
-    readTime: "7 min read",
-  },
-  {
-    id: "5",
-    title: "Synergistic Effects of Herbal Combinations",
-    category: "Formulation Science",
-    description:
-      "Research on how combining multiple botanicals creates enhanced therapeutic effects through complementary mechanisms.",
-    image: "/herbal-combination-synergy.jpg",
-    date: "2023-12-20",
-    readTime: "11 min read",
-  },
-]
+import { researches } from "@/lib/researches"
 
 export default function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -172,11 +120,14 @@ export default function ExplorePage() {
                   <div className="flex items-center justify-between text-sm text-gray-400">
                     <div className="flex flex-col gap-1">
                       <span>
-                        {new Date(research.date).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
+                        {research.date
+                          ? new Date(research.date).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })
+                          : ""
+                        }
                       </span>
                       <span>{research.readTime}</span>
                     </div>

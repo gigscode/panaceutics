@@ -28,7 +28,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/products" className="text-sm font-medium hover:text-primary transition-colors">
+          <Link href="/explore/categories" className="text-sm font-medium hover:text-primary transition-colors">
             Explore Panaceutics
           </Link>
           <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
@@ -75,8 +75,8 @@ export function Header() {
       {isOpen && (
         <nav className="md:hidden border-t border-border bg-card">
           <div className="container mx-auto space-y-4 pt-6 px-4 py-4 pb-8 flex flex-col gap-4">
-            <Link href="/products" className="text-xl uppercase font-medium hover:text-primary transition-colors">
-              Products
+            <Link href="/explore/categories" className="text-xl uppercase font-medium hover:text-primary transition-colors">
+              Explore
             </Link>
             <Link href="/about" className="text-xl uppercase font-medium hover:text-primary transition-colors">
               About
