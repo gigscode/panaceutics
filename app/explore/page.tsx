@@ -6,6 +6,10 @@ import { ArrowRight, Beaker } from "lucide-react"
 
 import { researches } from "@/lib/researches"
 
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+}
+
 export default function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
@@ -98,7 +102,7 @@ export default function ExplorePage() {
             {filteredResearches.map((research) => (
               <Link
                 key={research.id}
-                href={`/explore/${research.id}`}
+                href={`/explore/${slugify(research.category)}`}
                 className="group relative flex-shrink-0 w-96 h-[28rem] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 snap-center"
               >
                 <img

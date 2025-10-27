@@ -29,7 +29,7 @@ export default function CategoriesPage() {
             return (
               <Link
                 key={cat}
-                href={`/explore/category/${slugify(cat)}`}
+                href={`/explore/${slugify(cat)}`}
                 className="group block rounded-2xl overflow-hidden shadow-lg bg-card"
               >
                 <div className="relative h-44 w-full">

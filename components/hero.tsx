@@ -58,7 +58,7 @@ export function Hero() {
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-2">
               <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-              <span className="text-base font-medium text-white">Nature Meets Science</span>
+              {/*<span className="text-base font-medium text-white">Meet Science</span>*/}
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl capitalize font-bold text-white leading-tight">
