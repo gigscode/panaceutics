@@ -1,6 +1,10 @@
+"use client"
+
 import { ShopProductCard } from "@/components/shop-product-card"
 import { getCategoryOverride } from "@/lib/category-overrides"
 import { getCategoryProducts, getAllCategories } from "@/lib/categories"
+import { useCart } from "@/app/providers"
+import { useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -10,6 +14,7 @@ function unslugify(slug: string) {
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = params
+  const { setLastVisitedCategory } = useCart()
   const categories = getAllCategories()
   const matched = categories.find((c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug)
   const title = matched ?? unslugify(slug)
@@ -18,6 +23,13 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const override = getCategoryOverride(slug)
   // choose exactly 4 products to show from this category only
   const productsToShow = items.slice(0, 4)
+
+  // Track category visit
+  useEffect(() => {
+    if (matched) {
+      setLastVisitedCategory(matched)
+    }
+  }, [matched, setLastVisitedCategory])
 
   return (
     <main className="min-h-screen bg-background py-12">

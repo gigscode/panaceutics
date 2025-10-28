@@ -19,6 +19,8 @@ interface CartContextType {
   clearCart: () => void
   getTotalItems: () => number
   getTotalPrice: () => number
+  lastVisitedCategory: string | null
+  setLastVisitedCategory: (category: string) => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -30,8 +32,9 @@ interface CartProviderProps {
 export function CartProvider({ children }: CartProviderProps) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
+  const [lastVisitedCategory, setLastVisitedCategoryState] = useState<string | null>(null)
 
-  // Load cart from localStorage on mount
+  // Load cart and last visited category from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('panaceutics-cart')
     if (savedCart) {
@@ -42,6 +45,12 @@ export function CartProvider({ children }: CartProviderProps) {
         console.error('Error loading cart from localStorage:', error)
       }
     }
+    
+    const savedCategory = localStorage.getItem('panaceutics-last-category')
+    if (savedCategory) {
+      setLastVisitedCategoryState(savedCategory)
+    }
+    
     setIsLoaded(true)
   }, [])
 
@@ -99,6 +108,11 @@ export function CartProvider({ children }: CartProviderProps) {
     return items.reduce((total, item) => total + (item.price.amount * item.quantity), 0)
   }
 
+  const setLastVisitedCategory = (category: string) => {
+    setLastVisitedCategoryState(category)
+    localStorage.setItem('panaceutics-last-category', category)
+  }
+
   return (
     <CartContext.Provider value={{
       items,
@@ -107,7 +121,9 @@ export function CartProvider({ children }: CartProviderProps) {
       updateQuantity,
       clearCart,
       getTotalItems,
-      getTotalPrice
+      getTotalPrice,
+      lastVisitedCategory,
+      setLastVisitedCategory
     }}>
       {children}
     </CartContext.Provider>

@@ -9,8 +9,6 @@ export const oncologyProducts: Research[] = [
       "Studies on how combining herbal extracts or phytochemicals with conventional chemotherapy enhances cancer treatment outcomes and reduces side effects.",
     image: "/images/myofibrox.png",
     price: { amount: 25000, currency: 'NGN' },
-    comparePrice: { amount: 28500, currency: 'NGN' },
-    rating: 4.8,
     details:
       "Formulations are adjunctive; not intended to replace standard-of-care chemotherapy. Studies focus on reducing chemo-induced toxicity and improving patient tolerability.",
   },
@@ -22,8 +20,6 @@ export const oncologyProducts: Research[] = [
       "Studies on how combining herbal extracts or phytochemicals with conventional chemotherapy enhances cancer treatment outcomes and reduces side effects.",
     image: "/images/prostafexin.jpg",
     price: { amount: 25000, currency: 'NGN' },
-    comparePrice: { amount: 28500, currency: 'NGN' },
-    rating: 4.8,
     details:
       "Formulations are adjunctive; not intended to replace standard-of-care chemotherapy. Studies focus on reducing chemo-induced toxicity and improving patient tolerability.",
   },
@@ -35,8 +31,6 @@ export const oncologyProducts: Research[] = [
       "Studies on how combining herbal extracts or phytochemicals with conventional chemotherapy enhances cancer treatment outcomes and reduces side effects.",
     image: "/images/atxilox.png",
     price: { amount: 25000, currency: 'NGN' },
-    comparePrice: { amount: 28500, currency: 'NGN' },
-    rating: 4.8,
     details:
       "Formulations are adjunctive; not intended to replace standard-of-care chemotherapy. Studies focus on reducing chemo-induced toxicity and improving patient tolerability.",
   },
@@ -49,8 +43,6 @@ export const oncologyProducts: Research[] = [
       "Studies on how combining herbal extracts or phytochemicals with conventional chemotherapy enhances cancer treatment outcomes and reduces side effects.",
     image: "/images/metaxin.png",
     price: { amount: 25000, currency: 'NGN' },
-    comparePrice: { amount: 28500, currency: 'NGN' },
-    rating: 4.8,
     details:
       "Formulations are adjunctive; not intended to replace standard-of-care chemotherapy. Studies focus on reducing chemo-induced toxicity and improving patient tolerability.",
   },

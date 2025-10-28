@@ -7,16 +7,31 @@ import { Price } from "@/components/ui/price"
 import { Trash2, ChevronLeft, ShoppingBag, Minus, Plus } from "lucide-react"
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart()
+  const { items, removeItem, updateQuantity, clearCart, getTotalPrice, lastVisitedCategory } = useCart()
   const cartTotal = getTotalPrice()
+  
+  // Determine the back link based on last visited category
+  const getBackLink = () => {
+    if (lastVisitedCategory) {
+      return `/explore/${lastVisitedCategory.toLowerCase().replace(/\s+/g, '-')}`
+    }
+    return "/explore/categories"
+  }
+  
+  const getBackText = () => {
+    if (lastVisitedCategory) {
+      return `Back to ${lastVisitedCategory}`
+    }
+    return "Back to Products"
+  }
 
   if (items.length === 0) {
     return (
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 md:px-8 py-12">
-          <Link href="/products" className="flex items-center gap-2 text-primary hover:underline mb-8">
+          <Link href={getBackLink()} className="flex items-center gap-2 text-primary hover:underline mb-8">
             <ChevronLeft className="w-4 h-4" />
-            Back to Products
+            {getBackText()}
           </Link>
 
           <div className="text-center py-20">
@@ -40,9 +55,9 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 py-12">
-        <Link href="/explore/categories" className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8">
+        <Link href={getBackLink()} className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8">
           <ChevronLeft className="w-4 h-4" />
-          Back to Products
+          {getBackText()}
         </Link>
 
         <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
