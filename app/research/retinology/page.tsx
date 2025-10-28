@@ -42,5 +42,5 @@ Our retinal health formulations use standardized extracts with defined active co
 Future Directions:
 The future involves integrated approaches combining conventional treatments with evidence-based nutritional and herbal interventions, personalized medicine, and prevention strategies.`
 
-    return <ResearchPage title={title} content={content} />
+    return <ResearchPage title={title} content={content} citations="default" />
 }

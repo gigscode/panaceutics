@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function MetabolicSyndromeResearch() {
   const title = "Metabolic Syndrome: Pathophysiology, Epidemiology in Africa, and A Strategic Review of Pharmacological and Complementary Therapeutics"
-  
+
   const content = `Metabolic Syndrome Crisis:
 Metabolic Syndrome (MS) is a complex cluster of interrelated metabolic and physiological abnormalities. These disorders, when clustered, substantially increase an individual's lifetime risk for developing chronic conditions, including Type 2 Diabetes Mellitus (T2DM) and premature Cardiovascular Disease (CVD), notably ischemic heart disease. The historical evolution of this concept has moved the clinical focus beyond treating individual risk factors—such as hyperglycemia, dyslipidemia, and hypertension—to recognizing the synergistic and multiplicative effects of their co-occurrence. This clustering underscores the syndrome's multi-systemic nature, necessitating a holistic and integrated therapeutic approach.
 
@@ -81,5 +81,5 @@ ACT offers safe alternatives that can reduce morbidity and significantly decreas
 
 With the advent of cutting-edge biomedical and pharmaceutical research, PANACEUTICS provides evidence such as mechanism of action, phytochemical basis of actions, and No-observed Adverse Effect Level (NOAELs)-Human-Equivalent Dose (HED)-derived Dosing Regimen which is crucial for patient confidence, acceptance and adherence.`
 
-  return <ResearchPage title={title} content={content} />
+  return <ResearchPage title={title} content={content} citations="metabolic-syndrome" />
 }

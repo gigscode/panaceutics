@@ -6,62 +6,129 @@ export const metadata = {
 }
 
 export default function OncologyResearch() {
-  const title = "Cancer Biology and Complementary Therapeutic Approaches: A Comprehensive Review"
+  const title = "Oncogenesis: African Epidemiology, and Polypharmacological Strategies for Cancer Management"
   
-  const content = `Cancer: The Hallmarks and Biological Complexity:
-Cancer represents one of the most complex and challenging diseases in modern medicine. The hallmarks of cancer, as defined by Hanahan and Weinberg, encompass the fundamental capabilities that enable cancer cells to survive, proliferate, and disseminate. These hallmarks include sustaining proliferative signaling, evading growth suppressors, resisting cell death, enabling replicative immortality, inducing angiogenesis, and activating invasion and metastasis.
+  const content = `The Molecular Foundation of Oncogenesis:
+During oncogenesis, normal cells transform into malignant ones through Genome Instability and Mutation¹, which is fundamentally characterized by the acquisition of a specific set of functional capabilities, known as the Hallmarks of Cancer. This framework provides unifying concepts for understanding the vast diversity of over 100 known cancer types¹. These capabilities represent the successful circumvention of intrinsic anticancer defense mechanisms hardwired into normal cellular machinery¹.
 
-The biological complexity of cancer extends beyond these core hallmarks to include emerging characteristics such as reprogramming energy metabolism, evading immune destruction, genome instability, and tumor-promoting inflammation. Understanding these mechanisms is crucial for developing effective therapeutic strategies that can address the multifaceted nature of cancer progression.
+The established biological capabilities essential for tumor formation and progression include six core functions²:
 
-Cancer in Africa: Epidemiological Challenges:
-The cancer burden in Africa presents unique epidemiological challenges that differ significantly from patterns observed in developed countries. Sub-Saharan Africa faces a dual burden of infectious disease-related cancers and lifestyle-related malignancies. Viral infections, including Human Papillomavirus (HPV), Hepatitis B virus (HBV), Epstein-Barr virus (EBV), and Human Immunodeficiency Virus (HIV), contribute significantly to cancer incidence across the continent.
+1. Sustaining Proliferative Signaling: Malignant cells acquire autonomy from external growth signals, maintaining continuous proliferation³.
+2. Evading Growth Suppressors: Tumor cells ignore anti-proliferative signals delivered by critical tumor suppressor proteins³.
+3. Resisting Cell Death (Apoptosis): Cancer cells bypass programmed cell death mechanisms, ensuring longevity³.
+4. Enabling Replicative Immortality: Cells acquire unlimited replicative potential, often through the maintenance of telomeres, allowing infinite divisions³.
+5. Inducing Angiogenesis: Tumors stimulate the formation of new blood vessels, a necessary step for nutrient and oxygen delivery required for continued expansion³.
+6. Activating Invasion and Metastasis: Cells gain the capacity for tissue invasion and dissemination to distant sites, which is the primary cause of cancer mortality¹.
 
-According to GLOBOCAN 2022 statistics, the most frequent cancers in Africa include breast cancer, cervical cancer, prostate cancer, colorectal cancer, and liver cancer. The age-standardized incidence rates vary considerably across different African regions, with infectious agents playing a more prominent role compared to high-income countries. This epidemiological pattern necessitates region-specific prevention and treatment strategies.
+In addition to these six core hallmarks, two emerging capabilities further promote the malignant state: Immune Evasion¹. Evading immune destruction emphasizes the central role of the immune system as a critical barrier to tumorigenesis. Studies demonstrate that tumors develop and grow more rapidly in immunodeficient models lacking cytotoxic and helper T cells or Natural Killer (NK) cells, reinforcing the therapeutic necessity of restoring immune surveillance.
 
-The healthcare infrastructure challenges in many African countries compound the cancer burden, with limited access to early detection, diagnostic facilities, and specialized treatment centers. These factors contribute to later-stage diagnoses and poorer outcomes compared to resource-rich settings.
+Since malignant progression relies on acquiring a suite of defense mechanisms and exploiting redundant pathways—such as pathways for resisting cell death³—a single-target agent is unlikely to achieve durable therapeutic success. Consequently, effective cancer management necessitates polypharmacological strategies that modulate multiple nodes simultaneously.
 
-Orthodox Cancer Treatment Approaches:
-Modern cancer treatment relies on several established therapeutic modalities, each with specific mechanisms of action and clinical applications.
+Core Molecular Vulnerabilities and Pathway Disruption:
+The enabling characteristic of genomic instability is frequently mediated by the disruption of core tumor suppressor pathways. The p53 protein serves as a central regulator of genomic integrity, and genetic alterations that compromise its function are present in a majority of human cancers⁴.
 
-Chemotherapy remains a cornerstone of cancer treatment, utilizing cytotoxic agents that target rapidly dividing cells. Anthracycline-based regimens, including doxorubicin and epirubicin, are widely used for various solid tumors and hematological malignancies. These agents work by intercalating DNA and inhibiting topoisomerase II, leading to DNA damage and cell death. However, anthracyclines are associated with significant cardiotoxicity, limiting their long-term use.
+The mechanistic link between telomere erosion and p53 signaling illustrates this vulnerability. Telomere shortening, typically associated with aging, eventually leads to telomere uncapping. Uncapped telomeres recruit DNA-damage protein complexes, forming telomere-dysfunction-induced foci (TIFs)⁵. These dysfunctional telomeres signal through the ATM and ATR kinases, leading to p53 phosphorylation. This phosphorylation stabilizes p53 by disrupting its interaction with MDM2, allowing p53 to up-regulate target genes that mediate G1 cell cycle arrest, senescence, or apoptosis⁵.
 
-Taxane-containing regimens, including paclitaxel and docetaxel, represent another major class of chemotherapeutic agents. These microtubule-stabilizing agents prevent cell division by disrupting the normal dynamics of the mitotic spindle. While effective against various cancers, taxanes commonly cause peripheral neuropathy, neutropenia, and hypersensitivity reactions.
+The observation that telomere dysfunction blocks tumor formation when DNA-damage signaling is intact demonstrates the necessity of p53 inactivation for many oncogenic processes⁵. Because p53 is frequently inactivated, re-engaging or bypassing this pathway remains a powerful strategy. Downstream targets of p53, such as ALDH3A1 (involved in detoxification of aldehydes and reactive oxygen species) and NECTIN4 (a secreted surface protein overexpressed in many tumors), represent points of intervention that can exploit the cell's inherent genomic instability⁴.
 
-Targeted Therapies and Precision Medicine:
-The advent of targeted therapies has revolutionized cancer treatment by focusing on specific molecular abnormalities driving tumor growth. These therapies include tyrosine kinase inhibitors, monoclonal antibodies, and immune checkpoint inhibitors. While targeted therapies often demonstrate improved efficacy and reduced systemic toxicity compared to traditional chemotherapy, they present unique challenges including acquired resistance, off-target effects, and high costs.
+External Drivers of Carcinogenesis: Viral, Bacterial and Inflammatory Drivers:
+The most impactful viral drivers include Human Papillomaviruses (HPVs), Hepatitis B Virus (HBV), Hepatitis C Virus (HCV), and Kaposi Sarcoma-associated Herpesvirus (KSHV). Thirteen high-risk HPV subtypes are established human carcinogens, responsible for virtually all cervical cancer cases (570,000 cases globally in 2018), which is a top killer of women in Africa⁸.
 
-Immunotherapy, particularly immune checkpoint inhibitors targeting PD-1, PD-L1, and CTLA-4 pathways, has emerged as a transformative approach for various cancer types. However, immune-related adverse events and variable response rates across different patient populations remain significant clinical considerations.
+Chronic infection with HBV and HCV resulted in approximately 500,000 cases of hepatocellular carcinoma (HCC) in 2018, accounting for about 76% of all HCC cases⁹. Given that Liver cancer is the second and third leading cause of cancer death for African males and females, respectively, HBV/HCV prevalence is a major public health crisis⁸.
 
-Multidrug Resistance: A Major Clinical Challenge:
-One of the most significant obstacles in cancer treatment is the development of multidrug resistance (MDR). Cancer cells can develop resistance through various mechanisms, including increased drug efflux, altered drug metabolism, enhanced DNA repair, and evasion of apoptosis. The ATP-binding cassette (ABC) transporter family, particularly P-glycoprotein (P-gp), plays a crucial role in mediating drug resistance by actively pumping chemotherapeutic agents out of cancer cells.
+The presence of KSHV-driven malignancies, such as Kaposi Sarcoma (listed among the top 15 cancers in Africa), further confirms the prominent role of infectious etiology of cancer⁸. The bacterium Helicobacter pylori is another significant contributor, responsible for an estimated 810,000 new cancer cases in 2018, predominantly non-cardia gastric cancers⁹.
 
-Understanding the molecular mechanisms underlying MDR has led to the development of resistance-modifying agents and combination therapeutic strategies. However, clinical translation of these approaches remains challenging due to toxicity concerns and complex drug interactions.
+The high frequency of these infection-related cancers highlights a key intervention strategy: prevention. Vaccines against HBV (available since 1982) and HPV are highly effective primary prevention tools⁹. Furthermore, antimicrobial treatments for H. pylori and direct-acting antiviral agents (DAAs) for HCV offer effective secondary prevention by curing existing infections⁹.
 
-Polypharmacology and Multi-Target Approaches:
-The concept of polypharmacology, involving the simultaneous modulation of multiple therapeutic targets, has gained significant attention in cancer research. This approach recognizes that cancer is a complex, multi-pathway disease that may require intervention at multiple points to achieve optimal therapeutic outcomes.
+The prominent role of chronic infection implies that cancer development in Africa is frequently initiated or promoted by a chronic inflammatory state⁷. Inflammation is an enabling hallmark of cancer², and in regions where infectious etiology is rampant, the resulting non-resolving inflammatory milieu directly supports tumorigenesis by fostering a pro-tumor microenvironment. This biological context mandates that novel therapeutic agents designed for this population must incorporate immunomodulatory or anti-inflammatory components alongside direct cytotoxic action to comprehensively address the enabling hallmark of "Tumor-Promoting Inflammation"².
 
-Multi-target drug discovery strategies aim to develop single compounds or combination therapies that can simultaneously address various aspects of cancer biology, including proliferation, angiogenesis, metastasis, and drug resistance. This approach may offer advantages over single-target therapies by reducing the likelihood of resistance development and improving overall treatment efficacy.
+Cancer Epidemiological Landscape: African Population:
+The burden of cancer in the African population is characterized by rising incidence and mortality rates, set against a backdrop of limited healthcare resources. Cancer management and research often receive low priority in many African nations⁶. The socioeconomic disparity is stark: approximately 57% of all new cancer cases worldwide occur in low-income countries (LICs), a reality compounded by a lack of awareness, insufficient preventive strategies, and increased life expectancies⁶.
 
-Alternative and Complementary Approaches (Panaceutics Solutions):
-Given the limitations and toxicities associated with conventional cancer treatments, there is growing interest in alternative and complementary therapeutic approaches. Natural products and herbal medicines have historically provided a rich source of anticancer compounds, with many current chemotherapeutic agents derived from plant sources.
+Furthermore, epidemiological efforts are hampered by resource deficits, including a shortage of medical equipment, research facilities, and specialized expertise, resulting in cancer statistics that are often dispersed or incomplete⁶.
 
-Panaceutics Oncology Portfolio:
-Our research focuses on developing evidence-based herbal formulations that can complement conventional cancer treatments while minimizing adverse effects. Our approach emphasizes:
+Data from 2022 confirm a high-burden profile dominated by common and infection-related malignancies⁸.
 
-• Multi-target mechanisms addressing various hallmarks of cancer
-• Synergistic combinations that may overcome drug resistance
-• Reduced systemic toxicity compared to conventional chemotherapy
-• Support for immune system function during treatment
-• Quality-controlled, standardized herbal extracts with defined active compounds
+**Top Cancers in Africa (2022 Estimates)⁸**
 
-The integration of traditional African medicinal knowledge with modern pharmaceutical research methodologies offers promising opportunities for developing novel anticancer agents. Our research pipeline focuses on identifying bioactive compounds with demonstrated anticancer activity, elucidating their mechanisms of action, and conducting rigorous safety and efficacy evaluations.
+| Sex     | Rank | Cancer Site                    | Number of Cases | % of Total | Rank by Deaths |
+|---------|------|--------------------------------|-----------------|------------|----------------|
+| Males   | 1st  | Prostate                       | 103,050         | 20.4%      | 1st            |
+| Males   | 2nd  | Liver                          | 45,904          | 9.1%       | 2nd            |
+| Males   | 3rd  | Colorectum                     | 36,191          | 7.2%       | -              |
+| Males   | 4th  | Lung                           | 35,855          | 7.1%       | 3rd            |
+| Males   | 5th  | NHL (Non-Hodgkin Lymphoma)     | 27,310          | 5.4%       | -              |
+| Females | 1st  | Breast                         | 198,553         | 29.2%      | 1st            |
+| Females | 2nd  | Cervix uteri                   | 125,699         | 18.5%      | 2nd            |
+| Females | 3rd  | Colorectum                     | 34,237          | 5.0%       | -              |
+| Females | 4th  | Liver                          | 27,940          | 4.1%       | 3rd            |
+| Females | 5th  | Ovary                          | 25,760          | 3.8%       | -              |
 
-Future Directions and Research Priorities:
-The future of cancer treatment lies in personalized medicine approaches that consider individual genetic profiles, tumor characteristics, and patient-specific factors. The integration of genomics, proteomics, and metabolomics data will enable more precise treatment selection and monitoring.
+The data underscore critical variations by sex. For males, prostate cancer is the most frequent (20.4% of cases) and the leading cause of cancer-related death⁸. For females, breast cancer is overwhelmingly the most common malignancy (29.2%), followed by cervical cancer (18.5%)⁸. Cervical cancer is the second leading cause of cancer death among women, reflecting its high fatality rate due to late-stage presentation. Liver cancer also represents a top-three cause of death for both sexes, indicative of widespread infectious etiology⁸. It is worthy of note that globally, 13% of cancers diagnosed in 2018 were attributable to carcinogenic infections, a percentage likely higher in sub-Saharan Africa (SSA)⁷.
 
-Combination therapies that integrate conventional treatments with evidence-based complementary approaches may offer improved outcomes while reducing treatment-related toxicities. The development of biomarkers for treatment response and resistance will be crucial for optimizing therapeutic strategies.
+The Current Pharmacological Management of Cancer: Targets, Mechanisms, and Toxicological Constraints:
+Effective cancer management relies on three major drug classes: cytotoxic chemotherapy, targeted molecular therapies, and immunotherapies. While diverse in mechanism, each class faces critical limitations, of toxicity and the tumor's sophisticated mechanisms of resistance.
 
-Research into cancer prevention, particularly in high-risk populations and resource-limited settings, remains a critical priority. This includes developing cost-effective screening programs, vaccination strategies for infectious disease-related cancers, and lifestyle intervention programs.`
+Cytotoxic Chemotherapy: Non-Selectivity and Organ Toxicity:
+Classical chemotherapies are non-selective agents primarily designed to kill rapidly dividing cells by damaging DNA or disrupting mitosis¹⁰.
 
-  return <ResearchPage title={title} content={content} />
+• DNA-Targeting Agents: This large group includes alkylating agents (e.g., cyclophosphamide, platinum salts like cisplatin), which cause direct DNA damage and crosslinking; topoisomerase inhibitors (e.g., irinotecan, etoposide), which inhibit essential enzymes involved in DNA replication and transcription; and antimetabolites (e.g., 5-fluorouracil, methotrexate), which disrupt DNA and RNA synthesis¹⁰.
+
+• Microtubule-Targeting Agents: Drugs like taxanes and vinca alkaloids disrupt the tubulin structure, either stabilizing or destabilizing microtubules, thereby arresting cell division (mitosis)¹⁰.
+
+The lack of specificity results in predictable but severe dose-limiting toxicities. Taxanes, for instance, are associated with an extremely high prevalence of peripheral neuropathy (affecting 74.6% of individuals), arthromyalgia (62.3%), and generalized alopecia (95.1%)¹¹. Anthracyclines induce high systemic toxicity, including nausea, vomiting, constipation, and mucositis¹¹, alongside dose-limiting cardiotoxicity. Furthermore, several research data demonstrate that the risk of toxic death related to neutropenia (myelosuppression) is significantly elevated in patients with underlying liver dysfunction¹², requiring careful patient selection and monitoring.
+
+Targeted Molecular Therapies and Mechanism-Based Toxicity:
+Targeted therapies, particularly tyrosine kinase inhibitors (TKIs), revolutionized cancer treatment by focusing on specific, often mutated, proteins or receptors critical for tumor growth, such as ALK, EGFR, HER2, BRAF, MEK, and PI3K¹⁰. Although these agents often reduce the classic cytotoxic toxicities like severe nausea and neutropenia, they introduce entirely new, unexpected, and mechanism-based adverse events¹³.
+
+These toxicities arise because normal, wildtype cells and tissues rely on compensatory mechanisms to overcome the deprivation of essential physiological signaling caused by the drug¹⁴. Common non-hematological toxicities include cardiac dysfunction, hypertension, bleeding, and thyroid dysfunction¹³.
+
+A clear example is seen with inhibitors of the MAPK pathway. Selective BRAF inhibitors, such as vemurafenib and dabrafenib, are associated with prominent cutaneous toxicities, notably the development of keratoacanthomas and cutaneous squamous cell carcinomas (SCCs)¹⁴. This seemingly paradoxical toxicity occurs because inhibiting mutant BRAF activates the MAPK pathway in normal, wildtype cells, thereby driving proliferation¹⁴. This highlights a key principle: effective targeted therapy often requires a combination approach, as combining selective BRAF inhibitors with MEK inhibitors reduces the incidence of these cutaneous malignancies by dampening the paradoxical activation¹⁴.
+
+Immunotherapies: Checkpoint Blockade and Immune-Related Adverse Events:
+Immunotherapies harness or enhance the body's native immune response. Key modalities include immune checkpoint inhibitors (e.g., monoclonal antibodies targeting PD-1, PD-L1, or CTLA-4), which block inhibitory receptors on T lymphocytes, thereby restoring effector T-cell activity against cancer cells¹⁰. Adoptive cell therapy, such as CAR-T cells (Chimeric Antigen-Receptor T cells) and Tumor-Infiltrating Lymphocytes (TILs), represents advanced cellular strategies¹⁰.
+
+The principal toxicological constraint of checkpoint blockade is the induction of Immune-Related Adverse Events (irAEs). By releasing the brakes on the immune system, these therapies can initiate systemic autoimmune inflammation, affecting organs such as the colon (colitis), liver (hepatitis), lungs (pneumonitis), and endocrine glands (endocrinopathies).
+
+The Universal Challenge of Multidrug Resistance (MDR) in Cancers:
+A fundamental barrier to achieving durable remission with all small-molecule therapies is Multidrug Resistance. Cancer cells employ various mechanisms to resist anticancer agents, including enhanced DNA damage repair, resistance to apoptosis, altered drug metabolism, and epigenetic changes¹⁵. Crucially, MDR is frequently driven by the action of ATP-binding cassette (ABC) transporters, which function as efflux pumps. The three most clinically significant ABC transporters are P-glycoprotein (P-gp, ABCB1, MDR1), ABCC1 (MRP1), and ABCG2 (MXR)¹⁶. These transporters efflux chemotherapeutic/targeted agents, dramatically reducing intracellular drug concentration and systemic efficacy across a vast range of malignancies, including leukemias and solid tumors like glioblastoma and gastric carcinoma¹⁶. This efflux mechanism represents a universal clinical failure point for current small-molecule drugs.
+
+Panaceutics Strategy: Broad-Spectrum Pan-Anticancer Agent via Polypharmacology:
+The pervasive challenge of Multidrug Resistance necessitate a fundamental shift in drug design toward polypharmacology—the "one drug-multiple targets" paradigm¹⁷. This strategy is here is to find plants with phytocompounds which synergistically achieve simultaneous modulation of multiple critical pathways, preventing drug resistance and yet overcoming the synergistic off-target effects often seen with drug combinations¹⁷. To derive a putative broad-spectrum, pan-anticancer mechanism, our formulation addressed high-frequency molecular dependencies (Hallmarks) and high-frequency clinical constraints (MDR).
+
+Our Proprietary Atxilox®:
+Atxilox® is a polyherbal formulation exhibiting varying mechanism of action. First, Atxilox® acts as VEGFR kinase inhibitor which blocks oncogenic angiogenesis, also, weak dual BRAF inhibitors with MEK inhibitory actions have been demonstrated in Atxilox®. Eg5 motor is also a mechanistic target of Atxilox®. Eg5 is essential for separating the centrosomes and forming a bipolar mitotic spindle, in all cells, especially rapidly dividing cancer cells. Finally, Atxilox® inhibits ABCB1 (P-glycoprotein/MDR1) efflux transporter¹⁵.
+
+Our Proprietary Metaxin®:
+In addition to tackling the primary tumor, Metastasis is another very key aspect of cancer therapy actively targeted by Panaceutics®, here, our proprietary polyherbal formulation-Metaxin® modulates Epithelial-Mesenchymal Transition (EMT), whereas tumour cells loose adhesion to the primary tumor and extracellular matrix (ECM) promoted by proteolytic degradation of the ECM by enzymes like matrix metalloproteinases (MMPs); and the activation of signaling pathways that promote cell motility and survival. Broadly, Metaxin® has two mechanisms of action. First, Metaxin® inhibits MMP-3 and MMP-9 and secondly, promotes the activation of tumor-associated-macrophages (M1-type) within the cancerous tissues through increased Interferon-gamma (IFN-γ) production within the tumour micro-environment. Additionally, Metaxin® contains complex blend of flavonoids which inhibit PD/PDL1 interaction, thus, reactivates the body's immune system to attack cancer cells.
+
+Additional Panaceutics Solutions:
+
+Prostafexin® for Benign Prostate Hyperplasia:
+Our Proprietary Prostafexin® is a polyherbal formulation exhibiting combinatorial mechanism of action aimed at reducing prostate size. First, Prostafexin® specifically inhibits prostate 5α-reductase type 2. Secondly, Prostafexin® weakly targets androgen receptor (AR) and blocks prostatic development. Finally, Prostafexin® potentiates the action of dutasteride/tamsulosin, thus, reducing the time for disease burden.
+
+MyoFibrox® for Uterine Fibroids:
+Our Proprietary MyoFibrox® is a polyherbal formulation exhibiting combinatorial mechanism of action aimed at reducing uterine size. First, MyoFibrox® weakly inhibits nuclear receptor subfamily 3, group C, member 3 (progesterone receptor) and estrogen receptor (ER). Since progesterone increases Bcl-2 protein expression in fibroid cells, which is a major factor driving their growth. Treatment with progesterone receptor modulators can reduce fibroid size by decreasing Bcl-2 levels and promoting apoptosis. MyoFibrox® is also a strong repressor of IGF-1/2 expression leading to blockage in uterine angiogenesis. TGF-β downstream signaling responsible for the abnormal growth and fibrotic nature of fibroids are blocked by MyoFibrox® treatment.
+
+**Works Cited:**
+
+1. New Dimensions in Cancer Biology: Updated Hallmarks of Cancer Published, accessed October 26, 2025, https://www.aacr.org/blog/2022/01/21/new-dimensions-in-cancer-biology-updated-hallmarks-of-cancer-published/
+2. Hallmarks of cancer: the next generation - PubMed - NIH, accessed October 26, 2025, https://pubmed.ncbi.nlm.nih.gov/21376230/
+3. Hallmarks of Cancer in the Reading Room: A Guide for Radiologists | AJR - American Journal of Roentgenology, accessed October 26, 2025, https://ajronline.org/doi/10.2214/AJR.17.19425
+4. Robust p53 phenotypes and prospective downstream targets in telomerase-immortalized human cells | Oncotarget, accessed October 26, 2025, https://www.oncotarget.com/article/28690/text/
+5. Control of Cellular Aging, Tissue Function, and Cancer by p53 Downstream of Telomeres, accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC5411683/
+6. Cancer in Africa: The Untold Story - PMC - PubMed Central, accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC8082106/
+7. Malignancy and viral infections in Sub-Saharan Africa: A review - PMC - PubMed Central, accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC10358275/
+8. Africa - Statistics at a glance, 2022 Top 5 most frequent cancers ..., accessed October 26, 2025, https://gco.iarc.who.int/media/globocan/factsheets/populations/903-africa-fact-sheet.pdf
+9. Infectious agents - World Cancer Report - NCBI Bookshelf - NIH, accessed October 26, 2025, https://www.ncbi.nlm.nih.gov/books/NBK606494/
+10. Classification of anticancer drugs: an update with FDA-and EMA ..., accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11554936/
+11. Chemotherapy-related adverse effects with anthracycline and taxane-containing regimens in patients with localized Breast cancer: a descriptive study: Mohammed VI University Hospital, Medical Oncology Department, Marrakech, Morocco - NIH, accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC10763194/
+12. Chemotherapy in Patients with Anthracycline- and Taxane-Pretreated Metastatic Breast Cancer: An Overview - PMC - PubMed Central, accessed October 26, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC3579672/
+13. Potential Successes and Challenges of Targeted Cancer Therapies | JNCI Monographs | Oxford Academic, accessed October 26, 2025, https://academic.oup.com/jncimono/article/2019/53/lgz008/5551349
+14. Toxicities of Targeted Therapies and Their Management | Targeted Oncology - Immunotherapy, Biomarkers, and Cancer Pathways, accessed October 26, 2025, https://www.targetedonc.com/view/toxicities-of-targeted-therapies-and-their-management
+15. Multidrug Resistance in Cancer: Understanding Molecular Mechanisms, Immunoprevention and Therapeutic Approaches - Frontiers, accessed October 26, 2025, https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2022.891652/full
+16. Mechanistic insights on anticancer drugs with specific biological targets and signalling pathways, accessed October 26, 2025, https://www.explorationpub.com/Journals/em/Article/1001166
+17. Polypharmacology: The Science of Multi-targeting Molecules | Request PDF - ResearchGate, accessed October 26, 2025, https://www.researchgate.net/publication/357550410_Polypharmacology_The_Science_of_Multi-targeting_Molecules`
+
+  return <ResearchPage title={title} content={content} citations="oncology" />
 }
