@@ -130,5 +130,5 @@ Our Proprietary MyoFibrox® is a polyherbal formulation exhibiting combinatorial
 16. Mechanistic insights on anticancer drugs with specific biological targets and signalling pathways, accessed October 26, 2025, https://www.explorationpub.com/Journals/em/Article/1001166
 17. Polypharmacology: The Science of Multi-targeting Molecules | Request PDF - ResearchGate, accessed October 26, 2025, https://www.researchgate.net/publication/357550410_Polypharmacology_The_Science_of_Multi-targeting_Molecules`
 
-  return <ResearchPage title={title} content={content} citations="oncology" />
+  return <ResearchPage title={title} content={content} citations="oncology" category="oncology" />
 }

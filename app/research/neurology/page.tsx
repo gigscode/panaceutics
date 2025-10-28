@@ -101,5 +101,5 @@ Research priorities include developing biomarkers for treatment response, unders
 
 Prevention strategies, particularly for neurodegenerative diseases, remain a critical focus. This includes lifestyle interventions, dietary modifications, and the potential role of neuroprotective herbal medicines in at-risk populations.`
 
-  return <ResearchPage title={title} content={content} citations="default" />
+  return <ResearchPage title={title} content={content} citations="default" category="neurology" />
 }

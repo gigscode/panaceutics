@@ -195,5 +195,5 @@ One Health Approach:
 
 The development of synergistic herbal combinations represents a promising strategy for addressing the growing challenge of antimicrobial resistance while providing accessible and affordable treatment options for infectious diseases. Through continued research, quality control, and clinical integration, herbal antimicrobials can play important complementary roles in global infectious disease management.`
 
-  return <ResearchPage title={title} content={content} citations="default" />
+  return <ResearchPage title={title} content={content} citations="default" category="infectiology" />
 }

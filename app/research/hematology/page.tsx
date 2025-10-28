@@ -162,5 +162,5 @@ Global Health Considerations:
 
 The integration of herbal medicines into hematological care requires a balanced approach that respects patient preferences while prioritizing safety. Through continued research, education, and clinical vigilance, we can optimize outcomes for patients with hematological conditions who choose to use herbal medicines alongside conventional treatments.`
 
-  return <ResearchPage title={title} content={content} citations="default" />
+  return <ResearchPage title={title} content={content} citations="default" category="hematology" />
 }

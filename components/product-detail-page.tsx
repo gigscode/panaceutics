@@ -65,11 +65,11 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
-            href="/explore/categories"
+            href={`/explore/${product.category}`}
             className="inline-flex items-center text-emerald-800 hover:text-emerald-900 font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Products
+            Back to {product.category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
           </Link>
         </div>
       </div>

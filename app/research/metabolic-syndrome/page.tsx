@@ -81,5 +81,5 @@ ACT offers safe alternatives that can reduce morbidity and significantly decreas
 
 With the advent of cutting-edge biomedical and pharmaceutical research, PANACEUTICS provides evidence such as mechanism of action, phytochemical basis of actions, and No-observed Adverse Effect Level (NOAELs)-Human-Equivalent Dose (HED)-derived Dosing Regimen which is crucial for patient confidence, acceptance and adherence.`
 
-  return <ResearchPage title={title} content={content} citations="metabolic-syndrome" />
+  return <ResearchPage title={title} content={content} citations="metabolic-syndrome" category="metabolic-syndrome" />
 }

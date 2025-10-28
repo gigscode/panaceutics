@@ -140,5 +140,5 @@ Prevention strategies remain critical, particularly in high-risk populations and
 
 The development of affordable, accessible nephroprotective treatments is essential for addressing the global kidney disease burden, particularly in developing countries where conventional treatments may be limited or unavailable.`
 
-  return <ResearchPage title={title} content={content} citations="default" />
+  return <ResearchPage title={title} content={content} citations="default" category="nephrology" />
 }

@@ -1,16 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 
 interface ResearchPageProps {
   title: string
   content: string
   citations?: 'metabolic-syndrome' | 'oncology' | 'default'
+  category?: string
 }
 
-export function ResearchPage({ title, content, citations = 'default' }: ResearchPageProps) {
+export function ResearchPage({ title, content, citations = 'default', category }: ResearchPageProps) {
   // Parse the markdown content into sections
   const parseContent = (text: string) => {
     const sections = text.split('\n\n').filter(section => section.trim())
@@ -72,7 +72,6 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
       case 'table':
         const tableLines = section.content.split('\n').filter((line: string) => line.trim())
         const headerLine = tableLines[0]
-        const separatorLine = tableLines[1]
         const dataLines = tableLines.slice(2)
 
         const headers = headerLine.split('|').map((h: string) => h.trim()).filter((h: string) => h)
@@ -177,11 +176,11 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
-            href="/explore/metabolic-syndrome"
+            href={category ? `/explore/${category}` : "/explore/categories"}
             className="inline-flex items-center text-emerald-800 hover:text-emerald-900 font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Metabolic Syndrome
+            Back to {category ? category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') : 'Categories'}
           </Link>
         </div>
       </div>
@@ -378,13 +377,13 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
           {/* Call to Action */}
           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
             <h3 className="text-xl font-bold text-gray-900 mb-4">
-              Explore Our Metabolic Syndrome Solutions
+              Explore Our {category ? category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') : ''} Solutions
             </h3>
             <p className="text-gray-600 mb-6">
-              Discover our scientifically-backed herbal formulations designed to address metabolic syndrome components.
+              Discover our scientifically-backed herbal formulations designed to address {category ? category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ').toLowerCase() : 'health'} components.
             </p>
             <Link
-              href="/explore/metabolic-syndrome"
+              href={category ? `/explore/${category}` : "/explore/categories"}
               className="inline-block bg-emerald-800 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-900 transition-colors"
             >
               View Products
