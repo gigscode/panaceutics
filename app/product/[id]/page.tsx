@@ -1,10 +1,33 @@
 import { notFound } from "next/navigation"
 import { findProductById } from "@/lib/categories"
 import { ProductDetailPage } from "@/components/product-detail-page"
+import type { Metadata } from "next"
 
 interface ProductPageProps {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { id } = params
+  const product = findProductById(id)
+
+  if (!product) {
+    return {
+      title: "Product Not Found | Panaceutics",
+      description: "The requested product could not be found."
+    }
+  }
+
+  return {
+    title: `${product.title} | Panaceutics`,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [product.image],
+    },
   }
 }
 

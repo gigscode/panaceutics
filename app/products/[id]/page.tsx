@@ -1,10 +1,34 @@
 import { getStorePreferences } from "@/lib/api"
 import ProductDetail from "@/components/product-detail"
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 
 interface ProductPageProps {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { id } = params
+  const storePreferences = await getStorePreferences()
+  const product = [...storePreferences.products, ...storePreferences.featuredProducts].find((p) => p._id === id)
+
+  if (!product) {
+    return {
+      title: "Product Not Found | Panaceutics",
+      description: "The requested product could not be found."
+    }
+  }
+
+  return {
+    title: `${product.name} | Panaceutics`,
+    description: product.description || "Premium herbal product from Panaceutics",
+    openGraph: {
+      title: product.name,
+      description: product.description || "Premium herbal product from Panaceutics",
+      images: [product.image],
+    },
   }
 }
 
