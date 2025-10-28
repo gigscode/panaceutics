@@ -68,7 +68,7 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link
-            href={`/explore/${product.category}`}
+            href={`/explore/${product.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
             className="inline-flex items-center text-emerald-800 hover:text-emerald-900 font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

@@ -4,7 +4,7 @@ import { ShopProductCard } from "@/components/shop-product-card"
 import { getCategoryOverride } from "@/lib/category-overrides"
 import { getCategoryProducts, getAllCategories } from "@/lib/categories"
 import { useCart } from "@/app/providers"
-import { useEffect } from "react"
+import { useEffect, use } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -12,14 +12,23 @@ function unslugify(slug: string) {
   return slug.replace(/-/g, " ")
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const { slug } = params
+export default function CategoryPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
+  // Handle both sync and async params for Next.js compatibility
+  const resolvedParams = params instanceof Promise ? use(params) : params
+  const { slug } = resolvedParams
+  
   const { setLastVisitedCategory } = useCart()
   const categories = getAllCategories()
-  const matched = categories.find((c) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug)
+  
+  const matched = categories.find((c) => {
+    const categorySlug = c.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+    return categorySlug === slug
+  })
+  
   const title = matched ?? unslugify(slug)
   // Get products ONLY from this specific category - no shared data
   const items = matched ? getCategoryProducts(matched) : []
+  
   const override = getCategoryOverride(slug)
   // choose exactly 4 products to show from this category only
   const productsToShow = items.slice(0, 4)

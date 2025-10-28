@@ -13,7 +13,7 @@ export default function CartPage() {
   // Determine the back link based on last visited category
   const getBackLink = () => {
     if (lastVisitedCategory) {
-      return `/explore/${lastVisitedCategory.toLowerCase().replace(/\s+/g, '-')}`
+      return `/explore/${lastVisitedCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
     }
     return "/explore/categories"
   }
