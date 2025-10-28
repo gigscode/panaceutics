@@ -12,13 +12,18 @@ export function Header() {
   const { getTotalItems } = useCart()
   const cartCount = getTotalItems()
 
+  // WhatsApp configuration
+  const whatsappNumber = "+2348070943256"
+  const message = "Hi, I'd like to book an appointment and learn more about your services."
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/WhatsApp_Image_2025-10-19_at_09.30.15-removebg-preview.png"
+            src="/panalogo.png"
             alt="Panaceutics"
             width={160}
             height={40}
@@ -47,7 +52,7 @@ export function Header() {
         {/* Right Section */}
         <div className="flex items-center gap-4">
           {/* Book Appointment Button (Visible on Desktop) */}
-          <Link href="/book-appointment" className="hidden md:block">
+          <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hidden md:block">
             <Button variant="default" className="bg-primary p-6 text-white hover:bg-primary/90">
               Book an Appointment
             </Button>
@@ -90,7 +95,7 @@ export function Header() {
             </Link>
 
             {/* Book Appointment Button (Visible on Mobile) */}
-            <Link href="/book-appointment" className="text-xl uppercase bg-primary text-primary-foreground p-6 rounded-xl text-center font-medium hover:bg-primary/90 transition-colors">
+            <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-xl uppercase bg-primary text-primary-foreground p-6 rounded-xl text-center font-medium hover:bg-primary/90 transition-colors">
               Book an Appointment
             </Link>
           </div>
