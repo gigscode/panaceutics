@@ -109,7 +109,7 @@ Alternative flows you can implement:
 ## Testing the System
 
 1. **Add Products to Cart**:
-   - Visit any product page (e.g., `/product/1`)
+   - Visit any product page (e.g., `/product/101`)
    - Select quantity and click "Add to Cart"
    - Should redirect to payment page
 

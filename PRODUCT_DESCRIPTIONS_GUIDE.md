@@ -72,6 +72,6 @@ The ProductDescription component automatically displays:
 
 After editing a product description:
 1. Save the file
-2. Visit the product detail page (e.g., `/product/1` for Nubeta)
+2. Visit the product detail page (e.g., `/product/101` for Nubeta)
 3. Verify your changes appear correctly
 4. Check that other products are unaffected

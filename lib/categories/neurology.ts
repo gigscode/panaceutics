@@ -2,7 +2,7 @@ import { Research } from '../researches'
 
 export const neurologyProducts: Research[] = [
   {
-    id: "3",
+    id: "301",
     title: "Herbal Interactions with Central Nervous System Drugs",
     category: "Neurology",
     description:

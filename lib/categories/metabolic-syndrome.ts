@@ -3,7 +3,7 @@ import { Research } from '../researches'
 export const metabolicSyndromeProducts: Research[] = [
 
   {
-    id: "1",
+    id: "101",
     title: "Nubeta",
     category: "Metabolic syndrome",
     description:
@@ -12,7 +12,7 @@ export const metabolicSyndromeProducts: Research[] = [
     price: { amount: 25500, currency: 'NGN' },
   },
   {
-    id: "2",
+    id: "102",
     title: "Sphenolax®",
     category: "Metabolic syndrome",
     description:
@@ -22,7 +22,7 @@ export const metabolicSyndromeProducts: Research[] = [
 
   },
   {
-    id: "3",
+    id: "103",
     title: "BPVomin®",
     category: "Metabolic syndrome",
     description:
@@ -32,7 +32,7 @@ export const metabolicSyndromeProducts: Research[] = [
 
   },
   {
-    id: "4",
+    id: "104",
     title: "Exigencin®",
     category: "Metabolic syndrome",
     description:

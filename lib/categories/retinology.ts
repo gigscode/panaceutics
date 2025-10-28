@@ -2,7 +2,7 @@ import { Research } from '../researches'
 
 export const retinologyProducts: Research[] = [
   {
-    id: "7",
+    id: "701",
     title: "Exploring Herbal Effects on Retinal Health",
     category: "Retinology",
     description:

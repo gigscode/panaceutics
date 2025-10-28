@@ -2,7 +2,7 @@ import { Research } from '../researches'
 
 export const infectologyProducts: Research[] = [
   {
-    id: "6",
+    id: "601",
     title: "Synergistic Effects of Herbal Combinations against Infections",
     category: "Infectiology",
     description:

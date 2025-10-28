@@ -17,7 +17,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
     return sections.map((section, index) => {
       const lines = section.split('\n')
       const firstLine = lines[0]
-      
+
       // Check if it's a markdown table
       if (section.includes('|') && lines.some(line => line.includes('|---'))) {
         return {
@@ -26,7 +26,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
           key: index
         }
       }
-      
+
       // Check if it's a heading
       if (firstLine.includes(':') && !firstLine.startsWith('•') && !firstLine.startsWith('-') && !firstLine.startsWith('**')) {
         return {
@@ -36,7 +36,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
           key: index
         }
       }
-      
+
       // Check if it's a bold heading (like **Top Cancers in Africa**)
       if (firstLine.startsWith('**') && firstLine.endsWith('**')) {
         return {
@@ -46,7 +46,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
           key: index
         }
       }
-      
+
       // Check if it's a list
       if (section.includes('•') || section.includes('-')) {
         return {
@@ -55,7 +55,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
           key: index
         }
       }
-      
+
       // Regular paragraph
       return {
         type: 'paragraph',
@@ -74,12 +74,12 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
         const headerLine = tableLines[0]
         const separatorLine = tableLines[1]
         const dataLines = tableLines.slice(2)
-        
+
         const headers = headerLine.split('|').map((h: string) => h.trim()).filter((h: string) => h)
-        const rows = dataLines.map((line: string) => 
+        const rows = dataLines.map((line: string) =>
           line.split('|').map((cell: string) => cell.trim()).filter((cell: string) => cell)
         )
-        
+
         return (
           <div key={section.key} className="mb-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
@@ -110,7 +110,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
             </div>
           </div>
         )
-      
+
       case 'bold-heading':
         return (
           <div key={section.key} className="mb-8">
@@ -126,7 +126,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
             )}
           </div>
         )
-      
+
       case 'heading':
         return (
           <div key={section.key} className="mb-8">
@@ -142,7 +142,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
             )}
           </div>
         )
-      
+
       case 'list':
         const listItems = section.content.split('\n').filter((line: string) => line.trim())
         return (
@@ -157,7 +157,7 @@ export function ResearchPage({ title, content, citations = 'default' }: Research
             </ul>
           </div>
         )
-      
+
       default:
         return (
           <div key={section.key} className="mb-6">

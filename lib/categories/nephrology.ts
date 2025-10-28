@@ -2,7 +2,7 @@ import { Research } from '../researches'
 
 export const nephrologyProducts: Research[] = [
   {
-    id: "4",
+    id: "401",
     title: "Nephroprotective Effects of Herbal Combinations",
     category: "Nephrology",
     description:
