@@ -13,17 +13,17 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Shop</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
-                <Link href="/products" className="hover:opacity-100 transition-opacity">
+                <Link href="/explore" className="hover:opacity-100 transition-opacity">
                   All Products
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=herbal" className="hover:opacity-100 transition-opacity">
+                <Link href="/explore" className="hover:opacity-100 transition-opacity">
                   Herbal Solutions
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=research" className="hover:opacity-100 transition-opacity">
+                <Link href="/explore" className="hover:opacity-100 transition-opacity">
                   Research
                 </Link>
               </li>

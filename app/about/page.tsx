@@ -176,7 +176,7 @@ export default function AboutPage() {
                     </div>
                     
                     {/* Dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary/100 rounded-full border-4 border-white shadow-lg"></div>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg"></div>
                     
                     {/* Spacer */}
                     <div className="w-1/2"></div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
               Whether you're a researcher, partner, or supporter, there's a place for you in our mission to bring nature's cures to the world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/careers">
+             {/* <Link href="/careers">
                 <Button size="lg" className="bg-white text-primary hover:bg-green-50">
                   Explore Careers
                 </Button>
@@ -208,7 +208,7 @@ export default function AboutPage() {
                 <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white/10">
                   Become a Partner
                 </Button>
-              </Link>
+              </Link>*/}
               <Link href="/contact">
                 <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white/10">
                   Get in Touch

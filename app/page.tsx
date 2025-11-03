@@ -1,7 +1,8 @@
 import { Hero } from "@/components/hero"
 import { FeaturedProducts } from "@/components/featured-products"
 import { MissionSection } from "@/components/mission-section"
-import { Newsletter } from "@/components/newsletter"
+//import { Newsletter } from "@/components/newsletter"
+import Publications from "@/components/publications"
 import { BookCall } from "@/components/book-a-call"
 import { MetricsWithIcons } from "@/components/metrics-card"
 import { ResearchApproach } from "@/components/ResearchDevelopment"
@@ -24,8 +25,9 @@ export default function Home() {
       <AboutUs />
       <Explore />
       <Cta />   
+      <Publications /> 
       <BookCall />
-      <Newsletter />
+      {/*<Newsletter />*/}
     </main>
   )
 }

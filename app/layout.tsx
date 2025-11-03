@@ -9,7 +9,7 @@ import "./globals.css"
 const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://panaceutics.co'),
+  metadataBase: new URL('https://panaceutics.org'),
   title: {
     default: "Panaceutics - Phytotherapeutic Solutions",
     template: "%s | Panaceutics"
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://panaceutics.co',
+    url: 'https://panaceutics.org',
     siteName: 'Panaceutics',
     title: 'Panaceutics - Phytotherapeutic Solutions',
     description: 'Where the cure is natural, but the proof is scientific. Discover evidence-based herbal alternatives.',
