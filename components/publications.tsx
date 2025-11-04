@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react"
 
 const publications = [
     {
+        description: "Tribune",
         title: "Expert advocates adoption of traditional medicine",
         image: "/images/omotuyi1.jpg",
         link: "https://tribuneonlineng.com/expert-advocates-adoption-of-traditional-medicine-to-tackle-diabetes-prostate-disease/",
