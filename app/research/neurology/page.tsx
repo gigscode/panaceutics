@@ -6,10 +6,16 @@ export const metadata = {
 }
 
 export default function NeurologyResearch() {
-  const title = "Neurological Disorders: Prevalence, Mechanisms, and Therapeutic Approaches"
+  const title = "Neurological Disorders"
   
   const content = `Introduction:
-Neurological disorders represent a significant and growing burden on global healthcare systems. Here, a summarized review of current understanding of their prevalence, underlying mechanisms, and standard treatment approaches was done which provides the crucial data for developing effective alternative/treatment management strategies. Our current effort covers autism spectrum disorder, spondylosis, sciatica, Parkinson's disease, Alzheimer's disease, and diseases of the neuromuscular junction.
+Neurological disorders represent a significant and growing burden on global healthcare
+systems. Here, a summarized reviewed of current understanding of their prevalence, underlying
+mechanisms, and standard treatment approaches was done which provides the crucial data for
+developing effective alternative/treatment management strategies. Our current effort covers
+autism spectrum disorder, spondylosis, sciatica, Parkinson's disease, Alzheimer's disease, and
+diseases of the neuromuscular junction.
+
 
 1. Autism Spectrum Disorder (ASD):
 
@@ -174,37 +180,16 @@ Panaceutics Herbal Therapeutic Approaches:
 
 The table below summarizes the core pathobiology of each condition and the proposed role of herbal interventions.
 
-Neurological Issue | Core Pathobiology | Justification for Herbal Alternatives at Panaceutics
+| Neurological Issue | Core Pathobiology | Justification for Herbal Alternatives at Panaceutics |
+|-------------------|-------------------|-----------------------------------------------------|
+| Autism Spectrum Disorder (ASD) | Complex neurodevelopmental disorder with strong genetic basis. Pathophysiology involves synaptic dysfunction, immune-inflammatory responses, and oxidative stress. | Herbal remedies are explored to modulate pathophysiology. Neuzurin was not only investigated for its antioxidant properties but also its potential to improve neuropsychological symptoms in ASD-like models through improved astrocytes function characterized by S100B gene downregulation reversal of synaptic dysfunction has also been documented through improved neurotransmitter release (GABA, AchE) & metabolism. Neuzurin also modulate microglial immune-inflammatory responses through inhibition of TLR-mediated signaling, and oxidative stress. |
+| Cervical Spondylosis (CSM) | Degenerative changes (e.g., disc herniation, bone spurs) compress the spinal cord, leading to nerve root irritation, local inflammation, and functional disturbances. | Microcracks and fissures at the bone-cartilage interface result in the release of various cytokines and extracellular vesicles (EVs) thus, aggravating cartilage degeneration and OA progression. Vantax is carefully formulated to inhibit the production of hyerinflammatory cytokines (TNF-alpha/IL-1beta, and MMP13), key mediator of OA progression. In chondrocytes, Vantax promote differentiation and matrix formation. |
+| Sciatica | Pain from sciatic nerve/root pathology, often from disc herniation. Involves nerve root compression, leading to local inflammation, edema, and ischemia. | Vantax when combined with Neuzurin provide significant relief by relieving local inflammation from the nerve and Topically applied Solafen Ointment act as analgesic, and muscle relaxant for management of sciatic nerve pain. |
+| Parkinson's Disease (PD) | Neurodegeneration of dopaminergic neurons in substantia nigra; features alpha-synuclein aggregates (Lewy bodies). Mechanisms: oxidative stress, mitochondrial dysfunction, neuroinflammation. | Specially formulated Neuzurin contains botanicals which targets multiple pathways including: oxidative stress/ferroptosis but also provide naturally-ccuring L-DOPA which enhances functional interaction within the dopaminergic neurons in substantia nigra and finally, it mediates BDNF-induced neurogenesis, axonal regeneration, synaptogenesis, and neuroplasticity. |
+| Alzheimer's Disease (AD) | Defined by amyloid-β plaques and neurofibrillary tau tangles. Pathobiology involves synaptic/neuronal loss, neuroinflammation, and diverse cellular disruptions. | Specially formulated Neuzurin provides specific remedies for Alzheimer's disease, though a complex, multi-target actions. First, botanicals will be incorporated which inhibit β-secretase and γ-secretase, secondly, other components also improve the expression of Low-density lipoprotein receptor-related protein 1 and Receptor for Advanced Glycation End Products (RAGE) which facilitate the clearance of amyloid-β plaques. Patients also benefit from the base action of Neuzurin on neurogenesis mediated by BDNF |
+| Neuromuscular Junction (NMJ) Disorders | Impaired nerve-to-muscle signal transmission. In myasthenia gravis, antibodies attack acetylcholine receptors or MuSK, reducing receptor function/numbers. | The search for a specific management for this disease is still ongoing at Mols&Sims and the results of our findings will be communicated as soon as we have specific formulation(s) to halt autoimmune destruction of acetylcholine receptors or MuSK. |
 
-Autism Spectrum Disorder (ASD):
-Complex neurodevelopmental disorder with strong genetic basis. Pathophysiology involves synaptic dysfunction, immune-inflammatory responses, and oxidative stress.
+`
 
-Herbal remedies are explored to modulate pathophysiology. Neuzurin was not only investigated for its antioxidant properties but also its potential to improve neuropsychological symptoms in ASD-like models through improved astrocytes function characterized by S100B gene downregulation reversal of synaptic dysfunction has also been documented through improved neurotransmitter release (GABA, AchE) & metabolism. Neuzurin also modulates microglial immune-inflammatory responses through inhibition of TLR-mediated signaling, and oxidative stress.
-
-Cervical Spondylosis (CSM):
-Degenerative changes (e.g., disc herniation, bone spurs) compress the spinal cord, leading to nerve root irritation, local inflammation, and functional disturbances.
-
-Microcracks and fissures at the bone-cartilage interface result in the release of various cytokines and extracellular vesicles (EVs) thus, aggravating cartilage degeneration and OA progression. Vantax is carefully formulated to inhibit the production of hyper-inflammatory cytokines (TNF-alpha/IL-1beta, and MMP13), key mediators of OA progression. In chondrocytes, Vantax promotes differentiation and matrix formation.
-
-Sciatica:
-Pain from sciatic nerve/root pathology, often from disc herniation. Involves nerve root compression, leading to local inflammation, edema, and ischemia.
-
-Vantax when combined with Neuzurin provides significant relief by relieving local inflammation from the nerve and topically applied Solafen Ointment acts as analgesic, and muscle relaxant for management of sciatic nerve pain.
-
-Parkinson's Disease (PD):
-Neurodegeneration of dopaminergic neurons in substantia nigra; features alpha-synuclein aggregates (Lewy bodies). Mechanisms: oxidative stress, mitochondrial dysfunction, neuroinflammation.
-
-Specially formulated Neuzurin contains botanicals which target multiple pathways including: oxidative stress/ferroptosis but also provides naturally-occurring L-DOPA which enhances functional interaction within the dopaminergic neurons in substantia nigra and finally, it mediates BDNF-induced neurogenesis, axonal regeneration, synaptogenesis, and neuroplasticity.
-
-Alzheimer's Disease (AD):
-Defined by amyloid-β plaques and neurofibrillary tau tangles. Pathobiology involves synaptic/neuronal loss, neuroinflammation, and diverse cellular disruptions.
-
-Specially formulated Neuzurin provides specific remedies for Alzheimer's disease, through complex, multi-target actions. First, botanicals will be incorporated which inhibit β-secretase and γ-secretase, secondly, other components also improve the expression of Low-density lipoprotein receptor-related protein 1 and Receptor for Advanced Glycation End Products (RAGE) which facilitate the clearance of amyloid-β plaques. Patients also benefit from the base action of Neuzurin on neurogenesis mediated by BDNF.
-
-Neuromuscular Junction (NMJ) Disorders:
-Impaired nerve-to-muscle signal transmission. In myasthenia gravis, antibodies attack acetylcholine receptors or MuSK, reducing receptor function/numbers.
-
-The search for a specific management for this disease is still ongoing at Mols&Sims and the results of our findings will be communicated as soon as we have specific formulation(s) to halt autoimmune destruction of acetylcholine receptors or MuSK.`
-
-  return <ResearchPage title={title} content={content} citations="default" category="neurology" />
+  return <ResearchPage title={title} content={content} category="neurology" />
 }

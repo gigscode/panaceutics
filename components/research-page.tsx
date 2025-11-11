@@ -6,11 +6,11 @@ import { ArrowLeft } from "lucide-react"
 interface ResearchPageProps {
   title: string
   content: string
-  citations?: 'metabolic-syndrome' | 'oncology' | 'default'
+  citations?: 'metabolic-syndrome' | 'oncology' | 'default' | 'none'
   category?: string
 }
 
-export function ResearchPage({ title, content, citations = 'default', category }: ResearchPageProps) {
+export function ResearchPage({ title, content, citations, category }: ResearchPageProps) {
   // Parse the markdown content into sections
   const parseContent = (text: string) => {
     const sections = text.split('\n\n').filter(section => section.trim())
@@ -260,8 +260,8 @@ export function ResearchPage({ title, content, citations = 'default', category }
             {sections.map(renderSection)}
           </article>
 
-          {/* References Section - Only show if not oncology (oncology has its own citations in content) */}
-          {citations !== 'oncology' && (
+          {/* References Section - Only show if citations are explicitly requested */}
+          {(citations === 'metabolic-syndrome' || citations === 'default') && (
             <div className="mt-12 pt-8 border-t border-gray-200">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Works Cited</h3>
               <div className="text-sm text-gray-600 space-y-3">
