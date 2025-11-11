@@ -55,10 +55,10 @@ export const categoryDataList: CategoryData[] = [
     categoryImage: "/infectiology.jpg",
   },
   {
-    name: "Retinology",
-    slug: "retinology",
+    name: "Ophthalmology",
+    slug: "ophthalmology",
     description: "Studies on herbal compounds supporting eye health and retinal function.",
-    categoryImage: "/retinology.jpg",
+    categoryImage: "/ophthalmology.jpg",
   },
 ]
 

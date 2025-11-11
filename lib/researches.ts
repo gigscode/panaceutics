@@ -83,7 +83,7 @@ export const researches: Research[] = [
   {
     id: "7",
     title: "Exploring Herbal Effects on Retinal Health",
-    category: "Retinology",
+    category: "Ophthalmology",
     description:
       "Studies on the potential benefits and risks of herbal supplements and extracts on retinal health and vision.",
     image: "/herbal_conbo.jpg",

@@ -51,12 +51,12 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
     heroImage: "/infectiology.jpg",
     downloadLink: "/research/infectiology"
   },
-  "retinology": {
+  "ophthalmology": {
     title: "Retinal Health Solutions",
     description: "Targeted nutraceutical blends to support retinal function and vision health. Our studies focus on the benefits and risks of herbal supplements on retinal health and visual acuity.",
     customLayout: true,
-    heroImage: "/retinology.jpg",
-    downloadLink: "/research/retinology"
+    heroImage: "/ophthalmology.jpg",
+    downloadLink: "/research/ophthalmology"
   }
 }
 
