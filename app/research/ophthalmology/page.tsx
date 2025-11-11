@@ -6,7 +6,7 @@ export const metadata = {
 }
 
 export default function OphthalmologyResearch() {
-    const title = "Glaucoma"
+    const title = "Ophthalmological Research"
 
     const content = `Introduction
 Our current herbal intervention is glaucoma; this is a group of eye disorders that lead to progressive damage to the optic nerve, leading to irreversible blindness. While the primary risk factor is elevated intraocular pressure (IOP), other factors play a significant role.
