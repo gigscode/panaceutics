@@ -69,7 +69,7 @@ export default function ChatPage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-lg opacity-90 max-w-xl"
               >
-                Every individual is unique, and so should be their healthcare solution. Experience our tailored phytotherapeutic approach designed specifically for you.
+                Every individual is unique, and so should be their healthcare solution. Experience our tailored Panacea|Therapeutics approach designed specifically for you.
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}

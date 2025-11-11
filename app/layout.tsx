@@ -11,7 +11,7 @@ const geist = Geist({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://panaceutics.org'),
   title: {
-    default: "Panaceutics - Phytotherapeutic Solutions",
+    default: "Panaceutics - Panacea|Therapeutics Solutions",
     template: "%s | Panaceutics"
   },
   description: "Where the cure is natural, but the proof is scientific. Discover evidence-based herbal alternatives.",
@@ -32,20 +32,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://panaceutics.org',
     siteName: 'Panaceutics',
-    title: 'Panaceutics - Phytotherapeutic Solutions',
+    title: 'Panaceutics - Panacea|Therapeutics Solutions',
     description: 'Where the cure is natural, but the proof is scientific. Discover evidence-based herbal alternatives.',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Panaceutics - Phytotherapeutic Solutions'
+        alt: 'Panaceutics - Panacea|Therapeutics Solutions'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Panaceutics - Phytotherapeutic Solutions',
+    title: 'Panaceutics - Panacea|Therapeutics Solutions',
     description: 'Where the cure is natural, but the proof is scientific. Discover evidence-based herbal alternatives.',
     images: ['/opengraph-image.png']
   },
