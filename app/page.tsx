@@ -3,6 +3,7 @@ import { FeaturedProducts } from "@/components/featured-products"
 import { MissionSection } from "@/components/mission-section"
 //import { Newsletter } from "@/components/newsletter"
 import Publications from "@/components/publications"
+import ExploreFacility from "@/components/explore-facility"
 import { BookCall } from "@/components/book-a-call"
 import { MetricsWithIcons } from "@/components/metrics-card"
 import { ResearchApproach } from "@/components/ResearchDevelopment"
@@ -25,7 +26,8 @@ export default function Home() {
       <AboutUs />
       <Explore />
       <Cta />   
-      <Publications /> 
+      <Publications />
+      <ExploreFacility />
       <BookCall />
       {/*<Newsletter />*/}
     </main>

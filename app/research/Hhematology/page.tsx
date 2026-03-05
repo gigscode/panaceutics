@@ -1,11 +1,18 @@
-import { ResearchPage } from "@/components/research-page"
-
-export const metadata = {
-  title: "Hematology Research | Panaceutics",
-  description: "Comprehensive research on blood disorders, herbal interactions with anticoagulant medications, and hematological therapeutic approaches.",
+// HEMATOLOGY DISABLED — uncomment everything below to re-enable this route
+export default function HematologyResearch() {
+  return null
 }
 
-export default function HematologyResearch() {
+/* ORIGINAL CONTENT — uncomment to restore:
+
+// import { ResearchPage } from "@/components/research-page"
+
+// export const metadata = {
+//   title: "Hematology Research | Panaceutics",
+//   description: "Comprehensive research on blood disorders, herbal interactions with anticoagulant medications, and hematological therapeutic approaches.",
+// }
+
+// export default function HematologyResearch() {
   const title = "Hematological Disorders and Herbal Therapeutics: Understanding Blood Health and Anticoagulant Interactions"
   
   const content = `Hematological Disorders: Complexity of Blood Health:
@@ -162,5 +169,7 @@ Global Health Considerations:
 
 The integration of herbal medicines into hematological care requires a balanced approach that respects patient preferences while prioritizing safety. Through continued research, education, and clinical vigilance, we can optimize outcomes for patients with hematological conditions who choose to use herbal medicines alongside conventional treatments.`
 
-  return <ResearchPage title={title} content={content} citations="default" category="hematology" />
-}
+//   return <ResearchPage title={title} content={content} citations="default" category="hematology" />
+// }
+
+*/

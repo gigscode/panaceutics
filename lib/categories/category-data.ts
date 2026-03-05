@@ -42,12 +42,13 @@ export const categoryDataList: CategoryData[] = [
     description: "Research on herbal formulations supporting kidney health and renal function.",
     categoryImage: "/nephrology.jpg",
   },
-  {
-    name: "Hematology",
-    slug: "hematology",
-    description: "Studies on herbal compounds and their effects on blood health and hematological conditions.",
-    categoryImage: "/hematology.jpg",
-  },
+  // HEMATOLOGY DISABLED — uncomment to re-enable
+  // {
+  //   name: "Hematology",
+  //   slug: "hematology",
+  //   description: "Studies on herbal compounds and their effects on blood health and hematological conditions.",
+  //   categoryImage: "/hematology.jpg",
+  // },
   {
     name: "Infectiology",
     slug: "infectiology",

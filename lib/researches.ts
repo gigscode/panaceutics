@@ -58,17 +58,18 @@ export const researches: Research[] = [
     details:
       "Formulations targeting oxidative stress and inflammation in renal tissues. Intended as supportive therapy; monitor renal function regularly.",
   },
-  {
-    id: "5",
-    title: "Interactions between Herbs and Anticoagulant Medications",
-    category: "Hematology",
-    description:
-      "Research on how certain herbs and dietary supplements affect blood clotting and interact with anticoagulant medications.",
-    image: "/herbal_conbo.jpg",
-    price: { amount: 63984, currency: 'NGN' }, // ₦63,984 (was $39.99)
-    details:
-      "Advisory content on herbs with antiplatelet or anticoagulant effects. Strongly recommend physician oversight when combined with anticoagulants.",
-  },
+  // HEMATOLOGY DISABLED — uncomment to re-enable
+  // {
+  //   id: "5",
+  //   title: "Interactions between Herbs and Anticoagulant Medications",
+  //   category: "Hematology",
+  //   description:
+  //     "Research on how certain herbs and dietary supplements affect blood clotting and interact with anticoagulant medications.",
+  //   image: "/herbal_conbo.jpg",
+  //   price: { amount: 63984, currency: 'NGN' }, // ₦63,984 (was $39.99)
+  //   details:
+  //     "Advisory content on herbs with antiplatelet or anticoagulant effects. Strongly recommend physician oversight when combined with anticoagulants.",
+  // },
   {
     id: "6",
     title: "Synergistic Effects of Herbal Combinations against Infections",

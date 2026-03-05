@@ -37,13 +37,14 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
     heroImage: "/nephrology.jpg",
     downloadLink: "/research/nephrology"
   },
-  "hematology": {
-    title: "Blood Health Solutions",
-    description: "Research-based insights on herbal interactions with anticoagulant medications and blood clotting mechanisms. Our advisory content ensures safe therapeutic combinations under physician oversight.",
-    customLayout: true,
-    heroImage: "/hematology.jpg",
-    downloadLink: "/research/hematology"
-  },
+  // HEMATOLOGY DISABLED — uncomment to re-enable
+  // "hematology": {
+  //   title: "Blood Health Solutions",
+  //   description: "Research-based insights on herbal interactions with anticoagulant medications and blood clotting mechanisms. Our advisory content ensures safe therapeutic combinations under physician oversight.",
+  //   customLayout: true,
+  //   heroImage: "/hematology.jpg",
+  //   downloadLink: "/research/hematology"
+  // },
   "infectiology": {
     title: "Infection Control Solutions",
     description: "Innovative herbal combinations with enhanced therapeutic effects against infections through complementary mechanisms. Our research explores synergistic antibacterial and antiviral properties.",

@@ -3,7 +3,7 @@ import { metabolicSyndromeProducts } from './metabolic-syndrome'
 import { oncologyProducts } from './oncology'
 import { neurologyProducts } from './neurology'
 import { nephrologyProducts } from './nephrology'
-import { hematologyProducts } from './hematology'
+// import { hematologyProducts } from './hematology' // HEMATOLOGY DISABLED
 import { infectologyProducts } from './infectiology'
 import { ophthalmologyProducts } from './ophthalmology'
 
@@ -13,7 +13,7 @@ const categoryProductsMap: Record<string, Research[]> = {
   'Oncology': oncologyProducts,
   'Neurology': neurologyProducts,
   'Nephrology': nephrologyProducts,
-  'Hematology': hematologyProducts,
+  // 'Hematology': hematologyProducts, // HEMATOLOGY DISABLED
   'Infectiology': infectologyProducts,
   'Ophthalmology': ophthalmologyProducts,
 }
