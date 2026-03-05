@@ -4,21 +4,26 @@ export const metabolicSyndromeProducts: Research[] = [
 
   {
     id: "101",
-    title: "Nubeta",
+    title: "Nubeta 500mg Capsule ",
     category: "Metabolic syndrome",
     description:
-      "A poly-herbal formulation for weight management, promoting beige fat formation.",
+      "Upgregulation of UCP-1 in the white adipose tissue resulting in weight loss. Depletes stored fat. Promotes satiety, improves caloric utilisation and gut health. Mitigates hypercholestrolemia. Improves cardiovascular health.",
     image: "/images/nubeta.jpg",
     price: { amount: 75000, currency: 'NGN' },
+    details:
+      "No exercise or dietry restriction required",
+
   },
   {
     id: "102",
     title: "Sphenolax®",
     category: "Metabolic syndrome",
     description:
-      "A penta-herbal formulation for diabetes management and pancreatic repair.",
+      "Strongly activates TGR5. Weak GLP1 receptor agonism. Strongly inhibits DYRK1A. Hypoglycemic overall effect on prolonged usage.",
     image: "/images/sphenolax.png",
     price: { amount: 65000, currency: 'NGN' },
+    details:
+      "Formulated for pancreatic repair and enhanced insulin sensitivity.",
 
   },
   {
@@ -36,9 +41,11 @@ export const metabolicSyndromeProducts: Research[] = [
     title: "Exigencin®",
     category: "Metabolic syndrome",
     description:
-      "Exigencin is a tri-mechanistic herbal agent for tissue repair and neurogenesis.",
+      "Exigencin mediates blood fibrinolysis. Delays and prevents blood clotting. May acts as blood thinner.",
     image: "/images/exigencin.png",
     price: { amount: 150000, currency: 'NGN' },
+    details:
+      "For Vaso-occlusive crisis as seen in Stroke and Sickle cell disease",
 
   },
 ]

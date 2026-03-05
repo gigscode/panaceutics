@@ -3,14 +3,14 @@ import { Research } from '../researches'
 export const nephrologyProducts: Research[] = [
   {
     id: "401",
-    title: "NephroFlax",
-    category: "Nephrology",
+    title: "Glomefix 500mg Capsule",
+    category: "Infectiology",
     description:
-      "Investigation into how specific herbal combinations or extracts help protect kidney function and prevent disease progression.",
-    image: "/images/product.jpg",
-    price: { amount: 12000, currency: 'NGN' },
+      "Modulation of TGF-\u03B2/SMAD signalling. Promotes cellular regeneration & extracellular matrix remodelling. Inhibit hyperinflammatory insult on the nephron",
+    image: "/images/glomefix.png",
+    price: { amount: 150000, currency: 'NGN' },
     details:
-      "Formulations targeting oxidative stress and inflammation in renal tissues. Intended as supportive therapy; monitor renal function regularly.",
+      "Reno-protective Formulation for improved kidney functions. ",
   },
 ]
 

@@ -1,16 +1,51 @@
 import { Research } from '../researches'
 
 export const infectologyProducts: Research[] = [
+  
   {
     id: "601",
-    title: "Product",
+    title: "Nalensix 500mg Capsule",
     category: "Infectiology",
     description:
-      "Research on how combining multiple botanicals creates enhanced therapeutic effects through complementary mechanisms, potentially reducing antibiotic resistance.",
-    image: "/images/product.jpg",
-    price: { amount: 86400, currency: 'NGN' },
+      "Inhitbits viral entry. Broad spectrum viral polymerase inhibitor. Blocks Toll-like receptor-mediated hyperinflammation.",
+    image: "/images/nalensix.png",
+    price: { amount: 120000, currency: 'NGN' },
     details:
-      "Combinations studied for antibacterial and antiviral properties. Not a substitute for antibiotics where clinically indicated.",
+      "Formulated as broad spectrum antiviral herbaceutical, for oral absorption.",
   },
+  {
+    id: "602",
+    title: "Nalensix Herbal Balm",
+    category: "Infectiology",
+    description:
+      "Competitively inhibits HSV DNA Polymerase. Exhibits anti-inflmation and relieves itches associated with blisters. Formulated for topical absorption",
+    image: "/images/nalensixbalm.png",
+    price: { amount: 35000, currency: 'NGN' },
+    details:
+      "Formulated as herbal anti-hsv 1 & 2.",
+  },
+  {
+    id: "603",
+    title: "Malaproxin 500mg Capsule",
+    category: "Infectiology",
+    description:
+      "Downregulates Plasmodium falciparum erythrocyte membrane protein 1 (pfEMP1)",
+    image: "/images/malaproxin.png",
+    price: { amount: 10000, currency: 'NGN' },
+    details:
+      "Antimalaria medication",
+  },
+  {
+    id: "604",
+    title: "Gastrapep Capsule",
+    category: "Infectiology",
+    description:
+      "Supports surface goblet cells to regenerate GIT mucin. Restores Gut health by preferential elimination of GIT infection. Modulates proton pump. ",
+    image: "/images/gastrapep.png",
+    price: { amount: 65000, currency: 'NGN' },
+    details:
+      "Formulated for rapid gastric absorption.",
+  },
+  
 ]
 
