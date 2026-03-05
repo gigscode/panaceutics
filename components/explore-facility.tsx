@@ -11,12 +11,12 @@ interface FacilityImage {
 }
 
 const facilityImages: FacilityImage[] = [
-  { src: "/images/facility/facility-1.jpg", alt: "Research laboratory", caption: "State-of-the-art research laboratory" },
-  { src: "/images/facility/facility-2.jpg", alt: "Herbal extraction unit", caption: "Herbal extraction and processing unit" },
-  { src: "/images/facility/facility-3.jpg", alt: "Quality control lab", caption: "Quality control and testing lab" },
-  { src: "/images/facility/facility-4.jpg", alt: "Phytochemistry analysis bay", caption: "Phytochemistry analysis bay" },
-  { src: "/images/facility/facility-5.jpg", alt: "Greenhouse and plant nursery", caption: "Greenhouse and plant nursery" },
-  { src: "/images/facility/facility-6.jpg", alt: "Formulation and production suite", caption: "Formulation and production suite" },
+  { src: "/images/facility-1.jpeg", alt: "Research laboratory", caption: "State-of-the-art research laboratory" },
+  { src: "/images/facility-2.jpeg", alt: "Herbal extraction unit", caption: "Herbal extraction and processing unit" },
+  { src: "/images/facility.jpeg", alt: "Quality control lab", caption: "Quality control and testing lab" },
+  { src: "/images/facility-4.jpeg", alt: "Phytochemistry analysis bay", caption: "Phytochemistry analysis bay" },
+  { src: "/images/facility-5.jpeg", alt: "Greenhouse and plant nursery", caption: "Greenhouse and plant nursery" },
+
 ]
 
 export default function ExploreFacility() {
@@ -55,7 +55,7 @@ export default function ExploreFacility() {
             Explore Our Facility
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg">
-            Take a look inside our state-of-the-art phytochemistry research facility — where ancient herbal wisdom meets modern science.
+            Take a look inside our state-of-the-art research facility.
           </p>
         </div>
 

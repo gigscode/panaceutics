@@ -45,7 +45,7 @@ export const metabolicSyndromeProducts: Research[] = [
     image: "/images/exigencin.png",
     price: { amount: 150000, currency: 'NGN' },
     details:
-      "For Vaso-occlusive crisis as seen in Stroke and Sickle cell disease",
+      "Prevents Vaso-occlusive crisis as seen in Stroke and Sickle cell disease",
 
   },
 ]
