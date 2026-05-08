@@ -43,7 +43,7 @@ export const metabolicSyndromeProducts: Research[] = [
     description:
       "Exigencin mediates blood fibrinolysis. Delays and prevents blood clotting. May acts as blood thinner.",
     image: "/images/exigencin.png",
-    price: { amount: 150000, currency: 'NGN' },
+    price: { amount: 180000, currency: 'NGN' },
     details:
       "Prevents Vaso-occlusive crisis as seen in Stroke and Sickle cell disease",
 
