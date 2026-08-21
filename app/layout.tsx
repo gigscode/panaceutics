@@ -18,12 +18,13 @@ export const metadata: Metadata = {
   keywords: ["herbal medicine", "phytotherapy", "natural remedies", "scientific research", "alternative medicine"],
   authors: [{ name: "Panaceutics Team" }],
   icons: {
+    shortcut: '/favicon.ico',
     icon: [
-      { url: '/icon.png' },
+      
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
     ],
     apple: [
-      { url: '/apple-icon.png' }
+      { url: '/apple-touch-icon.png' }
     ],
   },
   manifest: '/manifest.json',
@@ -74,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={geist.className}>
+    <html lang="en" className={geist.className} suppressHydrationWarning>
       <body className="antialiased">
         <CartProvider>
           <Header />

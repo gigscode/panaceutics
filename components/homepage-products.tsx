@@ -6,6 +6,7 @@ const products = [
   {
     id: "101",
     name: "Nubeta 500mg Capsule",
+    category: "Metabolic Syndrome",
     description:
       "Upgregulation of UCP-1 in the white adipose tissue resulting in weight loss. Depletes stored fat.",
     price: 75000,
@@ -13,31 +14,34 @@ const products = [
     href: "/explore/metabolic-syndrome",
   },
   {
-    id: "102",
-    name: "Sphenolax\u00ae",
+    id: "202",
+    name: "Prostafexin\u00ae",
+    category: "Oncology",
     description:
-      "Strongly activates TGR5. Weak GLP1 receptor agonism. Strongly inhibits DYRK1A. Hypoglycemic overall effect on prolonged usage.",
-    price: 65000,
-    image: "/images/sphenolax.png",
-    href: "/explore/metabolic-syndrome",
-  },
-  {
-    id: "103",
-    name: "BPVomin\u00ae",
-    description:
-      "A bi-herbal formulation for RAAS modulation and blood pressure control.",
-    price: 75000,
-    image: "/images/bpvomin.jpg",
-    href: "/explore/nephrology",
+      "Polyherbal formulation aimed at reducing prostate size. Inhibits prostate 5\u03B1-reductase type 2 and blocks prostatic development.",
+    price: 150000,
+    image: "/images/prostafexin.jpg",
+    href: "/explore/oncology",
   },
   {
     id: "104",
     name: "Exigencin\u00ae",
+    category: "Neurology",
     description:
-      "Exigencin mediates blood fibrinolysis. Delays and prevents blood clotting. May acts as blood thinner.",
+      "Exigencin mediates blood fibrinolysis. Delays and prevents blood clotting. May act as blood thinner.",
     price: 180000,
     image: "/images/exigencin.png",
     href: "/explore/neurology",
+  },
+  {
+    id: "601",
+    name: "Nalensix 500mg Capsule",
+    category: "Infectiology",
+    description:
+      "Inhibits viral entry. Broad spectrum viral polymerase inhibitor. Blocks Toll-like receptor-mediated hyperinflammation.",
+    price: 120000,
+    image: "/images/nalensix.png",
+    href: "/explore/infectiology",
   },
 ]
 
@@ -68,14 +72,14 @@ export function HomepageProducts() {
           </Link>
         </div>
 
-        {/* Cards — each fixed at w-96 matching the explore carousel cards */}
+        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {products.map((product) => (
             <div
               key={product.id}
               className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col w-full"
             >
-              {/* Image area */}
+              {/* Image */}
               <div className="relative h-56 md:h-64 bg-gray-50">
                 <Image
                   src={product.image}
@@ -83,9 +87,15 @@ export function HomepageProducts() {
                   fill
                   className="object-cover"
                 />
+                {/* Category badge */}
+                <div className="absolute top-3 left-3">
+                  <span className="text-xs font-semibold bg-primary/90 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">
+                    {product.category}
+                  </span>
+                </div>
               </div>
 
-              {/* Card body */}
+              {/* Body */}
               <div className="p-5 flex flex-col flex-1">
                 <h3 className="font-bold text-base md:text-lg text-foreground mb-2 leading-snug">
                   {product.name}
@@ -97,19 +107,17 @@ export function HomepageProducts() {
                   {formatPrice(product.price)}
                 </p>
 
-                {/* Buy Now */}
                 <Link href={product.href} className="block">
                   <button className="w-full bg-primary hover:bg-primary/90 text-white text-sm font-semibold py-3 rounded-xl transition-colors">
                     Buy Now
                   </button>
                 </Link>
 
-                {/* Learn more */}
                 <Link
                   href={product.href}
                   className="mt-3 flex items-center justify-center gap-1 text-xs text-primary hover:underline underline-offset-4"
                 >
-                  Learn more <ArrowRight className="w-3 h-3" />
+                  Explore {product.category} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </div>
