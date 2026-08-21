@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero"
+import { HomepageProducts } from "@/components/homepage-products"
 import { FeaturedProducts } from "@/components/featured-products"
 import { MissionSection } from "@/components/mission-section"
 //import { Newsletter } from "@/components/newsletter"
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <HomepageProducts />
       <AboutUs />
       <Explore />
       <Cta />   

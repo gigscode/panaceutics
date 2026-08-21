@@ -24,9 +24,9 @@ export function PaymentPage({ items, orderId = "ORD-" + Date.now() }: PaymentPag
   const total = items.reduce((sum, item) => sum + (item.price.amount * item.quantity), 0)
 
   const bankDetails = {
-    bankName: "Guaranty Trust Bank (GTB)",
-    accountNumber: "1234567890",
-    accountName: "PANACEUTICS ENTERPRISES"
+    bankName: "Stanbic IBTC",
+    accountNumber: "0084736029",
+    accountName: "Panaceutics Ltd"
   }
 
   const copyToClipboard = (text: string) => {

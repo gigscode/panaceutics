@@ -9,9 +9,9 @@ export default function CheckoutPage() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
 
   const paymentDetails = {
-    bankName: "Guaranty Trust Bank (GTB)",
-    accountNumber: "1234567890",
-    accountName: "PANACEUTICS ENTERPRISES",
+    bankName: "Stanbic IBTC",
+    accountNumber: "0084736029",
+    accountName: "Panaceutics Ltd",
     amount: "₦25,000.00" // This could be dynamic based on cart total
   }
 
