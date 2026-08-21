@@ -81,7 +81,7 @@ export function HomepageProducts() {
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-contain p-5"
+                  className="object-cover"
                 />
               </div>
 
