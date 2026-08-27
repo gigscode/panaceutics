@@ -33,10 +33,11 @@ export function AboutUs() {
                             </div>
 
                             <div className="pt-4">
-                                <Link href="/about" passHref legacyBehavior>
-                                        <a className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors hover:scale-105 hover:shadow-md">
-                                        Learn More
-                                    </a>
+                                <Link
+                                    href="/about"
+                                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors hover:scale-105 hover:shadow-md"
+                                >
+                                    Learn More
                                 </Link>
                             </div>
 
