@@ -56,17 +56,17 @@ export function Header() {
             </Button>
           </Link>
 
-          {/* Cart Button */}
-          {/* <Link href="/cart">
-            <Button variant="ghost" size="icon" className="relative">
+          {/* Cart button */}
+          <Link href="/cart" className="relative">
+            <Button variant="ghost" size="icon">
               <ShoppingCart className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
                   {cartCount}
                 </span>
               )}
             </Button>
-          </Link> */}
+          </Link>
 
           {/* Hamburger — visible on mobile and tablet, hidden on desktop */}
           <button className="lg:hidden hover:scale-105 hover:shadow-md" onClick={() => setIsOpen(!isOpen)}>

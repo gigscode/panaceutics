@@ -117,10 +117,10 @@ export default function PrivacyPolicyPage() {
                         <p className="text-muted-foreground">
                             If you have questions about this Privacy Policy, please contact us at:
                         </p>
-                        <div className="mt-4 text-muted-foreground">
-                            <p>Email: privacy@panaceutics.com</p>
-                            <p>Phone: +234 812 345 6789</p>
-                            <p>Address: 123 Healing Street, Ado-Ekiti, Ekiti, Nigeria</p>
+                        <div className="mt-4 text-muted-foreground space-y-1">
+                            <p>Email: <a href="mailto:support@panaceutics.org" className="text-primary hover:underline">support@panaceutics.org</a></p>
+                            <p>Phone: +234 903 690 9455</p>
+                            <p>Address: House 9, Mols&amp;Sims Complex, Zone-4, Irekanmi Quarters, Off Ilawe Road, Ado-Ekiti, Ekiti State, Nigeria</p>
                         </div>
                     </section>
                 </div>
