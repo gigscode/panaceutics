@@ -6,16 +6,15 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/app/providers"
 import Image from "next/image"
+import { WHATSAPP_NUMBER } from "@/lib/config"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { getTotalItems } = useCart()
   const cartCount = getTotalItems()
 
-  // WhatsApp configuration
-  const whatsappNumber = "+2348070943256"
   const message = "Hi, I'd like to book an appointment and learn more about your services."
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -33,7 +32,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           <Link href="/explore/categories" className="text-sm font-medium hover:text-primary transition-colors">
             Explore Panaceutics
           </Link>
@@ -43,7 +42,6 @@ export function Header() {
           <Link href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
             Contact
           </Link>
-          {/* NEW Chat with Us */}
           <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
             Chat with Us
           </Link>
@@ -52,7 +50,7 @@ export function Header() {
         {/* Right Section */}
         <div className="flex items-center gap-4">
           {/* Book Appointment Button (Visible on Desktop) */}
-          <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hidden md:block">
+          <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hidden lg:block">
             <Button variant="default" className="bg-primary p-6 text-white hover:bg-primary/90">
               Book an Appointment
             </Button>
@@ -70,16 +68,16 @@ export function Header() {
             </Button>
           </Link> */}
 
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden hover:scale-105 hover:shadow-md" onClick={() => setIsOpen(!isOpen)}>
+          {/* Hamburger — visible on mobile and tablet, hidden on desktop */}
+          <button className="lg:hidden hover:scale-105 hover:shadow-md" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile + Tablet Navigation */}
       {isOpen && (
-        <nav className="md:hidden border-t border-border bg-card">
+        <nav className="lg:hidden border-t border-border bg-card">
           <div className="container mx-auto space-y-4 pt-6 px-4 py-4 pb-8 flex flex-col gap-4">
             <Link href="/explore/categories" className="text-xl uppercase font-medium hover:text-primary transition-colors">
               Explore

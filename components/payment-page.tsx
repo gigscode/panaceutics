@@ -1,9 +1,9 @@
 "use client"
 
-
 import Link from "next/link"
-import { Copy, ShoppingCart, ArrowLeft } from "lucide-react"
+import { Copy, ShoppingCart, ArrowLeft, Trash2 } from "lucide-react"
 import { Price } from "@/components/ui/price"
+import { WHATSAPP_NUMBER, BANK_DETAILS, SUPPORT_EMAIL } from "@/lib/config"
 
 interface PaymentItem {
   id: string
@@ -16,18 +16,15 @@ interface PaymentItem {
 interface PaymentPageProps {
   items: PaymentItem[]
   orderId?: string
+  onRemoveItem?: (id: string) => void
 }
 
-export function PaymentPage({ items, orderId = "ORD-" + Date.now() }: PaymentPageProps) {
+export function PaymentPage({ items, orderId = "ORD-" + Date.now(), onRemoveItem }: PaymentPageProps) {
 
   // Calculate total
   const total = items.reduce((sum, item) => sum + (item.price.amount * item.quantity), 0)
 
-  const bankDetails = {
-    bankName: "Stanbic IBTC",
-    accountNumber: "0084736029",
-    accountName: "Panaceutics Ltd"
-  }
+  const bankDetails = BANK_DETAILS
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
@@ -60,11 +57,8 @@ Thank you!`
   }
 
   const handlePaymentConfirmation = () => {
-    const whatsappNumber = "2348070943256" // Nigerian format with country code
     const message = createWhatsAppMessage()
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`
-    
-    // Open WhatsApp in new tab
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`
     window.open(whatsappUrl, '_blank')
   }
 
@@ -97,15 +91,26 @@ Thank you!`
             <div className="space-y-3">
               {items.map((item) => (
                 <div key={item.id} className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <div className="flex items-center space-x-3">
-                    <img src={item.image} alt={item.title} className="w-12 h-12 object-cover rounded" />
-                    <div>
-                      <p className="font-medium text-gray-900">{item.title}</p>
+                  <div className="flex items-center space-x-3 flex-1 min-w-0">
+                    <img src={item.image} alt={item.title} className="w-12 h-12 object-cover rounded flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-medium text-gray-900 truncate">{item.title}</p>
                       <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                     </div>
                   </div>
-                  <div className="font-semibold text-emerald-800">
-                    <Price value={{ amount: item.price.amount * item.quantity, currency: item.price.currency }} />
+                  <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                    <span className="font-semibold text-emerald-800">
+                      <Price value={{ amount: item.price.amount * item.quantity, currency: item.price.currency }} />
+                    </span>
+                    {onRemoveItem && (
+                      <button
+                        onClick={() => onRemoveItem(item.id)}
+                        aria-label={`Remove ${item.title}`}
+                        className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -204,16 +209,16 @@ Thank you!`
         <div className="text-center text-sm text-gray-600">
           Need help? Contact us on WhatsApp:{" "}
           <a 
-            href="https://wa.me/2348070943256" 
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="text-emerald-600 hover:text-emerald-700 font-medium"
           >
-            08070943256
+            {WHATSAPP_NUMBER}
           </a>
           {" "}or email{" "}
-          <a href="mailto:support@panaceutics.com" className="text-emerald-600 hover:text-emerald-700">
-            support@panaceutics.com
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-emerald-600 hover:text-emerald-700">
+            {SUPPORT_EMAIL}
           </a>
         </div>
 

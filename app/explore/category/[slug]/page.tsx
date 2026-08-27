@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
+import { use } from "react"
 
-export default function CategoryRedirect({ params }: { params: { slug: string } }) {
-  const { slug } = params
-  // Redirect old /explore/category/:slug to new /explore/:slug
+export default function CategoryRedirect({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
   redirect(`/explore/${slug}`)
 }

@@ -12,10 +12,9 @@ function unslugify(slug: string) {
   return slug.replace(/-/g, " ")
 }
 
-export default function CategoryPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
-  // Handle both sync and async params for Next.js compatibility
-  const resolvedParams = params instanceof Promise ? use(params) : params
-  const { slug } = resolvedParams
+export default function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Unwrap the params Promise with React.use() — required in Next.js 15
+  const { slug } = use(params)
   
   const { setLastVisitedCategory } = useCart()
   const categories = getAllCategories()

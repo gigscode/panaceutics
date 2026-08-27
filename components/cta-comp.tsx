@@ -1,12 +1,12 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { WHATSAPP_NUMBER } from "@/lib/config"
 
 export function Cta() {
 
-    const whatsappNumber = "+2348070943256"
   const message = "Hi, I'd like to learn more about your products and solutions."
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 
     return (
         <section className="relative py-10 overflow-hidden bg-black sm:py-16 lg:py-24 xl:py-32">

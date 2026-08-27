@@ -58,8 +58,8 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
     
     setIsAdding(false)
     
-    // Redirect to payment page
-    router.push('/payment')
+    // Redirect to cart so user can review before proceeding to payment
+    router.push('/cart')
   }
 
   return (

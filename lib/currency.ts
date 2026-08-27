@@ -1,4 +1,4 @@
-const NGN_TO_USD_RATE = 1600; // 1 USD = 1600 NGN (base conversion rate)
+const NGN_TO_USD_RATE = Number(process.env.NEXT_PUBLIC_NGN_USD_RATE) || 1600; // 1 USD = N NGN
 
 export interface Price {
   amount: number;

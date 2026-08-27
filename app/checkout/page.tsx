@@ -4,16 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Copy, CheckCircle, ShoppingCart } from "lucide-react"
 import { useState } from "react"
+import { useCart } from "@/app/providers"
+import { BANK_DETAILS, SUPPORT_EMAIL } from "@/lib/config"
 
 export default function CheckoutPage() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const { getTotalPrice } = useCart()
 
-  const paymentDetails = {
-    bankName: "Stanbic IBTC",
-    accountNumber: "0084736029",
-    accountName: "Panaceutics Ltd",
-    amount: "₦25,000.00" // This could be dynamic based on cart total
-  }
+  const total = getTotalPrice()
+  const formattedTotal = `₦${total.toLocaleString("en-NG", { minimumFractionDigits: 2 })}`
 
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text)
@@ -49,30 +48,28 @@ export default function CheckoutPage() {
             {/* Amount */}
             <div className="text-center mb-6">
               <p className="text-sm text-muted-foreground mb-2">Total Amount to Pay</p>
-              <p className="text-3xl font-bold text-primary">{paymentDetails.amount}</p>
+              <p className="text-3xl font-bold text-primary">{formattedTotal}</p>
             </div>
 
             {/* Bank Details */}
             <div className="space-y-4">
               <DetailItem
                 label="Bank Name"
-                value={paymentDetails.bankName}
-                copied={copiedField === 'bank'}
-                onCopy={() => handleCopy(paymentDetails.bankName, 'bank')}
+                value={BANK_DETAILS.bankName}
+                copied={copiedField === "bank"}
+                onCopy={() => handleCopy(BANK_DETAILS.bankName, "bank")}
               />
-              
               <DetailItem
                 label="Account Number"
-                value={paymentDetails.accountNumber}
-                copied={copiedField === 'account'}
-                onCopy={() => handleCopy(paymentDetails.accountNumber, 'account')}
+                value={BANK_DETAILS.accountNumber}
+                copied={copiedField === "account"}
+                onCopy={() => handleCopy(BANK_DETAILS.accountNumber, "account")}
               />
-              
               <DetailItem
                 label="Account Name"
-                value={paymentDetails.accountName}
-                copied={copiedField === 'name'}
-                onCopy={() => handleCopy(paymentDetails.accountName, 'name')}
+                value={BANK_DETAILS.accountName}
+                copied={copiedField === "name"}
+                onCopy={() => handleCopy(BANK_DETAILS.accountName, "name")}
               />
             </div>
 
@@ -82,7 +79,7 @@ export default function CheckoutPage() {
               <ul className="text-sm text-muted-foreground space-y-2">
                 <li className="flex items-start gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
-                  <span>Transfer the exact amount: <strong>{paymentDetails.amount}</strong></span>
+                  <span>Transfer the exact amount: <strong>{formattedTotal}</strong></span>
                 </li>
                 <li className="flex items-start gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
@@ -99,15 +96,15 @@ export default function CheckoutPage() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="flex-1"
             onClick={() => window.history.back()}
           >
             Back to Cart
           </Button>
           <Button className="flex-1 bg-primary hover:bg-primary/90">
-            I've Made Payment
+            I&apos;ve Made Payment
           </Button>
         </div>
 
@@ -115,8 +112,8 @@ export default function CheckoutPage() {
         <div className="text-center mt-8">
           <p className="text-sm text-muted-foreground">
             Need help? Contact support at{" "}
-            <a href="mailto:support@naturalhealing.com" className="text-primary hover:underline">
-              support@naturalhealing.com
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-primary hover:underline">
+              {SUPPORT_EMAIL}
             </a>
           </p>
         </div>

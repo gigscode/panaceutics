@@ -4,13 +4,11 @@ import { ProductDetailPage } from "@/components/product-detail-page"
 import type { Metadata } from "next"
 
 interface ProductPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { id } = params
+  const { id } = await params
   const product = findProductById(id)
 
   if (!product) {
@@ -32,9 +30,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = params
-  
-  // Find the product by ID across all categories
+  const { id } = await params
+
   const product = findProductById(id)
 
   if (!product) {
@@ -45,10 +42,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
 }
 
 export async function generateStaticParams() {
-  // This will pre-generate pages for all products at build time
   const { getAllProducts } = await import("@/lib/categories")
   const products = getAllProducts()
-  
+
   return products.map((product) => ({
     id: product.id,
   }))

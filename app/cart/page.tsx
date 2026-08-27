@@ -9,19 +9,16 @@ import { Trash2, ChevronLeft, ShoppingBag, Minus, Plus } from "lucide-react"
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice, lastVisitedCategory } = useCart()
   const cartTotal = getTotalPrice()
-  
-  // Determine the back link based on last visited category
+
   const getBackLink = () => {
     if (lastVisitedCategory) {
-      return `/explore/${lastVisitedCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+      return `/explore/${lastVisitedCategory.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
     }
     return "/explore/categories"
   }
-  
+
   const getBackText = () => {
-    if (lastVisitedCategory) {
-      return `Back to ${lastVisitedCategory}`
-    }
+    if (lastVisitedCategory) return `Back to ${lastVisitedCategory}`
     return "Back to Products"
   }
 
@@ -33,16 +30,15 @@ export default function CartPage() {
             <ChevronLeft className="w-4 h-4" />
             {getBackText()}
           </Link>
-
           <div className="text-center py-20">
-            <ShoppingBag className="w-16 h-16 text-gray-400 mx-auto mb-4 opacity-50" />
+            <ShoppingBag className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
             <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               Explore our collection of premium herbal products and add items to your cart.
             </p>
             <Link
               href="/explore/categories"
-              className="inline-block bg-emerald-800 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-900 transition-colors"
+              className="inline-block bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
               Continue Shopping
             </Link>
@@ -55,7 +51,7 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 py-12">
-        <Link href={getBackLink()} className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8">
+        <Link href={getBackLink()} className="flex items-center gap-2 text-primary hover:underline mb-8">
           <ChevronLeft className="w-4 h-4" />
           {getBackText()}
         </Link>
@@ -64,66 +60,77 @@ export default function CartPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
-          <div className="lg:col-span-2">
-            <div className="space-y-4">
-              {items.map((item) => (
-                <div key={item.id} className="bg-white rounded-lg shadow-sm border p-4 flex gap-4">
-                  <div className="relative w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                    />
+          <div className="lg:col-span-2 space-y-4">
+            {items.map((item) => (
+              <div key={item.id} className="bg-card rounded-lg border p-4">
+                <div className="flex gap-4">
+                  {/* Product image */}
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+                    <Image src={item.image} alt={item.title} fill className="object-cover" />
                   </div>
 
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <Link href={`/product/${item.id}`} className="hover:text-emerald-600 transition-colors">
-                        <h3 className="font-semibold text-lg">{item.title}</h3>
-                      </Link>
-                      <p className="text-sm text-gray-600 mb-2">{item.category}</p>
-                      <div className="text-lg font-bold text-emerald-800">
-                        <Price value={item.price} />
+                  {/* Product info + actions */}
+                  <div className="flex-1 min-w-0">
+                    {/* Title row with delete button */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <Link href={`/product/${item.id}`} className="hover:text-primary transition-colors">
+                          <h3 className="font-semibold text-base sm:text-lg leading-snug truncate">{item.title}</h3>
+                        </Link>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.category}</p>
                       </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-4">
-                      <div className="flex items-center border border-gray-300 rounded-lg">
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-2 hover:bg-gray-100 transition-colors"
-                        >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="px-4 py-2 font-semibold">{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-2 hover:bg-gray-100 transition-colors"
-                        >
-                          <Plus className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                      <div className="font-semibold text-emerald-800">
-                        <Price value={{ amount: item.price.amount * item.quantity, currency: item.price.currency }} />
-                      </div>
-
+                      {/* Delete button — always visible, top-right of card */}
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                        aria-label={`Remove ${item.title} from cart`}
+                        className="flex-shrink-0 p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
                       >
-                        <Trash2 className="w-5 h-5" />
+                        <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
                       </button>
+                    </div>
+
+                    {/* Price + quantity row */}
+                    <div className="flex items-center justify-between mt-3 gap-2 flex-wrap">
+                      {/* Unit price */}
+                      <div className="text-sm font-medium text-muted-foreground">
+                        <Price value={item.price} /> each
+                      </div>
+
+                      {/* Quantity stepper */}
+                      <div className="flex items-center border border-border rounded-lg">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          aria-label="Decrease quantity"
+                          className="p-1.5 sm:p-2 hover:bg-muted transition-colors rounded-l-lg"
+                        >
+                          <Minus className="w-3 h-3 sm:w-4 sm:h-4" />
+                        </button>
+                        <span className="px-3 py-1.5 font-semibold text-sm min-w-[2rem] text-center">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          aria-label="Increase quantity"
+                          className="p-1.5 sm:p-2 hover:bg-muted transition-colors rounded-r-lg"
+                        >
+                          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+                        </button>
+                      </div>
+
+                      {/* Line total */}
+                      <div className="font-bold text-primary text-sm sm:text-base">
+                        <Price value={{ amount: item.price.amount * item.quantity, currency: item.price.currency }} />
+                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
 
+            {/* Clear cart */}
             <button
               onClick={clearCart}
-              className="mt-8 w-full border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors"
+              className="w-full border border-border text-muted-foreground py-2 px-4 rounded-lg hover:bg-muted transition-colors text-sm"
             >
               Clear Cart
             </button>
@@ -131,43 +138,43 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div>
-            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-24">
+            <div className="bg-card rounded-lg border p-6 sticky top-24">
               <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span><Price value={{ amount: cartTotal, currency: 'NGN' }} /></span>
+              <div className="space-y-3 mb-6 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Subtotal ({items.reduce((n, i) => n + i.quantity, 0)} items)</span>
+                  <span><Price value={{ amount: cartTotal, currency: "NGN" }} /></span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Shipping</span>
                   <span>Free</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Tax</span>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Tax</span>
                   <span>Included</span>
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-4 mb-6">
+              <div className="border-t border-border pt-4 mb-6">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span className="text-emerald-800">
-                    <Price value={{ amount: cartTotal, currency: 'NGN' }} />
+                  <span className="text-primary">
+                    <Price value={{ amount: cartTotal, currency: "NGN" }} />
                   </span>
                 </div>
               </div>
 
               <Link
                 href="/payment"
-                className="block w-full bg-emerald-800 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-900 transition-colors text-center mb-3"
+                className="block w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors text-center mb-3"
               >
                 Proceed to Payment
               </Link>
 
               <Link
                 href="/explore/categories"
-                className="block w-full border border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors text-center"
+                className="block w-full border border-border text-foreground py-3 px-6 rounded-lg font-medium hover:bg-muted transition-colors text-center"
               >
                 Continue Shopping
               </Link>

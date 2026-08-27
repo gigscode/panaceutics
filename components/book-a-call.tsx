@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { MessageCircle, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
+import { WHATSAPP_NUMBER } from "@/lib/config"
 
 export function BookCall() {
-  const whatsappNumber = "+2348070943256"
   const message = "Hi, I'd like to learn more about your products and solutions."
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 
   return (
     <section className="py-24 md:py-32">

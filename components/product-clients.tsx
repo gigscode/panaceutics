@@ -1,69 +1,52 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
-import type { StorePreferences } from "@/lib/types"
-import type { Product } from "@/lib/types"
-
-// interface ProductsClientProps {
-//   storePreferences: StorePreferences
-// }
+import { getAllProducts, getAllCategories } from "@/lib/categories"
+import { formatPrice } from "@/lib/currency"
 
 export default function ProductsClient() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [sortBy, setSortBy] = useState("featured")
   const [showCategoryFilter, setShowCategoryFilter] = useState(false)
   const [showSortFilter, setShowSortFilter] = useState(false)
-    const [products, setProducts] = useState<Product[]>([])
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-    const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
-    const [loading, setLoading] = useState(true)
 
+  // Static data — no API call needed
+  const allProducts = useMemo(() => getAllProducts(), [])
+  const categories = useMemo(() => ["All", ...getAllCategories()], [])
 
-    useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("/api/products")
-        if (!response.ok) throw new Error("Failed to fetch products")
-        const data = await response.json()
-        setProducts(data.data || data)
-        setFilteredProducts(data.data || data)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred")
-      } finally {
-        setLoading(false)
+  const sortedProducts = useMemo(() => {
+    let filtered = allProducts
+
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((p) => p.category === selectedCategory)
+    }
+
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase()
+      filtered = filtered.filter(
+        (p) => p.title.toLowerCase().includes(term) || p.description.toLowerCase().includes(term)
+      )
+    }
+
+    return [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":
+          return (a.price?.amount ?? 0) - (b.price?.amount ?? 0)
+        case "price-high":
+          return (b.price?.amount ?? 0) - (a.price?.amount ?? 0)
+        case "name":
+          return a.title.localeCompare(b.title)
+        default:
+          return 0
       }
-    }
-
-    fetchProducts()
-  }, [])
-
-  useEffect(() => {
-    const filtered = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    setFilteredProducts(filtered)
-  }, [searchTerm, products])
-  // const filteredProducts =
-  //   selectedCategory === "All"
-  //     ? storePreferences.products
-  //     : storePreferences.products.filter((p) => p.category === selectedCategory)
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case "price-low":
-        return a.price - b.price
-      case "price-high":
-        return b.price - a.price
-      case "name":
-        return a.name.localeCompare(b.name)
-      default:
-        return 0
-    }
-  })
+    })
+  }, [allProducts, selectedCategory, sortBy, searchTerm])
 
   return (
     <main className="min-h-screen bg-background">
@@ -77,27 +60,33 @@ export default function ProductsClient() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+        {/* Search + Filters */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 flex-wrap">
+          {/* Search */}
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="px-4 py-2 border border-border rounded-lg text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary/40 w-full sm:w-56"
+          />
+
           {/* Category Filter */}
           <div className="relative">
             <button
-              onClick={() => setShowCategoryFilter(!showCategoryFilter)}
-              className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-secondary transition-colors"
+              onClick={() => { setShowCategoryFilter(!showCategoryFilter); setShowSortFilter(false) }}
+              className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors text-sm"
             >
-              <span className="text-sm font-medium">Category</span>
+              <span className="font-medium">{selectedCategory === "All" ? "Category" : selectedCategory}</span>
               <ChevronDown className="w-4 h-4" />
             </button>
             {showCategoryFilter && (
-              <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-10 min-w-48">
-                {["All", ...(products.map(p => p.category).filter((v, i, a) => a.indexOf(v) === i))].map((cat: string) => (
+              <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-20 min-w-48">
+                {categories.map((cat) => (
                   <button
                     key={cat}
-                    onClick={() => {
-                      setSelectedCategory(cat)
-                      setShowCategoryFilter(false)
-                    }}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-secondary transition-colors ${
+                    onClick={() => { setSelectedCategory(cat); setShowCategoryFilter(false) }}
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors first:rounded-t-lg last:rounded-b-lg ${
                       selectedCategory === cat ? "bg-primary text-primary-foreground" : ""
                     }`}
                   >
@@ -111,14 +100,14 @@ export default function ProductsClient() {
           {/* Sort Filter */}
           <div className="relative">
             <button
-              onClick={() => setShowSortFilter(!showSortFilter)}
-              className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-secondary transition-colors"
+              onClick={() => { setShowSortFilter(!showSortFilter); setShowCategoryFilter(false) }}
+              className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors text-sm"
             >
-              <span className="text-sm font-medium">Sort By</span>
+              <span className="font-medium">Sort By</span>
               <ChevronDown className="w-4 h-4" />
             </button>
             {showSortFilter && (
-              <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-10 min-w-48">
+              <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-20 min-w-48">
                 {[
                   { value: "featured", label: "Featured" },
                   { value: "price-low", label: "Price: Low to High" },
@@ -127,11 +116,8 @@ export default function ProductsClient() {
                 ].map((option) => (
                   <button
                     key={option.value}
-                    onClick={() => {
-                      setSortBy(option.value)
-                      setShowSortFilter(false)
-                    }}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-secondary transition-colors ${
+                    onClick={() => { setSortBy(option.value); setShowSortFilter(false) }}
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors first:rounded-t-lg last:rounded-b-lg ${
                       sortBy === option.value ? "bg-primary text-primary-foreground" : ""
                     }`}
                   >
@@ -142,8 +128,9 @@ export default function ProductsClient() {
             )}
           </div>
 
-          {/* Results count */}
-          <div className="flex items-center text-sm text-muted-foreground">{sortedProducts.length} products</div>
+          <div className="flex items-center text-sm text-muted-foreground">
+            {sortedProducts.length} product{sortedProducts.length !== 1 ? "s" : ""}
+          </div>
         </div>
 
         {/* Products Grid */}
@@ -151,25 +138,27 @@ export default function ProductsClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {sortedProducts.map((product) => (
               <Card
-                key={product._id}
+                key={product.id}
                 className="overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
                 <div className="relative h-48 bg-muted overflow-hidden">
                   <Image
-                    src={product.image || "/placeholder.svg?height=192&width=192&query=herbal product"}
-                    alt={product.name}
+                    src={product.image || "/placeholder.svg?height=192&width=192"}
+                    alt={product.title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-4 flex flex-col flex-1">
                   <p className="text-xs font-semibold text-primary mb-2">{product.category}</p>
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.name}</h3>
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-2">{product.description}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-lg font-bold text-primary">₦{product.price.toLocaleString("en-NG")}</span>
+                    <span className="text-lg font-bold text-primary">
+                      {product.price ? formatPrice(product.price) : "Contact for price"}
+                    </span>
                   </div>
-                  <Link href={`/products/${product._id}`} className="w-full">
+                  <Link href={`/product/${product.id}`} className="w-full">
                     <Button className="w-full" size="sm">
                       View Details
                     </Button>
@@ -180,9 +169,12 @@ export default function ProductsClient() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-lg text-muted-foreground mb-4">No products found in this category.</p>
-            <Button onClick={() => setSelectedCategory("All")} variant="outline">
-              View All Products
+            <p className="text-lg text-muted-foreground mb-4">No products found.</p>
+            <Button
+              onClick={() => { setSelectedCategory("All"); setSearchTerm("") }}
+              variant="outline"
+            >
+              Clear Filters
             </Button>
           </div>
         )}

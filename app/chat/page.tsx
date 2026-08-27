@@ -5,10 +5,10 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import { WHATSAPP_NUMBER } from "@/lib/config"
 
 export default function ChatPage() {
-  const whatsappNumber = "+2348070943256" 
-  const whatsappLink = `https://wa.me/${whatsappNumber}`
+  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}`
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },

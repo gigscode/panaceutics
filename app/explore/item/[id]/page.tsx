@@ -1,14 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { use } from "react"
 import { findById } from "@/lib/researches"
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
 }
 
-export default function ResearchItemPage({ params }: { params: { id: string } }) {
-  const { id } = params
+export default function ResearchItemPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   const item = findById(id)
   if (!item) return notFound()
 
