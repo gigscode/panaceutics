@@ -1,3 +1,30 @@
-// Retained for any future use. DB-specific interfaces (Product, Category, StorePreferences)
-// were removed when MongoDB was removed from the project.
-// The canonical product type is Research in lib/researches.ts.
+export interface StorePreferences {
+  storeName: string
+  storeLogo: string
+  showStoreLogo: boolean
+  storeType: "general" | string
+  colors: {
+    primary: string
+    secondary: string
+    accent: string
+  }
+  heroLayout: "centered" | "split" | "full" | string
+  heroData: {
+    title: string
+    subtitle: string
+    ctaText: string
+    ctaLink: string
+    backgroundImage: string
+    backgroundColor: string
+    textColor: string
+  }
+  categoryLayout: "grid" | "list" | string
+  productCardLayout: "standard" | "compact" | string
+  paymentMethod: "paystack" | "stripe" | string
+  newsletterLayout: "simple" | "full" | string
+  featuredSectionTitle: string
+  newArrivalsTitle: string
+  categories: any[]
+  featuredProducts: any[]
+  products: any[]
+}
