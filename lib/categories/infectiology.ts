@@ -40,11 +40,11 @@ export const infectologyProducts: Research[] = [
     title: "Gastrapep Capsule",
     category: "Infectiology",
     description:
-      "Supports surface goblet cells to regenerate GIT mucin. Restores Gut health by preferential elimination of GIT infection. Modulates proton pump. ",
+      "GERD, peptic ulcer and IBD centres on three major overlapping failures: excess or misdirected acid and aggressive factors, weakened mucosal defence, and dysregulated inflammation with impaired epithelial repair. In GERD and ulcer disease, Gastrapep blends four major botanicals: A component inhibits mechanistic basis for parietal-cell acid secretion. Another component exhibits bactericidal actions on H. pylori, the third targets reflux via oesophageal sphincter relaxation (GABA-B, mGluR5).",
     image: "/images/gastrapep.png",
     price: { amount: 65000, currency: 'NGN' },
     details:
-      "Formulated for rapid gastric absorption.",
+      "Oxidative stress caused by accumulating ROS, lipid peroxidation, GSH depletion and Nrf2/HO-1 imbalance is reversed by the flavonoid class component of the botanical blend. The last component addresses IBD by upregulating the expression of tight-junction proteins (claudin, occludin, ZO-1). Probiotics and prebiotics are advised as adjuncts. Gastrapep therefore reverses chronic mucosal damage, Barrett's metaplasia and fibrotic strictures.",
   },
   
 ]

@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next"
-import { Geist } from "next/font/google"
+import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/app/providers"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"] })
+const geist = localFont({
+  src: [
+    { path: "../public/fonts/geist-latin-ext.woff2", weight: "100 900", style: "normal" },
+    { path: "../public/fonts/geist-latin.woff2",     weight: "100 900", style: "normal" },
+  ],
+  variable: "--font-geist",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://panaceutics.org'),

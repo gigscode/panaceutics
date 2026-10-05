@@ -6,33 +6,33 @@ export const oncologyProducts: Research[] = [
     title: "MyoFibrox®",
     category: "Oncology",
     description:
-      "MyoFibrox® is a polyherbal formulation exhibiting combinatorial mechanism of action aimed at reducing uterine size. First, MyoFibrox ® weakly inhibits nuclear receptor subfamily 3, group C, member 3 (progesterone receptor) and estrogen receptor (ER).",
+      "Myofibrox is a proprietary blend of four herbs with definitive action on four key pathological drivers of uterine fibroids. The first component antagonizes progesterone/PR-A/PR signaling. The second component is a dual inhibitor of intratumoral aromatase and 17β-HSD1.",
     image: "/images/myofibrox.png",
     price: { amount: 180000, currency: 'NGN' },
     details:
-      "Since progesterone increases Bcl-2 protein expression in fibroid cells, which is a major factor driving their growth. Treatment with progesterone receptor modulators can reduce fibroid size by decreasing Bcl-2 levels and promoting apoptosis. MyoFibrox® is also a strong repressor of IGF-1/2 expression leading to blockage in uterine angiogenesis. TGF-β downstream signaling responsible for the abnormal growth and fibrotic nature of fibroids are blocked by MyoFibrox® treatment. ",
+      "The third plant targets matrix remodelling via the profibrotic TGF-β/SMAD3 axis, while the last plant component is anti-proliferative and survival circuitry modulator acting via Wnt/β-catenin/PI3K/AKT/mTOR/MAPK/ERK. This formulation also benefits from the inherent blockage of NF-κB-driven inflammation, oxidative stress due to the ubiquitous flavonoid class present in medicinal plants. Patients are also encouraged daily doses of Vitamin D3 supplement, which restrains further proliferation and ECM deposition via vitamin D receptor and PPARγ pathways. Our proprietary MyoFibrox achieves substantial regression and symptom control in human patients.",
   },
   {
     id: "202",
     title: "Prostafexin®",
     category: "Oncology",
     description:
-      "Prostafexin® is a polyherbal formulation exhibiting combinatorial mechanism of action aimed at reducing prostate size. First, Prostafexin® specifically inhibits prostate 5α-reductase type 2.",
+      "Prostafexin is a scientifically validated and standardized herbal formulation already established for centuries. One of the components achieve dual 5α-reductase/PDE5 inhibition thus, countering the ED effect of 5α-reductase inhibition. Another component specifically blocks α1A-adrenoceptor signalling, causing relaxation of the smooth muscle tissue in the prostate and bladder neck, thus, improving urinary flow and reduces lower urinary tract symptoms.",
     image: "/images/prostafexin.jpg",
     price: { amount: 150000, currency: 'NGN' },
     details:
-      "Prostafexin® weakly targets androgen receptor (AR) and blocks prostatic development.  Prostafexin® also has component which targets The Mammalian Target of Rapamycin (mTOR) kinase. mTOR has been shown to control prostate cell growth, proliferation and energy metabolism.  Finally, Prostafexin® potentiates the action of dutasteride/tamsulosin, thus, reducing the time for disease burden. ",
+      "Another component also modulates TGF-β/SMAD3-driven fibroblast-to-myofibroblast transition and collagen deposition and lastly, Bcl-2 upregulation, and Wnt/β-catenin/mTOR inhibition is achieved by the last component specifically adapted from MyoFibrox. The restoration of apoptosis drives regression. Patients on Prostafexin are also advised to take Sphenolax which reverses the Metabolic driver of BPH via hyperinsulinemia. Using this protocol, full reversal of established hyperplastic and fibrotic remodelling has been achieved in human patients.",
   },
   {
     id: "203",
     title: "Atxilox®",
     category: "Oncology",
     description:
-      "Atxilox® is a polyherbal formulation exhibiting varying mechanism of action. First, Atxilox® inhibits The Mammalian Target of Rapamycin (mTOR) kinase.",
+      "Beyond any tissue-specific proliferative signals that drives oncogenesis, all pathways must ultimately cascade to cell-cycle; thus, our proprietary Atxilox is a carefully blended botanicals which specifically inhibits CDK4/6-cyclin D-Rb, recovers mitochondrial apoptosis evasion via Bcl-2/Bcl-xL/Mcl-1, XIAP/survivin downregulation and blockage of VEGF/VEGFR angiogenesis which sustains tumour vasculature.",
     image: "/images/atxilox.png",
     price: { amount: 200000, currency: 'NGN' },
     details:
-      "mTOR controls cell growth, proliferation and energy metabolism (Reprogramming Energy Metabolism).3 Therefore, inhibiting mTOR leads to cell cycle arrest and metabolic starvation. Secondly, Atxilox® acts as VEGFR kinase inhibitor which blocks oncogenic angiogenesis, also, weak dual BRAF inhibitors with MEK inhibitory actions have been demonstrated in , Atxilox®.",
+      "A patient on Atxilox is also treated with Sphenolax and Nu-beta, these formulations jointly reverse Warburg metabolic effect and dyslipidemia. Since our preparation method is aimed at preserving the flavonoid-class within other key target phytochemicals, Inflammation and redox imbalance associated with carcinogenesis is blocked by the flavonoid-rich fraction via NF-κB/STAT3/COX-2/PGE₂/ROS pathways. Thus, Atxilox reduces tumour volume, and ultimately promotes patient survival as a single agent, and when combined with chemotherapy, it mitigates against therapy resistance.",
   },
 
   {
@@ -40,11 +40,11 @@ export const oncologyProducts: Research[] = [
     title: "Metaxin®",
     category: "Oncology",
     description:
-      "Metaxin® modulates Epithelial-Mesenchymal Transition (EMT), whereas tumour cells loose adhesion to the primary tumor and extracellular matrix (ECM) promoted by proteolytic degradation of the ECM by enzymes like matrix metalloproteinases (MMPs); and the activation of signaling pathways that promote cell motility and survival. Broadly, Metaxin® has two mechanisms of action.",
+      "In cancer patients, metastasis begins when cells at the primary tumour switch from a stable, cohesive state to an invasive one driven principally by hypoxia, inflammation and a stiffening, fibrotic stroma. Hypoxia stabilises HIF-1α, and together with TGF-β, Wnt and NF-κB signalling this activates EMT transcription factors (Snail, Twist, ZEB1). These repress E-cadherin, so cells lose adhesion to neighbours, gain a mesenchymal, motile phenotype, and acquire stem-like and survival traits.",
     image: "/images/metaxin.png",
     price: { amount: 200000, currency: 'NGN' },
     details:
-      "Metaxin® inhibits MMP-3 and MMP-9 and secondly, promotes the activation of tumor-associated-macrophages (M1-type) within the cancerous tissues through increased Interferon-gamma (IFN-γ) production within the tumour micro-environment. Additionally, Metaxin® contains complex blend of flavonoids which inhibit PD/PDL1 interaction, thus, reactivates the body's immune system to attack cancer cells. ",
+      "At the same time, the cells remodel their surroundings. MMPs, uPA and cathepsins degrade the basement membrane, while LOX stiffens the collagen matrix. Integrin-FAK-Src and Rho/Rac signalling then reorganise the actin cytoskeleton so the cells can crawl through the matrix toward blood and lymphatic vessels. Tumour-derived VEGF creates leaky, abnormal vessels, and chemokine gradients (CXCL12/CXCR4, CCL2) draw cells toward them. Metaxin is proprietarily formulated to target HIF-1α/TGF-β/Wnt/NF-κB axes, its components also disrupt MMPs and inhibit PD/PDL1 for enhanced immune-surveillance.",
   },
 ]
 
