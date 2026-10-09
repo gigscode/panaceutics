@@ -53,12 +53,13 @@ interface QrDashboardProps {
 }
 
 const BRAND_COLOR = '#042f2e'
-const ADMIN_SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET ?? ''
 
+// Auth is handled via the admin_session cookie set at login.
+// The cookie is HttpOnly and sent automatically with same-origin requests;
+// no secret is needed in the client bundle.
 function adminHeaders() {
   return {
     'Content-Type': 'application/json',
-    'x-admin-secret': ADMIN_SECRET,
   }
 }
 
@@ -73,7 +74,7 @@ export function QrDashboard({ links: initialLinks, analytics: initialAnalytics }
 
   const refreshData = useCallback(async () => {
     try {
-      const res = await fetch('/api/admin/qr', { headers: adminHeaders() })
+      const res = await fetch('/api/admin/qr', { headers: adminHeaders(), credentials: 'same-origin' })
       if (res.ok) {
         const data: QrLink[] = await res.json()
         setLinks(data)
@@ -146,6 +147,7 @@ function LinksTab({
       const res = await fetch('/api/admin/qr', {
         method: 'POST',
         headers: adminHeaders(),
+        credentials: 'same-origin',
         body: JSON.stringify(addForm),
       })
       if (res.ok) {
@@ -170,6 +172,7 @@ function LinksTab({
       const res = await fetch('/api/admin/qr', {
         method: 'PATCH',
         headers: adminHeaders(),
+        credentials: 'same-origin',
         body: JSON.stringify({
           slug: link.slug,
           destination_url: editForm.destination_url,
@@ -191,6 +194,7 @@ function LinksTab({
       await fetch(`/api/admin/qr?slug=${encodeURIComponent(slug)}`, {
         method: 'DELETE',
         headers: adminHeaders(),
+        credentials: 'same-origin',
       })
       onMutate()
     } finally {

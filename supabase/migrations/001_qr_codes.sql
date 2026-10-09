@@ -52,6 +52,26 @@ create policy "public insert qr_scans"
 -- Allow read of qr_scans only through service-role (no SELECT policy for anon).
 -- This prevents the full scan history from being readable via browserClient.
 
+-- ---------------------------------------------------------------------------
+-- Slug immutability guard (Finding 4)
+-- ---------------------------------------------------------------------------
+-- The qr_scans(slug) FK references qr_links(slug) as plain text.
+-- This trigger prevents any UPDATE from changing a slug value, closing the
+-- FK mutability gap at the database level.
+create or replace function prevent_slug_update()
+returns trigger language plpgsql as $$
+begin
+  if new.slug <> old.slug then
+    raise exception 'Slug is immutable. Create a new link instead of renaming existing ones.';
+  end if;
+  return new;
+end;
+$$;
+
+create trigger qr_links_slug_immutable
+  before update on qr_links
+  for each row execute function prevent_slug_update();
+
 -- Seed rows (one per product that ships with a printable QR code)
 insert into qr_links (slug, destination_url, label) values
   ('myofibrox',   '/product/201', 'Myofibrox'),

@@ -1,17 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { serverClient } from '@/lib/supabase'
 
-function isAuthorized(request: NextRequest): boolean {
-  const secret = request.headers.get('x-admin-secret')
-  return secret === process.env.ADMIN_SECRET || secret === process.env.NEXT_PUBLIC_ADMIN_SECRET
-}
+// Auth is enforced by middleware.ts before this route is reached.
+// The middleware checks the admin_session cookie against ADMIN_SECRET (server-side only).
+// These handlers therefore do NOT need to re-check any secret or header.
 
 // GET /api/admin/qr — list all links with scan counts (aggregate query, not full scan)
-export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
+export async function GET(_request: NextRequest) {
   const supabase = serverClient()
 
   // Fetch all links with an embedded aggregate count — Supabase returns
@@ -39,10 +34,6 @@ export async function GET(request: NextRequest) {
 
 // POST /api/admin/qr — create a new link
 export async function POST(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
   const body = await request.json().catch(() => null)
 
   if (!body) {
@@ -79,10 +70,6 @@ export async function POST(request: NextRequest) {
 
 // PATCH /api/admin/qr — update label and/or destination_url for an existing link
 export async function PATCH(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
   const body = await request.json().catch(() => null)
 
   if (!body) {
@@ -125,10 +112,6 @@ export async function PATCH(request: NextRequest) {
 
 // DELETE /api/admin/qr?slug=... — delete a link (cascades to scans)
 export async function DELETE(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
   const slug = request.nextUrl.searchParams.get('slug')
 
   if (!slug) {

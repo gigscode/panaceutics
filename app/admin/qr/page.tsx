@@ -1,4 +1,3 @@
-// TODO: add middleware auth before public launch
 import type { Metadata } from 'next'
 
 // Force dynamic rendering — this page fetches from Supabase at request time

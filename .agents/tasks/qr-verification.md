@@ -1,168 +1,62 @@
-# QR Code Infrastructure — Verification Results
+# QR Code Infrastructure — Verification Report (Review Remediation Pass)
 
-**Date**: First implementation pass  
-**Build command**: `pnpm build` (Next.js 16.3.3 / Turbopack)
-
-## TypeScript Check
-
-```
-pnpm tsc --noEmit
-```
-
-**Result**: ✅ PASS — 0 errors, 0 warnings
-
-Initial run produced 15 type errors across 3 files due to Supabase generics.
-Root cause: `Database` type lacked `Relationships` array on table entries and
-`Views/Functions/Enums/CompositeTypes` keys — Supabase's `createClient<Database>`
-inferred `never` for all table rows. Fixed by completing the Database type shape.
-
-Additionally, `supabase.from('qr_scans').insert(...).then(...).catch(...)` chain
-caused a TS error because Supabase's `PostgrestBuilder` doesn't expose `.catch()`
-directly in the chain. Fixed by using `void supabase.from(...).insert(...)` 
-(fire-and-forget with void operator).
-
-## Build
-
-```
-pnpm build
-```
-
-**Result**: ✅ PASS — compiled successfully, 0 errors
-
-Initial build attempt failed with prerender error on `/admin/qr`:  
-`Error: supabaseUrl is required.`  
-Cause: Next.js tried to statically prerender the server component at build time,
-but `NEXT_PUBLIC_SUPABASE_URL` is not set in CI/build environment.  
-Fix: Added `export const dynamic = 'force-dynamic'` to `app/admin/qr/page.tsx`.
-
-## Files Created
-
-| File | Status |
-|------|--------|
-| `.env.local.example` | ✅ Created |
-| `lib/supabase.ts` | ✅ Created |
-| `supabase/migrations/001_qr_codes.sql` | ✅ Created |
-| `app/qr/[slug]/route.ts` | ✅ Compiles, builds |
-| `app/api/admin/qr/route.ts` | ✅ Compiles, builds |
-| `components/admin/qr-dashboard.tsx` | ✅ Compiles, builds |
-| `app/admin/qr/page.tsx` | ✅ Compiles, builds (dynamic) |
-
-## Routes in Build Output
-
-- `ƒ /admin/qr` — dynamic server page ✅  
-- `ƒ /api/admin/qr` — dynamic API route (GET/POST/DELETE) ✅  
-- `ƒ /qr/[slug]` — dynamic redirect + scan logging ✅  
-
-## Notes
-
-- `@supabase/supabase-js@2.117.3` and `qrcode.react@4.2.0` installed via pnpm.
-- `@types/qrcode@1.5.6` installed as dev dependency.
-- No `@supabase/ssr` was added (not needed; supabase-js v2 `createClient` used directly).
-- The vaul peer dependency warning for React 19 was pre-existing and unrelated.
+**Date**: 2026 (second iteration — fixing review findings)
+**Build result**: ✅ PASS — `pnpm tsc --noEmit` and `pnpm build` both exit 0 with no errors or warnings.
 
 ---
 
-## Review pass 2 — fix findings #2–#6
+## Review findings addressed
 
-**Date**: Second pass (review findings remediation)  
-**Commit**: `e8b0250`
+| # | Finding | Severity | Resolution |
+|---|---------|----------|------------|
+| 1 | Admin secret exposed in browser bundle | blocking | Removed `NEXT_PUBLIC_ADMIN_SECRET` from dashboard and API route. Auth now uses an HttpOnly `admin_session` cookie set by `POST /api/admin/auth`. No secret ever enters the browser bundle. |
+| 2 | Admin page publicly accessible — no auth guard | blocking | Created `proxy.ts` (Next.js 16 replacement for `middleware.ts`) that guards `/admin/qr/*` and `/api/admin/qr/*`. Unauthenticated page visitors are redirected to `/admin/qr/login`; unauthenticated API calls receive 401. |
+| 3 | `.env.local.example` missing from disk | blocking | Created `.env.local.example` with all four required env vars documented: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_SECRET`. |
+| 4 | Text-column FK has no slug-immutability guard | advisory | Added `prevent_slug_update()` trigger function and `qr_links_slug_immutable` trigger to `supabase/migrations/001_qr_codes.sql`. Any UPDATE that changes a `slug` value raises a Postgres exception. |
 
-### Finding #2 — Full qr_scans table scan
+---
 
-**Fix**: Replaced the separate `select('slug')` full-table fetch with a Supabase
-embedded aggregate: `select('*, qr_scans(count)')`. Applied in both
-`app/api/admin/qr/route.ts` (GET handler) and `app/admin/qr/page.tsx`.
-The count is normalised from `qr_scans: [{ count: N }]` to a flat `scan_count`
-number before being returned/used.
+## Files created / modified
 
-For `scansToday`, the page now issues a separate `gte` query filtered to
-UTC midnight — fetching only today's scan rows rather than the full history.
-
-### Finding #3 — Non-atomic edit (delete + reinsert)
-
-**Fix**: Added `PATCH /api/admin/qr` endpoint that calls
-`supabase.from('qr_links').update({...}).eq('slug', slug)`.
-Updated `handleSaveEdit` in `LinksTab` to call PATCH instead of
-DELETE + POST. No scan data can be lost during an edit.
-
-### Finding #4 — PNG download 100 ms setTimeout race
-
-**Fix**: Replaced `setTimeout(..., 100)` with `flushSync(() => root.render(...))`.
-`flushSync` forces React to complete the render synchronously before returning,
-so `container.querySelector('canvas')` is guaranteed to succeed on any device.
-
-### Finding #5 — scansToday uses server local time
-
-**Fix**: `todayStart` now computed with `Date.UTC(now.getUTCFullYear(), ...)` and
-stored as `todayStartUTC`. The DB query uses `.gte('scanned_at', todayStartUTC)`,
-so midnight is always UTC-anchored regardless of the server's local timezone.
-
-### Finding #6 — No RLS policies
-
-**Fix**: Added to `supabase/migrations/001_qr_codes.sql`:
-- `ALTER TABLE qr_links ENABLE ROW LEVEL SECURITY`
-- `ALTER TABLE qr_scans ENABLE ROW LEVEL SECURITY`
-- Public SELECT policy on `qr_links` (redirect engine + product pages)
-- Public INSERT policy on `qr_scans` (future client-side scan logging)
-- No SELECT policy on `qr_scans` for anon role (analytics only via service key)
-
-**`pnpm tsc --noEmit`**: ✅ PASS — 0 errors  
-**`pnpm build`**: ✅ PASS — compiled successfully, all routes present
-
-
-## TypeScript Check
-
-```
-pnpm tsc --noEmit
-```
-
-**Result**: ✅ PASS — 0 errors, 0 warnings
-
-Initial run produced 15 type errors across 3 files due to Supabase generics.
-Root cause: `Database` type lacked `Relationships` array on table entries and
-`Views/Functions/Enums/CompositeTypes` keys — Supabase's `createClient<Database>`
-inferred `never` for all table rows. Fixed by completing the Database type shape.
-
-Additionally, `supabase.from('qr_scans').insert(...).then(...).catch(...)` chain
-caused a TS error because Supabase's `PostgrestBuilder` doesn't expose `.catch()`
-directly in the chain. Fixed by using `void supabase.from(...).insert(...)` 
-(fire-and-forget with void operator).
-
-## Build
-
-```
-pnpm build
-```
-
-**Result**: ✅ PASS — compiled successfully, 0 errors
-
-Initial build attempt failed with prerender error on `/admin/qr`:  
-`Error: supabaseUrl is required.`  
-Cause: Next.js tried to statically prerender the server component at build time,
-but `NEXT_PUBLIC_SUPABASE_URL` is not set in CI/build environment.  
-Fix: Added `export const dynamic = 'force-dynamic'` to `app/admin/qr/page.tsx`.
-
-## Files Created
-
-| File | Status |
+| File | Change |
 |------|--------|
-| `.env.local.example` | ✅ Created |
-| `lib/supabase.ts` | ✅ Created |
-| `supabase/migrations/001_qr_codes.sql` | ✅ Created |
-| `app/qr/[slug]/route.ts` | ✅ Compiles, builds |
-| `app/api/admin/qr/route.ts` | ✅ Compiles, builds |
-| `components/admin/qr-dashboard.tsx` | ✅ Compiles, builds |
-| `app/admin/qr/page.tsx` | ✅ Compiles, builds (dynamic) |
+| `proxy.ts` | New — Next.js 16 proxy (replaces deprecated `middleware.ts`) guarding admin routes |
+| `app/api/admin/auth/route.ts` | New — POST sets `admin_session` cookie; DELETE clears it (logout) |
+| `app/admin/qr/login/page.tsx` | New — password gate with Suspense-wrapped `useSearchParams` |
+| `app/api/admin/qr/route.ts` | Updated — removed `isAuthorized` / `NEXT_PUBLIC_ADMIN_SECRET` checks; auth delegated to proxy |
+| `components/admin/qr-dashboard.tsx` | Updated — removed `NEXT_PUBLIC_ADMIN_SECRET`; all fetches use `credentials: 'same-origin'` |
+| `.env.local` | Updated — `NEXT_PUBLIC_ADMIN_SECRET` renamed to `ADMIN_SECRET` |
+| `.env.local.example` | New — documents all four required env vars |
+| `supabase/migrations/001_qr_codes.sql` | Updated — added `prevent_slug_update` trigger for slug immutability |
+| `app/admin/qr/page.tsx` | Updated — removed stale TODO comment (auth now implemented) |
 
-## Routes in Build Output
+---
 
-- `ƒ /admin/qr` — dynamic server page ✅  
-- `ƒ /api/admin/qr` — dynamic API route (GET/POST/DELETE) ✅  
-- `ƒ /qr/[slug]` — dynamic redirect + scan logging ✅  
+## Build output summary
 
-## Notes
+```
+✓ Compiled successfully in 15.8s
+✓ Finished TypeScript in 5.0s
+✓ Generating static pages (42/42) in 4.2s
+✓ Finalizing page optimization in 88ms
 
-- `@supabase/supabase-js@2.117.3` and `qrcode.react@4.2.0` installed via pnpm.
-- `@types/qrcode@1.5.6` installed as dev dependency.
-- No `@supabase/ssr` was added (not needed; supabase-js v2 `createClient` used directly).
-- The vaul peer dependency warning for React 19 was pre-existing and unrelated.
+Route: /admin/qr         — ƒ Dynamic (server-rendered, proxy-guarded)
+Route: /admin/qr/login   — ○ Static
+Route: /api/admin/auth   — ƒ Dynamic
+Route: /api/admin/qr     — ƒ Dynamic (proxy-guarded)
+Route: /qr/[slug]        — ƒ Dynamic
+
+Exit Code: 0
+```
+
+---
+
+## Auth flow summary
+
+1. User visits `/admin/qr` → proxy checks `admin_session` cookie → not present → redirect to `/admin/qr/login?next=/admin/qr`
+2. User submits password → `POST /api/admin/auth` → checks against `ADMIN_SECRET` (server-side only) → sets `HttpOnly; SameSite=Strict` cookie → 200
+3. Browser redirects to `/admin/qr` → proxy checks cookie → matches → page renders
+4. All dashboard API calls use `credentials: 'same-origin'` → cookie sent automatically → proxy passes through
+5. Logout: `DELETE /api/admin/auth` clears the cookie
+
+No secret ever appears in the browser JS bundle.
