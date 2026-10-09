@@ -23,6 +23,35 @@ create table if not exists qr_scans (
 create index if not exists qr_scans_slug_idx on qr_scans(slug);
 create index if not exists qr_scans_scanned_at_idx on qr_scans(scanned_at);
 
+-- ---------------------------------------------------------------------------
+-- Row Level Security
+-- ---------------------------------------------------------------------------
+-- Enable RLS on both tables so that anonymous / authenticated clients using
+-- the public anon key cannot read or write rows unless a policy permits it.
+-- The service-role key (used server-side) bypasses RLS entirely, so Route
+-- Handlers that use serverClient() are unaffected.
+alter table qr_links enable row level security;
+alter table qr_scans  enable row level security;
+
+-- Allow anyone to SELECT from qr_links (needed for the redirect engine if
+-- ever called via browserClient, and for future public product pages).
+create policy "public read qr_links"
+  on qr_links for select
+  using (true);
+
+-- Deny all other operations on qr_links for the anon/authenticated roles.
+-- Inserts, updates, and deletes must go through the service-role API.
+
+-- Allow anyone to INSERT into qr_scans (fire-and-forget scan logging via
+-- the redirect route uses serverClient, but this policy future-proofs the
+-- table if scan logging is ever moved to a client-side path).
+create policy "public insert qr_scans"
+  on qr_scans for insert
+  with check (true);
+
+-- Allow read of qr_scans only through service-role (no SELECT policy for anon).
+-- This prevents the full scan history from being readable via browserClient.
+
 -- Seed rows (one per product that ships with a printable QR code)
 insert into qr_links (slug, destination_url, label) values
   ('myofibrox',   '/product/201', 'Myofibrox'),

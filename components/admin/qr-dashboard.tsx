@@ -166,22 +166,17 @@ function LinksTab({
   async function handleSaveEdit(link: QrLink) {
     setSaving(true)
     try {
-      // Update via POST with same slug (upsert behaviour) — or use PATCH if added later.
-      // For now, delete + re-insert to keep schema simple.
-      const delRes = await fetch(`/api/admin/qr?slug=${encodeURIComponent(link.slug)}`, {
-        method: 'DELETE',
+      // Atomic update via PATCH — no delete-then-reinsert, no data-loss window.
+      const res = await fetch('/api/admin/qr', {
+        method: 'PATCH',
         headers: adminHeaders(),
+        body: JSON.stringify({
+          slug: link.slug,
+          destination_url: editForm.destination_url,
+          label: editForm.label,
+        }),
       })
-      if (delRes.ok) {
-        await fetch('/api/admin/qr', {
-          method: 'POST',
-          headers: adminHeaders(),
-          body: JSON.stringify({
-            slug: link.slug,
-            destination_url: editForm.destination_url,
-            label: editForm.label,
-          }),
-        })
+      if (res.ok) {
         setEditingId(null)
         onMutate()
       }
@@ -387,35 +382,27 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
   }
 
   function downloadPng() {
-    // Render an off-screen canvas, grab the data URL, trigger download
-    const canvas = document.createElement('canvas')
-    canvas.width = size
-    canvas.height = size
-    document.body.appendChild(canvas)
-
-    // Render QR into the off-screen canvas using QRCodeCanvas imperatively
+    // Render QRCodeCanvas into a detached container synchronously via flushSync,
+    // which guarantees the canvas is in the DOM before we read it — no setTimeout race.
     const container = document.createElement('div')
-    container.style.display = 'none'
+    container.style.cssText = 'position:absolute;left:-9999px;top:-9999px;'
     document.body.appendChild(container)
 
-    // Use a React portal approach via a temporary root
     import('react-dom/client').then(({ createRoot }) => {
-      const root = createRoot(container)
-      const canvasRef = { current: null as HTMLCanvasElement | null }
+      import('react-dom').then(({ flushSync }) => {
+        const root = createRoot(container)
 
-      root.render(
-        React.createElement(QRCodeCanvas, {
-          value: qrValue || 'https://panaceutics.com',
-          size,
-          fgColor,
-          ref: (el: HTMLCanvasElement | null) => {
-            canvasRef.current = el
-          },
-        }),
-      )
+        // flushSync forces React to render synchronously before returning
+        flushSync(() => {
+          root.render(
+            React.createElement(QRCodeCanvas, {
+              value: qrValue || 'https://panaceutics.com',
+              size,
+              fgColor,
+            }),
+          )
+        })
 
-      // Give React a tick to render
-      setTimeout(() => {
         const c = container.querySelector('canvas') as HTMLCanvasElement | null
         if (c) {
           const url = c.toDataURL('image/png')
@@ -424,10 +411,10 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
           a.download = `qr-${selectedSlug || 'code'}.png`
           a.click()
         }
+
         root.unmount()
         document.body.removeChild(container)
-        document.body.removeChild(canvas)
-      }, 100)
+      })
     })
   }
 

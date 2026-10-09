@@ -16,32 +16,32 @@ export const metadata: Metadata = {
 export default async function QrAdminPage() {
   const supabase = serverClient()
 
-  // Fetch all links
+  // Fetch all links with embedded aggregate scan counts — no full table scan
   const { data: links } = await supabase
     .from('qr_links')
-    .select('*')
+    .select('*, qr_scans(count)')
     .order('created_at', { ascending: false })
 
-  // Fetch all scans
-  const { data: scans } = await supabase.from('qr_scans').select('slug, scanned_at')
-
+  // For scansToday we only need today's rows; filter in the DB using UTC midnight
   const now = new Date()
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString()
+  // Use Date.UTC so todayStart is always midnight UTC, regardless of server timezone
+  const todayStartUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toISOString()
 
-  const scanCountMap: Record<string, number> = {}
-  let scansToday = 0
+  const { data: todayScans } = await supabase
+    .from('qr_scans')
+    .select('slug')
+    .gte('scanned_at', todayStartUTC)
 
-  for (const scan of scans ?? []) {
-    scanCountMap[scan.slug] = (scanCountMap[scan.slug] ?? 0) + 1
-    if (scan.scanned_at >= todayStart) scansToday++
-  }
+  const scansToday = todayScans?.length ?? 0
 
-  const linksWithCount: QrLink[] = (links ?? []).map((l) => ({
-    ...l,
-    scan_count: scanCountMap[l.slug] ?? 0,
-  }))
+  // Normalise the embedded count into a flat scan_count number
+  const linksWithCount: QrLink[] = (links ?? []).map((l) => {
+    const countArr = (l as typeof l & { qr_scans: { count: number }[] | null }).qr_scans
+    const scan_count = countArr?.[0]?.count ?? 0
+    return { id: l.id, slug: l.slug, destination_url: l.destination_url, label: l.label ?? null, created_at: l.created_at ?? '', scan_count }
+  })
 
-  const totalScans = (scans ?? []).length
+  const totalScans = linksWithCount.reduce((s, l) => s + l.scan_count, 0)
 
   const analytics: AnalyticsData = {
     totalLinks: linksWithCount.length,
