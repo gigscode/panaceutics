@@ -53,6 +53,84 @@ interface QrDashboardProps {
 }
 
 const BRAND_COLOR = '#042f2e'
+const BRAND_LOGO = '/qr-logo.png'
+
+// Fetches the brand logo and returns it as a base64 data URL so it can be
+// embedded directly into exported SVG files (external URLs break in standalone SVGs).
+async function getLogoAsDataUrl(): Promise<string> {
+  const res = await fetch(BRAND_LOGO)
+  const blob = await res.blob()
+  return new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result as string)
+    reader.readAsDataURL(blob)
+  })
+}
+
+async function serializeSvgWithEmbeddedLogo(svgEl: Element, filename: string) {
+  const dataUrl = await getLogoAsDataUrl()
+  const serializer = new XMLSerializer()
+  let svgStr = serializer.serializeToString(svgEl)
+  // Replace the external logo href with the embedded base64 data URL
+  svgStr = svgStr.replace(
+    /href="[^"]*qr-logo\.png"/g,
+    `href="${dataUrl}"`
+  )
+  const blob = new Blob([svgStr], { type: 'image/svg+xml' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(url)
+}
+// Level "H" error correction lets the QR still scan even with 30% obscured by the logo.
+function logoSettings(size: number) {
+  const logoSize = Math.round(size * 0.30) // logo takes up ~30% of QR width
+  return {
+    src: BRAND_LOGO,
+    height: logoSize,
+    width: logoSize,
+    excavate: true, // punches a clean hole behind the logo so it doesn't interfere with data
+  }
+}
+
+// Takes the raw QR canvas and returns a new canvas with white padding and
+// rounded corners — ready for a polished PNG download.
+function applyPaddingAndRoundedCorners(
+  sourceCanvas: HTMLCanvasElement,
+  padding = 48,
+  radius = 40,
+): HTMLCanvasElement {
+  const size = sourceCanvas.width + padding * 2
+  const out = document.createElement('canvas')
+  out.width = size
+  out.height = size
+  const ctx = out.getContext('2d')!
+
+  // Draw white rounded rectangle as background
+  ctx.fillStyle = '#ffffff'
+  ctx.beginPath()
+  ctx.moveTo(radius, 0)
+  ctx.lineTo(size - radius, 0)
+  ctx.quadraticCurveTo(size, 0, size, radius)
+  ctx.lineTo(size, size - radius)
+  ctx.quadraticCurveTo(size, size, size - radius, size)
+  ctx.lineTo(radius, size)
+  ctx.quadraticCurveTo(0, size, 0, size - radius)
+  ctx.lineTo(0, radius)
+  ctx.quadraticCurveTo(0, 0, radius, 0)
+  ctx.closePath()
+  ctx.fill()
+
+  // Clip to the same rounded rect so the QR doesn't bleed over the corners
+  ctx.clip()
+
+  // Draw the QR code centred inside the padding
+  ctx.drawImage(sourceCanvas, padding, padding)
+
+  return out
+}
 
 // Auth is handled via the admin_session cookie set at login.
 // The cookie is HttpOnly and sent automatically with same-origin requests;
@@ -102,6 +180,7 @@ export function QrDashboard({ links: initialLinks, analytics: initialAnalytics }
       <TabsList className="mb-4">
         <TabsTrigger value="links">Links</TabsTrigger>
         <TabsTrigger value="generator">Generator</TabsTrigger>
+        <TabsTrigger value="qrcodes">QR Codes</TabsTrigger>
         <TabsTrigger value="analytics">Analytics</TabsTrigger>
       </TabsList>
 
@@ -111,6 +190,10 @@ export function QrDashboard({ links: initialLinks, analytics: initialAnalytics }
 
       <TabsContent value="generator">
         <GeneratorTab links={links} />
+      </TabsContent>
+
+      <TabsContent value="qrcodes">
+        <QrCodesTab links={links} />
       </TabsContent>
 
       <TabsContent value="analytics">
@@ -386,8 +469,8 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
   }
 
   function downloadPng() {
-    // Render QRCodeCanvas into a detached container synchronously via flushSync,
-    // which guarantees the canvas is in the DOM before we read it — no setTimeout race.
+    // Render at 1024px for high-quality print output (~300 DPI at A5 size)
+    const printSize = 1024
     const container = document.createElement('div')
     container.style.cssText = 'position:absolute;left:-9999px;top:-9999px;'
     document.body.appendChild(container)
@@ -396,20 +479,22 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
       import('react-dom').then(({ flushSync }) => {
         const root = createRoot(container)
 
-        // flushSync forces React to render synchronously before returning
         flushSync(() => {
           root.render(
             React.createElement(QRCodeCanvas, {
-              value: qrValue || 'https://panaceutics.com',
-              size,
+              value: qrValue || 'https://panaceutics.org',
+              size: printSize,
               fgColor,
+              level: 'H',
+              imageSettings: logoSettings(printSize),
             }),
           )
         })
 
         const c = container.querySelector('canvas') as HTMLCanvasElement | null
         if (c) {
-          const url = c.toDataURL('image/png')
+          const finalCanvas = applyPaddingAndRoundedCorners(c, 64, 48)
+          const url = finalCanvas.toDataURL('image/png')
           const a = document.createElement('a')
           a.href = url
           a.download = `qr-${selectedSlug || 'code'}.png`
@@ -424,15 +509,7 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
 
   function downloadSvg() {
     if (!svgRef.current) return
-    const serializer = new XMLSerializer()
-    const svgStr = serializer.serializeToString(svgRef.current)
-    const blob = new Blob([svgStr], { type: 'image/svg+xml' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `qr-${selectedSlug || 'code'}.svg`
-    a.click()
-    URL.revokeObjectURL(url)
+    serializeSvgWithEmbeddedLogo(svgRef.current, `qr-${selectedSlug || 'code'}.svg`)
   }
 
   return (
@@ -528,7 +605,8 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
               size={Math.min(size, 280)}
               fgColor={fgColor}
               bgColor="#ffffff"
-              level="M"
+              level="H"
+              imageSettings={logoSettings(Math.min(size, 280))}
             />
           ) : (
             <p className="text-muted-foreground text-sm">
@@ -542,7 +620,157 @@ function GeneratorTab({ links }: { links: QrLink[] }) {
 }
 
 // ---------------------------------------------------------------------------
-// Tab 3 — Analytics
+// Tab 3 — QR Codes List
+// ---------------------------------------------------------------------------
+
+function QrCodesTab({ links }: { links: QrLink[] }) {
+  const [fgColor, setFgColor] = useState(BRAND_COLOR)
+  const [copiedSlug, setCopiedSlug] = useState<string | null>(null)
+
+  function getQrUrl(slug: string) {
+    return (typeof window !== 'undefined' ? window.location.origin : 'https://panaceutics.org') + '/qr/' + slug
+  }
+
+  function copyUrl(slug: string) {
+    navigator.clipboard.writeText(getQrUrl(slug))
+    setCopiedSlug(slug)
+    setTimeout(() => setCopiedSlug(null), 2000)
+  }
+
+  function downloadSvgForSlug(slug: string) {
+    const el = document.getElementById(`qr-svg-${slug}`)
+    if (!el) return
+    serializeSvgWithEmbeddedLogo(el, `qr-${slug}.svg`)
+  }
+
+  function downloadPngForSlug(slug: string, size = 1024) {
+    const container = document.createElement('div')
+    container.style.cssText = 'position:absolute;left:-9999px;top:-9999px;'
+    document.body.appendChild(container)
+
+    import('react-dom/client').then(({ createRoot }) => {
+      import('react-dom').then(({ flushSync }) => {
+        const root = createRoot(container)
+        flushSync(() => {
+          root.render(
+            React.createElement(QRCodeCanvas, {
+              value: getQrUrl(slug),
+              size,
+              fgColor,
+              level: 'H',
+              imageSettings: logoSettings(size),
+            }),
+          )
+        })
+        const c = container.querySelector('canvas') as HTMLCanvasElement | null
+        if (c) {
+          const finalCanvas = applyPaddingAndRoundedCorners(c, 64, 48)
+          const url = finalCanvas.toDataURL('image/png')
+          const a = document.createElement('a')
+          a.href = url
+          a.download = `qr-${slug}.png`
+          a.click()
+        }
+        root.unmount()
+        document.body.removeChild(container)
+      })
+    })
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-lg font-semibold">Generated QR Codes</h2>
+        <div className="flex items-center gap-2">
+          <label className="text-sm text-muted-foreground">Colour:</label>
+          <input
+            type="color"
+            value={fgColor}
+            onChange={(e) => setFgColor(e.target.value)}
+            className="h-8 w-10 cursor-pointer rounded border"
+            title="Change QR colour"
+          />
+          <span className="font-mono text-xs text-muted-foreground">{fgColor}</span>
+        </div>
+      </div>
+
+      {links.length === 0 ? (
+        <div className="rounded-2xl border bg-white p-12 text-center text-muted-foreground shadow">
+          No links yet. Add some in the Links tab first.
+        </div>
+      ) : (
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {links.map((link) => (
+            <div
+              key={link.slug}
+              className="flex flex-col items-center gap-2 rounded-2xl border bg-white p-4 shadow hover:shadow-md transition-shadow"
+            >
+              {/* QR Code */}
+              <div className="p-2 bg-white rounded-lg border">
+                <QRCodeSVG
+                  id={`qr-svg-${link.slug}`}
+                  value={getQrUrl(link.slug)}
+                  size={120}
+                  fgColor={fgColor}
+                  bgColor="#ffffff"
+                  level="H"
+                  imageSettings={logoSettings(120)}
+                />
+              </div>
+
+              {/* Label & slug */}
+              <div className="text-center w-full">
+                <p className="font-semibold text-sm truncate" title={link.label ?? link.slug}>
+                  {link.label ?? link.slug}
+                </p>
+                <p className="font-mono text-xs text-muted-foreground truncate">
+                  /qr/{link.slug}
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {link.scan_count} scan{link.scan_count !== 1 ? 's' : ''}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-1 w-full">
+                <Button
+                  size="sm"
+                  className="flex-1 text-xs h-7"
+                  style={{ backgroundColor: BRAND_COLOR }}
+                  onClick={() => downloadPngForSlug(link.slug)}
+                  title="Download PNG"
+                >
+                  PNG
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex-1 text-xs h-7"
+                  onClick={() => downloadSvgForSlug(link.slug)}
+                  title="Download SVG"
+                >
+                  SVG
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="text-xs h-7 px-2"
+                  onClick={() => copyUrl(link.slug)}
+                  title="Copy URL"
+                >
+                  {copiedSlug === link.slug ? '✓' : '⎘'}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Tab 4 — Analytics
 // ---------------------------------------------------------------------------
 
 function AnalyticsTab({ analytics }: { analytics: AnalyticsData }) {

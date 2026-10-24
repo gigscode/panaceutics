@@ -6,6 +6,7 @@ import { nephrologyProducts } from './nephrology'
 // import { hematologyProducts } from './hematology' // HEMATOLOGY DISABLED
 import { infectologyProducts } from './infectiology'
 import { ophthalmologyProducts } from './ophthalmology'
+import { generalWellnessProducts } from './general-wellness'
 
 // Map category names to their independent product arrays
 const categoryProductsMap: Record<string, Research[]> = {
@@ -16,6 +17,7 @@ const categoryProductsMap: Record<string, Research[]> = {
   // 'Hematology': hematologyProducts, // HEMATOLOGY DISABLED
   'Infectiology': infectologyProducts,
   'Ophthalmology': ophthalmologyProducts,
+  'General Wellness': generalWellnessProducts,
 }
 
 /**

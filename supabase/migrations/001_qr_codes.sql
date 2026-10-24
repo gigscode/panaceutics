@@ -74,6 +74,7 @@ create trigger qr_links_slug_immutable
 
 -- Seed rows (one per product that ships with a printable QR code)
 insert into qr_links (slug, destination_url, label) values
+  ('home',        '/',             'Panaceutics Homepage'),
   ('myofibrox',   '/product/201', 'Myofibrox'),
   ('prostafexin', '/product/202', 'Prostafexin'),
   ('atxilox',     '/product/203', 'Atxilox'),

@@ -61,6 +61,12 @@ export const categoryDataList: CategoryData[] = [
     description: "Studies on herbal compounds supporting eye health and retinal function.",
     categoryImage: "/ophthalmology.jpg",
   },
+  {
+    name: "General Wellness",
+    slug: "general-wellness",
+    description: "Herbal formulations built on the science of antioxidant defence and mitochondrial resilience — addressing the oxidative root of chronic disease.",
+    categoryImage: "/general-wellness.jpg",
+  },
 ]
 
 /**

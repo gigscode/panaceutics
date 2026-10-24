@@ -165,6 +165,15 @@ The last component addresses IBD by upregulating the expression of tight-junctio
 Gastrapep therefore reverses chronic mucosal damage, Barrett's metaplasia and fibrotic strictures.`,
   },
 
+  // ── General Wellness (801+) ───────────────────────────────────────────────
+  "801": {
+    id: "801",
+    shortDescription: "Promotes General Wellness and protects from reactive-oxygen species & mitochondrial damage dependent diseases.",
+    fullDescription: `AlleviRox promotes General Wellness and protects from reactive-oxygen species & mitochondrial damage dependent diseases.
+
+Formulated to support everyday health and vitality through targeted antioxidant action and mitochondrial protection.`,
+  },
+
   // ── Ophthalmology (701) ───────────────────────────────────────────────────
   "701": {
     id: "701",
