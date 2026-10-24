@@ -58,5 +58,5 @@ Our General Wellness category is built on the principle that everyday cellular h
 
 This approach reflects the biological reality that the same oxidative and mitochondrial mechanisms underlie a wide range of conditions, and that supporting them comprehensively is both scientifically defensible and practically meaningful for patients seeking to maintain health rather than manage established disease.`
 
-  return <ResearchPage title={title} content={content} citations="default" category="general-wellness" />
+  return <ResearchPage title={title} content={content} citations="none" category="general-wellness" />
 }

@@ -58,6 +58,13 @@ export const categoryOverrides: Record<string, CategoryOverride> = {
     customLayout: true,
     heroImage: "/ophthalmology.jpg",
     downloadLink: "/research/ophthalmology"
+  },
+  "general-wellness": {
+    title: "General Wellness Solutions",
+    description: "Oxidative stress and mitochondrial damage sit at the root of most chronic, non-communicable diseases. Our General Wellness formulations are built on the science of antioxidant defence and cellular resilience — targeting reactive oxygen species, supporting mitochondrial integrity, and reducing the low-grade inflammation that compounds over years before a diagnosis is ever made.",
+    customLayout: true,
+    heroImage: "/general-wellness.jpg",
+    downloadLink: "/research/general-wellness"
   }
 }
 
