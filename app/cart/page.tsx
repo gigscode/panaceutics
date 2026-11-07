@@ -5,10 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Price } from "@/components/ui/price"
 import { Trash2, ChevronLeft, ShoppingBag, Minus, Plus } from "lucide-react"
+import { DOMESTIC_SHIPPING_FEE_NGN } from "@/lib/config"
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice, lastVisitedCategory } = useCart()
   const cartTotal = getTotalPrice()
+  const orderTotal = cartTotal + DOMESTIC_SHIPPING_FEE_NGN
 
   const getBackLink = () => {
     if (lastVisitedCategory) {
@@ -147,9 +149,10 @@ export default function CartPage() {
                   <span><Price value={{ amount: cartTotal, currency: "NGN" }} /></span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span>Free</span>
+                  <span className="text-muted-foreground">Shipping (within Nigeria)</span>
+                  <span><Price value={{ amount: DOMESTIC_SHIPPING_FEE_NGN, currency: "NGN" }} /></span>
                 </div>
+                <p className="text-xs text-muted-foreground">International shipping is quoted on request.</p>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tax</span>
                   <span>Included</span>
@@ -160,7 +163,7 @@ export default function CartPage() {
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
                   <span className="text-primary">
-                    <Price value={{ amount: cartTotal, currency: "NGN" }} />
+                    <Price value={{ amount: orderTotal, currency: "NGN" }} />
                   </span>
                 </div>
               </div>

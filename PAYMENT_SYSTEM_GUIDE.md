@@ -9,8 +9,9 @@ The payment system has been implemented with a complete cart-to-payment flow usi
 1. **Product Discovery** → User browses products on category pages
 2. **Product Details** → User clicks "Buy Now" to view product details
 3. **Add to Cart** → User selects quantity and clicks "Add to Cart"
-4. **Payment Page** → User is redirected to payment page with bank details
-5. **Payment Confirmation** → User clicks "I've Made Payment" and is redirected to WhatsApp to confirm payment
+4. **Checkout** → Customer enters their name, phone number, and delivery address
+5. **Payment or Quote Request** → Nigerian customers pay the products subtotal plus ₦15,000 shipping; international customers request a shipping quote through WhatsApp
+6. **Payment Confirmation** → After transferring, the customer clicks "I've paid — confirm on WhatsApp" to send their customer and order details for confirmation
 
 ## Key Features
 
@@ -20,18 +21,20 @@ The payment system has been implemented with a complete cart-to-payment flow usi
 - Update quantities, remove items
 - Clear entire cart
 - Real-time total calculation
+- ₦15,000 domestic shipping fee included in the cart total
+- International shipping quoted on request
 
 ### 💳 **Payment Page**
 - Bank transfer payment method
 - Copy-to-clipboard for bank details
 - Order summary with itemized list
-- WhatsApp payment confirmation
+- Required customer name, phone number, and delivery address
+- WhatsApp message includes customer details, items, shipping, total, and order reference
+- International quote request sent through the same WhatsApp contact
 - Order ID generation
 
 ### 🏦 **Bank Details**
-- **Bank Name**: Guaranty Trust Bank (GTB)
-- **Account Number**: 1234567890
-- **Account Name**: PANACEUTICS ENTERPRISES
+Bank details are configured in `lib/config.ts` and can be overridden with the `NEXT_PUBLIC_BANK_NAME`, `NEXT_PUBLIC_BANK_ACCOUNT`, and `NEXT_PUBLIC_BANK_OWNER` environment variables.
 
 ## File Structure
 
@@ -71,9 +74,12 @@ const handleAddToCart = () => {
 
 ### 2. Payment Page Features
 - **Order Summary**: Shows all cart items with quantities and prices
+- **Domestic Shipping**: Adds ₦15,000 to the products subtotal for deliveries within Nigeria
+- **International Shipping**: Requires a WhatsApp quote before payment; no unconfirmed shipping fee is included in a transfer total
+- **Customer Details**: Requires full name, phone number, and complete delivery address
 - **Bank Details**: Copy-to-clipboard functionality for easy transfer
 - **Instructions**: Clear payment instructions with order ID
-- **WhatsApp Confirmation**: "I've Made Payment" button opens WhatsApp with payment details
+- **WhatsApp Confirmation**: Opens the configured WhatsApp contact with customer, delivery, order, and payment details
 
 ### 3. Cart Persistence
 - Cart data is saved to localStorage
@@ -83,14 +89,7 @@ const handleAddToCart = () => {
 ## Customization Options
 
 ### Update Bank Details
-Edit the bank details in `components/payment-page.tsx`:
-```typescript
-const bankDetails = {
-  bankName: "Your Bank Name",
-  accountNumber: "Your Account Number",
-  accountName: "Your Account Name"
-}
-```
+Edit the defaults in `lib/config.ts`, or set the corresponding public environment variables.
 
 ### Add Payment Methods
 You can extend the payment page to include:
@@ -119,11 +118,16 @@ Alternative flows you can implement:
    - Click "Proceed to Payment"
 
 3. **Payment Process**:
-   - Review order summary
+   - Enter full name, phone number, and delivery address
+   - Review products subtotal and ₦15,000 Nigeria shipping fee
    - Copy bank details using copy buttons
    - Make bank transfer payment
-   - Click "I've Made Payment"
-   - WhatsApp opens with pre-filled payment confirmation message
+   - Click "I've paid — confirm on WhatsApp"
+   - WhatsApp opens with pre-filled customer and payment confirmation details
+4. **International Orders**:
+   - Select delivery outside Nigeria and enter the destination country
+   - Request a shipping quote through WhatsApp
+   - Wait for the confirmed shipping total before making payment
 
 4. **Cart Persistence**:
    - Add items to cart
@@ -139,16 +143,18 @@ Alternative flows you can implement:
   ```
   Hello! I have made payment for my order.
 
+  *Customer Details:*
+  Full name: Customer Name
+  Phone: +234 800 000 0000
+  Delivery address: Customer Address, Nigeria
+
   *Order Details:*
   Order ID: ORD-1234567890
-  • Product Name (Qty: 2) - ₦51,000
+  • Product Name (Qty: 2) — ₦51,000
   
-  *Total Amount Paid:* ₦51,000
-  
-  *Payment Details:*
-  Bank: Guaranty Trust Bank (GTB)
-  Account: 1234567890
-  Account Name: PANACEUTICS ENTERPRISES
+  Products subtotal: ₦51,000
+  Shipping: ₦15,000
+  *Total amount paid:* ₦66,000
   
   Please confirm receipt of payment and process my order.
   

@@ -6,6 +6,8 @@
 
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "2348070943256"
 
+export const DOMESTIC_SHIPPING_FEE_NGN = 15_000
+
 export const BANK_DETAILS = {
   bankName:      process.env.NEXT_PUBLIC_BANK_NAME    || "Stanbic IBTC",
   accountNumber: process.env.NEXT_PUBLIC_BANK_ACCOUNT || "0084736029",
